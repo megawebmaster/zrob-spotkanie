@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router';
 import { AppContainer } from 'react-hot-loader';
 import Root from './containers/Root';
 import routes from './routes';
-import './index.css';
+import './index.scss';
 
 function renderApp(routes) {
   ReactDOM.render(
