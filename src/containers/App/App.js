@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import logo from './logo.svg';
 import './App.scss';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React!</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Link to="/">Home</Link>{' '}
-        <Link to="/about">About us</Link>
+      <div className="container">
+        <nav className="navbar navbar-light bg-faded">
+          <Link className="navbar-brand" to="/">ZróbSpotkanie.pl</Link>
+          <ul className="nav navbar-nav float-xs-right">
+            <li className="nav-item">
+              <Link className="nav-link" to="/">Nowe spotkanie <span className="sr-only">(obecna)</span></Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/about">O nas</Link>
+            </li>
+          </ul>
+        </nav>
         {this.props.children}
       </div>
     );
