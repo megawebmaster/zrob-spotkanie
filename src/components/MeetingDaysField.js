@@ -5,7 +5,9 @@ import "./MeetingDaysField.scss";
 class MeetingDaysField extends Component {
   static propTypes = {
     days: React.PropTypes.array.isRequired,
-    onDayChange: React.PropTypes.func.isRequired
+    month: React.PropTypes.object.isRequired,
+    onDayChange: React.PropTypes.func.isRequired,
+    onMonthChange: React.PropTypes.func.isRequired
   };
 
   handleDayClick(e, day, {selected, disabled}){
@@ -22,12 +24,13 @@ class MeetingDaysField extends Component {
   }
 
   render(){
+    let { month, onMonthChange } = this.props;
     return (
       <div className="MeetingDaysField form-group clearfix">
         <label htmlFor="meeting-name" className="col-form-label col-xs-3">Wybierz dni</label>
         <div className="col-xs-4">
-          <DayPicker initialMonth={new Date()} selectedDays={this.isDaySelected.bind(this)}
-                     onDayClick={this.handleDayClick.bind(this)} />
+          <DayPicker initialMonth={month} selectedDays={this.isDaySelected.bind(this)}
+                     onDayClick={this.handleDayClick.bind(this)} onMonthChange={onMonthChange} />
         </div>
         <div className="col-xs-5">
           {this.props.children}

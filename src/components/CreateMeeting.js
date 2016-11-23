@@ -10,6 +10,7 @@ import './CreateMeeting.scss';
 class CreateMeeting extends Component {
   state = {
     name: '',
+    visibleMonth: new Date(),
     schedule: [],
     resolution: '60'
   };
@@ -36,6 +37,10 @@ class CreateMeeting extends Component {
     }
   }
 
+  handleMonthChange(month) {
+    this.setState({ visibleMonth: month });
+  }
+
   handleSchedule(event, from, to) {
     let { schedule } = this.state;
     let index = schedule.findIndex((d) => DateUtils.isSameDay(d.day, event.day))
@@ -53,12 +58,13 @@ class CreateMeeting extends Component {
   }
 
   render() {
-    let { name, resolution, schedule } = this.state;
+    let { name, resolution, schedule, visibleMonth } = this.state;
     let days = schedule.map(event => event.day);
     return (
       <div className="CreateMeeting">
         <MeetingNameField value={name} onChange={this.handleNameChange.bind(this)} />
-        <MeetingDaysField days={days} onDayChange={this.handleDayChange.bind(this)}>
+        <MeetingDaysField days={days} month={visibleMonth} onDayChange={this.handleDayChange.bind(this)}
+                          onMonthChange={this.handleMonthChange.bind(this)}>
           <p>Reklama?</p>
         </MeetingDaysField>
         <MeetingResolutionField value={resolution} onChange={this.handleResolutionChange.bind(this)} />
