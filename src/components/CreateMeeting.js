@@ -51,8 +51,10 @@ class CreateMeeting extends Component {
   isProperlyFilled() {
     let isDefined = (value) => value !== undefined && value.length > 0;
     let isCorrect = (from, to) => parseInt(from, 10) < parseInt(to, 10);
-    return this.state.schedule
-        .map(event => !isDefined(event.from) || !isDefined(event.to) || !isCorrect(event.from, event.to))
+    let { name, schedule } = this.state;
+
+    return name !== undefined && name.length > 0 && schedule.length > 0 &&
+      schedule.map(event => !isDefined(event.from) || !isDefined(event.to) || !isCorrect(event.from, event.to))
         .filter(i => i)
         .length === 0;
   }

@@ -38,6 +38,7 @@ class MeetingScheduleEntry extends Component {
         </div>
         <div className="col-xs-5">
           <button className="btn btn-secondary" tabIndex="-1" onClick={() => onDayRemove(event)}>Usuń ten dzień</button>
+          {this.props.children}
         </div>
         {!this.isCorrect() && <div className="col-xs-9 col-offset-xs-2 form-control-feedback">
           Godzina początkowa musi być mniejsza niż godzina końcowa!

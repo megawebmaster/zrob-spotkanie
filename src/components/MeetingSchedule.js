@@ -40,14 +40,17 @@ class MeetingSchedule extends Component {
     return (
       <fieldset className="MeetingSchedule">
         <legend>Przedziały godzin</legend>
-        <button className="btn btn-sm btn-secondary btn-block" type="button" tabIndex="-1"
-                disabled={!this.isFirstRowFilled()} onClick={() => this.copyFirstRow()}>Kopiuj pierwszy wiersz</button>
         {schedule.length === 0 && <p className="px-2 m-0 float-xs-left" style={{lineHeight: '1.8rem'}}>
           Wybierz dni dla spotkania
         </p>}
-        {schedule.sort(this.sortDates).map((event) =>
+        {schedule.sort(this.sortDates).map((event, index) =>
           <MeetingScheduleEntry key={event.day.valueOf()} event={event} onDayRemove={() => onDayRemove(event.day)}
-                                onUpdate={this.handleUpdate.bind(this, event)} />
+                                onUpdate={this.handleUpdate.bind(this, event)}>
+            {index === 0 && <button className="btn btn-secondary ml-1" type="button" tabIndex="-1"
+                                    disabled={!this.isFirstRowFilled()} onClick={() => this.copyFirstRow()}>
+              Zastosuj do wszystkich
+            </button>}
+          </MeetingScheduleEntry>
         )}
       </fieldset>
     );
