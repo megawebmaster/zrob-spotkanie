@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class MeetingCreateButton extends Component {
+class MeetingCreateButton extends React.Component {
   render() {
     return (
       <div className="MeetingCreateButton form-group pt-1">

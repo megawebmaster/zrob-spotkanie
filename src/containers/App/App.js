@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router';
 import './App.scss';
 
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
       <div className="container">

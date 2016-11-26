@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Router } from 'react-router';
 
-export default class Root extends Component {
+export default class Root extends React.Component {
   static propTypes = {
     history: React.PropTypes.object.isRequired,
   };

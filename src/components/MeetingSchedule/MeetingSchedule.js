@@ -1,8 +1,8 @@
-import React, {Component} from "react";
+import React from "react";
 import MeetingScheduleEntry from "./MeetingScheduleEntry";
 import "./MeetingSchedule.scss";
 
-class MeetingSchedule extends Component {
+class MeetingSchedule extends React.Component {
   static propTypes = {
     schedule: React.PropTypes.array.isRequired,
     onDayRemove: React.PropTypes.func.isRequired,

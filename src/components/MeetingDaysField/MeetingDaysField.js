@@ -1,8 +1,8 @@
-import React, {Component} from "react";
+import React from "react";
 import DayPicker, {DateUtils} from "react-day-picker";
 import "./MeetingDaysField.scss";
 
-class MeetingDaysField extends Component {
+class MeetingDaysField extends React.Component {
   static propTypes = {
     days: React.PropTypes.array.isRequired,
     month: React.PropTypes.object.isRequired,

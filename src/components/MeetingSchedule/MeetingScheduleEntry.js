@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import moment from 'moment';
 
-class MeetingScheduleEntry extends Component {
+class MeetingScheduleEntry extends React.Component {
   static propTypes = {
     event: React.PropTypes.object.isRequired,
     onDayRemove: React.PropTypes.func.isRequired,

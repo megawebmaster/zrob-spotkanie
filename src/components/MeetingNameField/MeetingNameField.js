@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class MeetingNameField extends Component {
+class MeetingNameField extends React.Component {
   static propTypes = {
     value: React.PropTypes.string.isRequired,
     onChange: React.PropTypes.func.isRequired

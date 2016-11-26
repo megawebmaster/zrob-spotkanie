@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { DateUtils } from "react-day-picker";
-import MeetingDaysField from './MeetingDaysField';
-import MeetingNameField from './MeetingNameField';
-import MeetingResolutionField from './MeetingResolutionField';
-import MeetingSchedule from './MeetingSchedule';
-import MeetingCreateButton from './MeetingCreateButton';
+import { MeetingDaysField } from './../../components/MeetingDaysField';
+import { MeetingNameField } from './../../components/MeetingNameField';
+import { MeetingResolutionField } from './../../components/MeetingResolutionField';
+import { MeetingSchedule } from './../../components/MeetingSchedule';
+import { MeetingCreateButton } from './../../components/MeetingCreateButton';
 import './CreateMeeting.scss';
 
-class CreateMeeting extends Component {
+class CreateMeeting extends React.Component {
   state = {
     name: '',
     visibleMonth: new Date(),
@@ -27,7 +27,7 @@ class CreateMeeting extends Component {
     let { schedule } = this.state;
     if(isSelected){
       // TODO: Using Redux it will need to be properly immutable
-      let index = schedule.findIndex((d) => DateUtils.isSameDay(d.day, day))
+      let index = schedule.findIndex((d) => DateUtils.isSameDay(d.day, day));
       schedule.splice(index, 1);
       this.setState({ schedule });
     } else {
@@ -43,7 +43,7 @@ class CreateMeeting extends Component {
 
   handleSchedule(event, from, to) {
     let { schedule } = this.state;
-    let index = schedule.findIndex((d) => DateUtils.isSameDay(d.day, event.day))
+    let index = schedule.findIndex((d) => DateUtils.isSameDay(d.day, event.day));
     schedule[index] = { ...event, from, to };
     this.setState({ schedule });
   }
