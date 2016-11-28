@@ -1,0 +1,18 @@
+@import '~bootstrap/scss/_variables';
+@import '~bootstrap/scss/mixins';
+
+.MeetingSchedule {
+	legend {
+		@include make-col(3, 12);
+		font-size: 1.2rem;
+		text-align: right;
+		padding: 0 map-get($grid-gutter-widths, xs)/2;
+	}
+	> .btn.btn-block {
+		@include make-col(3, 12);
+		@include make-col-offset(3, 12);
+	}
+	.form-group {
+		clear: both;
+	}
+}

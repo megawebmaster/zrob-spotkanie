@@ -1,0 +1,13 @@
+$brand-warning: #f0da48;
+
+@import '~bootstrap/scss/_variables';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/_forms';
+@import '~bootstrap/scss/_buttons';
+
+.ViewMeeting {
+	label.col-form-label {
+		padding-right: 1rem;
+		text-align: right;
+	}
+}

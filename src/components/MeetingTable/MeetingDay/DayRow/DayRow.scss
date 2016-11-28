@@ -1,0 +1,20 @@
+@import '~bootstrap/scss/_variables';
+@import '~bootstrap/scss/mixins';
+
+.DayRow {
+	@include clearfix();
+	margin: 2px 0;
+
+	.hour {
+		@include make-col(2, 12);
+		padding: 6px 3px 6px 0;
+		text-align: right;
+	}
+	> .AttendanceSelector {
+		@include make-col(2, 12);
+		text-align: center;
+	}
+	&:hover {
+		background: $gray-lightest;
+	}
+}

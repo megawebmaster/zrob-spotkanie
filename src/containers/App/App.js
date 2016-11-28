@@ -6,7 +6,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="container">
-        <nav className="navbar navbar-light bg-faded">
+        <nav className="navbar navbar-light">
           <Link className="navbar-brand" to="/">ZróbSpotkanie.pl</Link>
           <ul className="nav navbar-nav float-xs-right">
             <li className="nav-item">
