@@ -159,6 +159,9 @@ class ViewMeeting extends React.Component {
       currentName: '',
       currentResponse: {}
     });
+    // TODO: App must unfold all days on saving changes
+    // TODO: Add hints for good times to meet
+    // TODO: Properly behave when more than possible people are added
   }
 
   render() {

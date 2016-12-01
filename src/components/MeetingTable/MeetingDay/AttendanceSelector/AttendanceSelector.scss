@@ -1,6 +1,30 @@
+$brand-warning: #f0da48;
+
 @import '~bootstrap/scss/_variables';
 @import '~bootstrap/scss/mixins';
 @import '~bootstrap/scss/_button-group';
 
 .AttendanceSelector {
+	@mixin btn-type($base-color) {
+		$color: mix($base-color, $gray-lighter, 30%);
+		background: $color;
+		border-color: $color;
+
+		&:hover {
+			background: $base-color;
+			border-color: $base-color;
+		}
+	}
+
+	.btn.inactive {
+		&.btn-success {
+			@include btn-type($brand-success);
+		}
+		&.btn-warning {
+			@include btn-type($brand-warning);
+		}
+		&.btn-danger {
+			@include btn-type($brand-danger);
+		}
+	}
 }

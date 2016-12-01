@@ -17,10 +17,12 @@ class DayTitle extends React.PureComponent {
     let {day, isFolded, currentResponse, onFoldChange, onResponseChange} = this.props;
     return (
       <div className="DayTitle">
-        <span className="whole-day">Cały dzień:</span>
+        <span className="whole-day">
+          <DayVisibilitySelector isFolded={isFolded} onChange={onFoldChange} />
+          Cały dzień:
+        </span>
         <AttendanceSelector value={currentResponse} onChange={onResponseChange} />
         <span className="day">{moment(day).format('dddd, YYYY.MM.DD')}</span>
-        <DayVisibilitySelector isFolded={isFolded} onChange={onFoldChange} />
       </div>
     );
   }

@@ -33,10 +33,19 @@ class MeetingDay extends React.Component {
   }
 
   getWholeDayResponse(currentResponse, hours) {
-    let wholeDayResponse = currentResponse[hours[0].format('HH:mm')] || '';
-    for (var hour in currentResponse) {
-      if (currentResponse.hasOwnProperty(hour) && currentResponse[hour] !== wholeDayResponse) {
-        wholeDayResponse = '';
+    if (hours.length === 0) {
+      return '';
+    }
+
+    let wholeDayResponse = currentResponse[hours[0].format('HH:mm')] || 'none';
+    for (var hour in hours) {
+      if (!hours.hasOwnProperty(hour)) {
+        continue;
+      }
+
+      let value = hours[hour].format('HH:mm');
+      if (!currentResponse.hasOwnProperty(value) || currentResponse[value] !== wholeDayResponse) {
+        wholeDayResponse = 'none';
       }
     }
 

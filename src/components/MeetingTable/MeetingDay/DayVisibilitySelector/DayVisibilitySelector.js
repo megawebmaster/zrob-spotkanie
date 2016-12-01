@@ -11,11 +11,13 @@ class DayVisibilitySelector extends React.Component {
     let { isFolded, onChange } = this.props;
     return (
       <div className="DayVisibilitySelector">
-        {isFolded === false && <button className="btn btn-secondary" type="button" onClick={() => onChange(true)}>
-          <i className="fa fa-chevron-up"></i>{' '}Zwiń
+        {isFolded === false && <button className="btn btn-secondary" type="button" onClick={() => onChange(true)}
+                                       title="Zwiń">
+          <i className="fa fa-chevron-up"></i>
         </button>}
-        {isFolded === true && <button className="btn btn-secondary" type="button" onClick={() => onChange(false)}>
-          <i className="fa fa-chevron-down"></i>{' '}Rozwiń
+        {isFolded === true && <button className="btn btn-secondary" type="button" onClick={() => onChange(false)}
+                                      title="Rozwiń">
+          <i className="fa fa-chevron-down"></i>
         </button>}
       </div>
     );

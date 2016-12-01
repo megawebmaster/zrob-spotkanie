@@ -7,17 +7,20 @@
 	padding: .25rem .25rem .25rem 0;
 	background-color: $gray-lighter;
 
-	.AttendanceSelector, > span, .DayVisibilitySelector {
-		display: inline-block;
+	.DayVisibilitySelector {
+		position: absolute;
+		top: 0;
+		left: .3rem;
 	}
 	> span {
-		padding: 6px 0;
+		padding: .425rem 0;
 	}
 	> span.whole-day {
 		@include make-col(2, 12);
 		text-align: right;
 		text-transform: uppercase;
 		font-weight: bold;
+		position: relative;
 	}
 	> .AttendanceSelector {
 		@include make-col(2, 12);
@@ -27,9 +30,5 @@
 		@include make-col(6, 12);
 		text-align: center;
 		font-weight: bold;
-	}
-	.DayVisibilitySelector {
-		@include make-col(2, 12);
-		text-align: right;
 	}
 }
