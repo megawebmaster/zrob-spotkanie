@@ -7,10 +7,10 @@ class MeetingSaveButton extends React.PureComponent {
   };
 
   render() {
-    let { enabled, label } = this.props;
+    let { enabled, label, onClick } = this.props;
     return (
       <div className="MeetingSaveButton form-group pt-1">
-        <button className="btn btn-success btn-block" disabled={!enabled}>{label}</button>
+        <button className="btn btn-success btn-block" disabled={!enabled} onClick={() => onClick()}>{label}</button>
       </div>
     );
   }

@@ -136,6 +136,31 @@ class ViewMeeting extends React.Component {
     return currentName !== undefined && currentName.length > 0 && this.isResponseComplete();
   }
 
+  saveResponses(){
+    let { currentName, currentResponse, responses, participants } = this.state;
+
+    for (let day in currentResponse) {
+      if (!currentResponse.hasOwnProperty(day)) {
+        continue;
+      }
+
+      for (let hour in currentResponse[day]) {
+        if (!currentResponse[day].hasOwnProperty(hour)) {
+          continue;
+        }
+
+        responses[day][hour] = { ...responses[day][hour], [currentName]: currentResponse[day][hour] };
+      }
+    }
+
+    this.setState({
+      responses,
+      participants: [...participants, currentName],
+      currentName: '',
+      currentResponse: {}
+    });
+  }
+
   render() {
     let { name, resolution, schedule, responses, participants, currentName, currentResponse } = this.state;
 
@@ -145,7 +170,8 @@ class ViewMeeting extends React.Component {
         <MeetingTable schedule={schedule} resolution={resolution} participants={participants} responses={responses}
                       currentName={currentName} onNameChange={this.handleNameChange.bind(this)}
                       currentResponse={currentResponse} onResponseChange={this.handleResponseChange.bind(this)} />
-        <MeetingSaveButton enabled={this.isProperlyFilled()} label="Zapisz moje odpowiedzi" />
+        <MeetingSaveButton enabled={this.isProperlyFilled()} label="Zapisz moje odpowiedzi"
+                           onClick={this.saveResponses.bind(this)} />
       </div>
     );
   }
