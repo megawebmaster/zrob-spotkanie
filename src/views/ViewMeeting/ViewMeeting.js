@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import { MeetingTitle } from './../../components/MeetingTitle';
 import { MeetingTable } from './../../components/MeetingTable';
+import { MeetingSaveButton } from './../../components/MeetingSaveButton';
 import './ViewMeeting.scss';
 
 class ViewMeeting extends React.Component {
@@ -82,18 +83,69 @@ class ViewMeeting extends React.Component {
         },
       },
     },
+    currentName: '',
+    currentResponse: {},
     participants: [
       'Piotr', 'Jakub', 'Magda', 'Edyta', 'Karolina'
     ],
     resolution: 60
   };
 
+  handleNameChange(currentName){
+    this.setState({ currentName });
+  }
+
+  handleResponseChange(day, hour, answer){
+    // TODO: Improve performance - React updates whole page!
+    this.setState(state => {
+      let { currentResponse } = state;
+      let dayResponse = { ...currentResponse[day], [hour]: answer };
+      let response = { ...currentResponse, [day]: dayResponse };
+      return { currentResponse: response };
+    });
+  }
+
+  isResponseComplete() {
+    let { currentResponse, schedule, resolution } = this.state;
+
+    for (let k in schedule) {
+      if (!schedule.hasOwnProperty(k)) {
+        continue;
+      }
+      let day = moment(schedule[k].day).format('YYYY.MM.DD');
+      if (!currentResponse.hasOwnProperty(day)) {
+        return false;
+      }
+
+      let from = moment(schedule[k].from, 'HH:mm');
+      let to = moment(schedule[k].to, 'HH:mm');
+      for (let i = from; i.isSameOrBefore(to); i.add(resolution, 'minutes')) {
+        let hour = i.format('HH:mm');
+        if (!currentResponse[day].hasOwnProperty(hour) || currentResponse[day][hour] === '') {
+          return false;
+        }
+      }
+    }
+
+    return true;
+  }
+
+  isProperlyFilled() {
+    let { currentName } = this.state;
+
+    return currentName !== undefined && currentName.length > 0 && this.isResponseComplete();
+  }
+
   render() {
-    let { name, resolution, schedule, responses, participants } = this.state;
+    let { name, resolution, schedule, responses, participants, currentName, currentResponse } = this.state;
+
     return (
       <div className="ViewMeeting">
         <MeetingTitle title={name} />
-        <MeetingTable schedule={schedule} resolution={resolution} participants={participants} responses={responses} />
+        <MeetingTable schedule={schedule} resolution={resolution} participants={participants} responses={responses}
+                      currentName={currentName} onNameChange={this.handleNameChange.bind(this)}
+                      currentResponse={currentResponse} onResponseChange={this.handleResponseChange.bind(this)} />
+        <MeetingSaveButton enabled={this.isProperlyFilled()} label="Zapisz moje odpowiedzi" />
       </div>
     );
   }

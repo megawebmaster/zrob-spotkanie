@@ -4,7 +4,7 @@ import { MeetingDaysField } from './../../components/MeetingDaysField';
 import { MeetingNameField } from './../../components/MeetingNameField';
 import { MeetingResolutionField } from './../../components/MeetingResolutionField';
 import { MeetingSchedule } from './../../components/MeetingSchedule';
-import { MeetingCreateButton } from './../../components/MeetingCreateButton';
+import { MeetingSaveButton } from './../../components/MeetingSaveButton';
 import './CreateMeeting.scss';
 
 class CreateMeeting extends React.Component {
@@ -72,7 +72,7 @@ class CreateMeeting extends React.Component {
         <MeetingResolutionField value={resolution} onChange={this.handleResolutionChange.bind(this)} />
         <MeetingSchedule schedule={schedule} onDayRemove={this.handleDayChange.bind(this, true)}
                          onUpdateSchedule={this.handleSchedule.bind(this)} />
-        <MeetingCreateButton enabled={this.isProperlyFilled()} />
+        <MeetingSaveButton enabled={this.isProperlyFilled()} label="Utwórz nowe spotkanie" />
       </div>
     );
   }
