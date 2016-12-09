@@ -6,3 +6,22 @@
 	text-align: center;
 	padding: 6px 0;
 }
+
+.more-than-8 .Participant {
+	width: 3rem;
+	line-height: 3;
+	text-align: left;
+
+	> span {
+		display: inline-block;
+		white-space: nowrap;
+		transform: translate(0, 100%) rotate(-90deg);
+		transform-origin: 0 0;
+
+		&:after {
+			content: "";
+			float: left;
+			margin-top: 100%;
+		}
+	}
+}

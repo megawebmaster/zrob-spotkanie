@@ -166,8 +166,7 @@ class ViewMeeting extends React.Component {
       currentResponse: {},
       foldedDays: {}
     });
-    // TODO: Add hints for good times to meet
-    // TODO: Properly behave when more than possible people are added
+    // TODO: Properly behave when more than 15 people are added (kind of stretching? or maybe scrolling?)
   }
 
   render() {

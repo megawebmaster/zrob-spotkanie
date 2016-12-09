@@ -27,7 +27,7 @@ class MeetingTable extends React.PureComponent {
       onNameChange, onResponseChange, onFold
     } = this.props;
     return (
-      <div className="MeetingTable">
+      <div className={"MeetingTable" + (participants.length > 8 ? ' more-than-8' : '' )}>
         <Participants participants={participants} currentName={currentName} onNameChange={onNameChange} />
         {schedule.sort(this.sortDates).map((event) =>{
             let day = moment(event.day).format('YYYY.MM.DD');
