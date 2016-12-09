@@ -55,7 +55,7 @@ class ViewMeeting extends React.Component {
       '2017.03.01': {
         '08:00': {
           'Piotr': 'yes',
-          'Jakub': 'no',
+          'Jakub': 'maybe',
           'Magda': 'maybe',
           'Edyta': 'maybe',
           'Karolina': 'yes',

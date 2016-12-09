@@ -15,14 +15,22 @@ class DayRow extends React.PureComponent {
     let { hour, responses, currentResponse, onResponseChange } = this.props;
     let attendance = [];
     let value = hour.format('HH:mm');
+    let isGoodForMeeting = true;
+    let isConditionalForMeeting = true;
     for (let name in responses) {
       if (responses.hasOwnProperty(name)){
+        isGoodForMeeting = isGoodForMeeting && responses[name] === 'yes';
+        isConditionalForMeeting = isConditionalForMeeting && (responses[name] === 'yes' || responses[name] === 'maybe');
         attendance.push(<ParticipantAttendance key={value + name} attendance={responses[name]} />);
       }
     }
     return (
       <div className="DayRow">
-        <div className="hour">{value}</div>
+        <div className="hour">
+          { isGoodForMeeting && <i className="fa fa-fw fa-check"></i> }
+          { !isGoodForMeeting && isConditionalForMeeting && <i className="fa fa-fw fa-question"></i> }
+          {value}
+        </div>
         <AttendanceSelector value={currentResponse} onChange={onResponseChange} />
         {attendance}
       </div>
