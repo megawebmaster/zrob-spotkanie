@@ -9,17 +9,11 @@ class MeetingDay extends React.Component {
     event: React.PropTypes.object.isRequired,
     resolution: React.PropTypes.number.isRequired,
     responses: React.PropTypes.object.isRequired,
+    isFolded: React.PropTypes.bool.isRequired,
     currentResponse: React.PropTypes.object.isRequired,
     onResponseChange: React.PropTypes.func.isRequired,
+    onFold: React.PropTypes.func.isRequired,
   };
-
-  state = {
-    isFolded: false,
-  };
-
-  onFoldChange(isFolded) {
-    this.setState({ isFolded });
-  }
 
   getHours(event, resolution) {
     let hours = [];
@@ -53,27 +47,49 @@ class MeetingDay extends React.Component {
   }
 
   updateWholeDayResponse(answer) {
-    let { event, resolution, onResponseChange } = this.props;
+    let { event, resolution, onResponseChange, onFold } = this.props;
     let hours = this.getHours(event, resolution);
     hours.forEach(hour => onResponseChange(hour.format('HH:mm'), answer));
-    this.setState({ isFolded: true });
+    onFold(true);
+  }
+
+  handleResponse(hour, answer) {
+    let { event, resolution, currentResponse, onResponseChange, onFold } = this.props;
+    let hours = this.getHours(event, resolution);
+
+    let hasResponses = true;
+    for (var h in hours) {
+      if (!hours.hasOwnProperty(h)) {
+        continue;
+      }
+
+      let value = hours[h].format('HH:mm');
+      if (!currentResponse.hasOwnProperty(value) && value !== hour) {
+        hasResponses = false;
+        break;
+      }
+    }
+
+    onResponseChange(hour, answer);
+    if (hasResponses) {
+      onFold(true);
+    }
   }
 
   render(){
-    let { event, resolution, responses, currentResponse, onResponseChange } = this.props;
-    let { isFolded } = this.state;
+    let { event, resolution, responses, currentResponse, isFolded, onFold } = this.props;
     let hours = this.getHours(event, resolution);
     let wholeDayResponse = this.getWholeDayResponse(currentResponse, hours);
 
     return (
       <div className="MeetingDay">
-        <DayTitle day={event.day} isFolded={isFolded} onFoldChange={this.onFoldChange.bind(this)}
-                  currentResponse={wholeDayResponse} onResponseChange={this.updateWholeDayResponse.bind(this)} />
+        <DayTitle day={event.day} isFolded={isFolded} onFoldChange={onFold} currentResponse={wholeDayResponse}
+                  onResponseChange={this.updateWholeDayResponse.bind(this)} />
         {isFolded === false && hours.map(hour => {
             let value = hour.format('HH:mm');
             return <DayRow key={hour.valueOf()} hour={hour} responses={responses[value]}
                            currentResponse={currentResponse[value] || ''}
-                           onResponseChange={onResponseChange.bind(this, value)} />
+                           onResponseChange={this.handleResponse.bind(this, value)} />
           }
         )}
       </div>

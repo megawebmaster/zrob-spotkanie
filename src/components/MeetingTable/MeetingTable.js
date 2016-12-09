@@ -3,7 +3,6 @@ import moment from 'moment';
 import {MeetingDay} from './MeetingDay';
 import {Participants} from './Participants';
 import './MeetingTable.scss';
-
 class MeetingTable extends React.PureComponent {
   static propTypes = {
     schedule: React.PropTypes.array.isRequired,
@@ -12,8 +11,10 @@ class MeetingTable extends React.PureComponent {
     responses: React.PropTypes.object.isRequired,
     currentName: React.PropTypes.string.isRequired,
     currentResponse: React.PropTypes.object.isRequired,
+    foldedDays: React.PropTypes.object.isRequired,
     onNameChange: React.PropTypes.func.isRequired,
     onResponseChange: React.PropTypes.func.isRequired,
+    onFold: React.PropTypes.func.isRequired,
   };
 
   static sortDates(a, b){
@@ -21,15 +22,18 @@ class MeetingTable extends React.PureComponent {
   }
 
   render(){
-    let { schedule, resolution, participants, responses, currentName, currentResponse, onNameChange, onResponseChange } = this.props;
+    let {
+      schedule, resolution, participants, responses, currentName, currentResponse, foldedDays,
+      onNameChange, onResponseChange, onFold
+    } = this.props;
     return (
       <div className="MeetingTable">
         <Participants participants={participants} currentName={currentName} onNameChange={onNameChange} />
         {schedule.sort(this.sortDates).map((event) =>{
             let day = moment(event.day).format('YYYY.MM.DD');
-            return <MeetingDay key={event.day.valueOf()} event={event} resolution={resolution}
-                               responses={responses[day]} currentResponse={currentResponse[day] || {}}
-                               onResponseChange={onResponseChange.bind(this, day)} />
+            return <MeetingDay key={event.day.valueOf()} event={event} resolution={resolution} responses={responses[day]}
+                               isFolded={foldedDays[day] || false} currentResponse={currentResponse[day] || {}}
+                               onResponseChange={onResponseChange.bind(this, day)} onFold={onFold.bind(this, day)} />
           }
         )}
       </div>

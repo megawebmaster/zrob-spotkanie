@@ -83,6 +83,7 @@ class ViewMeeting extends React.Component {
         },
       },
     },
+    foldedDays: {},
     currentName: '',
     currentResponse: {},
     participants: [
@@ -103,6 +104,11 @@ class ViewMeeting extends React.Component {
       let response = { ...currentResponse, [day]: dayResponse };
       return { currentResponse: response };
     });
+  }
+
+  handleDayFolding(day, isFolded) {
+    let { foldedDays } = this.state;
+    this.setState({ foldedDays: { ...foldedDays, [day]: isFolded } });
   }
 
   isResponseComplete() {
@@ -157,22 +163,23 @@ class ViewMeeting extends React.Component {
       responses,
       participants: [...participants, currentName],
       currentName: '',
-      currentResponse: {}
+      currentResponse: {},
+      foldedDays: {}
     });
-    // TODO: App must unfold all days on saving changes
     // TODO: Add hints for good times to meet
     // TODO: Properly behave when more than possible people are added
   }
 
   render() {
-    let { name, resolution, schedule, responses, participants, currentName, currentResponse } = this.state;
+    let { name, resolution, schedule, responses, participants, currentName, currentResponse, foldedDays } = this.state;
 
     return (
       <div className="ViewMeeting">
         <MeetingTitle title={name} />
         <MeetingTable schedule={schedule} resolution={resolution} participants={participants} responses={responses}
-                      currentName={currentName} onNameChange={this.handleNameChange.bind(this)}
-                      currentResponse={currentResponse} onResponseChange={this.handleResponseChange.bind(this)} />
+                      currentName={currentName} foldedDays={foldedDays} onNameChange={this.handleNameChange.bind(this)}
+                      currentResponse={currentResponse} onResponseChange={this.handleResponseChange.bind(this)}
+                      onFold={this.handleDayFolding.bind(this)} />
         <MeetingSaveButton enabled={this.isProperlyFilled()} label="Zapisz moje odpowiedzi"
                            onClick={this.saveResponses.bind(this)} />
       </div>
