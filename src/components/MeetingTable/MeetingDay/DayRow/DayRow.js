@@ -15,8 +15,8 @@ class DayRow extends React.PureComponent {
     let { hour, responses, currentResponse, onResponseChange } = this.props;
     let attendance = [];
     let value = hour.format('HH:mm');
-    let isGoodForMeeting = true;
-    let isConditionalForMeeting = true;
+    let isGoodForMeeting = Object.keys(responses).length > 0;
+    let isConditionalForMeeting = isGoodForMeeting;
     for (let name in responses) {
       if (responses.hasOwnProperty(name)){
         isGoodForMeeting = isGoodForMeeting && responses[name] === 'yes';

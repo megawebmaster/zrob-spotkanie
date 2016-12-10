@@ -9,7 +9,7 @@ const routes = () => (
   <Route path="/" component={App}>
     <IndexRoute component={CreateMeeting} />
     <Route path="about" component={About} />
-    <Route path="view" component={ViewMeeting} />
+    <Route path="view/:meetingHash" component={ViewMeeting} />
   </Route>
 );
 

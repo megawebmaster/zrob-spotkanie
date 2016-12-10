@@ -5,92 +5,139 @@ import { MeetingTable } from './../../components/MeetingTable';
 import { MeetingSaveButton } from './../../components/MeetingSaveButton';
 import './ViewMeeting.scss';
 
+/*
+*
+ '2017.02.28': {
+ '08:00': {
+ 'Piotr': 'yes',
+ 'Jakub': 'no',
+ 'Magda': 'maybe',
+ 'Edyta': 'maybe',
+ 'Karolina': 'yes',
+ },
+ '09:00': {
+ 'Piotr': 'yes',
+ 'Jakub': 'yes',
+ 'Magda': 'yes',
+ 'Edyta': 'yes',
+ 'Karolina': 'yes',
+ },
+ '10:00': {
+ 'Piotr': 'yes',
+ 'Jakub': 'yes',
+ 'Magda': 'yes',
+ 'Edyta': 'no',
+ 'Karolina': 'yes',
+ },
+ '11:00': {
+ 'Piotr': 'maybe',
+ 'Jakub': 'no',
+ 'Magda': 'maybe',
+ 'Edyta': 'no',
+ 'Karolina': 'yes',
+ },
+ },
+ '2017.03.01': {
+ '08:00': {
+ 'Piotr': 'yes',
+ 'Jakub': 'maybe',
+ 'Magda': 'maybe',
+ 'Edyta': 'maybe',
+ 'Karolina': 'yes',
+ },
+ '09:00': {
+ 'Piotr': 'yes',
+ 'Jakub': 'yes',
+ 'Magda': 'yes',
+ 'Edyta': 'yes',
+ 'Karolina': 'yes',
+ },
+ '10:00': {
+ 'Piotr': 'yes',
+ 'Jakub': 'yes',
+ 'Magda': 'yes',
+ 'Edyta': 'no',
+ 'Karolina': 'yes',
+ },
+ '11:00': {
+ 'Piotr': 'maybe',
+ 'Jakub': 'no',
+ 'Magda': 'maybe',
+ 'Edyta': 'no',
+ 'Karolina': 'yes',
+ },
+ },
+
+ {
+ day: moment('2017.02.28', 'YYYY.MM.DD').toDate(),
+ from: 8,
+ to: 11
+ },
+ {
+ day: moment('2017.03.01', 'YYYY.MM.DD').toDate(),
+ from: 8,
+ to: 11
+ }
+ Testowe spotkanie 1 - sprzedaż Q3
+ 1ae3bfc
+ 'Piotr', 'Jakub', 'Magda', 'Edyta', 'Karolina'
+ * */
 class ViewMeeting extends React.Component {
   state = {
-    id: '1ae3bfc',
-    name: 'Testowe spotkanie 1 - sprzedaż Q3',
-    schedule: [
-      {
-        day: moment('2017.02.28', 'YYYY.MM.DD').toDate(),
-        from: 8,
-        to: 11
-      },
-      {
-        day: moment('2017.03.01', 'YYYY.MM.DD').toDate(),
-        from: 8,
-        to: 11
-      }
-    ],
-    responses: {
-      '2017.02.28': {
-        '08:00': {
-          'Piotr': 'yes',
-          'Jakub': 'no',
-          'Magda': 'maybe',
-          'Edyta': 'maybe',
-          'Karolina': 'yes',
-        },
-        '09:00': {
-          'Piotr': 'yes',
-          'Jakub': 'yes',
-          'Magda': 'yes',
-          'Edyta': 'yes',
-          'Karolina': 'yes',
-        },
-        '10:00': {
-          'Piotr': 'yes',
-          'Jakub': 'yes',
-          'Magda': 'yes',
-          'Edyta': 'no',
-          'Karolina': 'yes',
-        },
-        '11:00': {
-          'Piotr': 'maybe',
-          'Jakub': 'no',
-          'Magda': 'maybe',
-          'Edyta': 'no',
-          'Karolina': 'yes',
-        },
-      },
-      '2017.03.01': {
-        '08:00': {
-          'Piotr': 'yes',
-          'Jakub': 'maybe',
-          'Magda': 'maybe',
-          'Edyta': 'maybe',
-          'Karolina': 'yes',
-        },
-        '09:00': {
-          'Piotr': 'yes',
-          'Jakub': 'yes',
-          'Magda': 'yes',
-          'Edyta': 'yes',
-          'Karolina': 'yes',
-        },
-        '10:00': {
-          'Piotr': 'yes',
-          'Jakub': 'yes',
-          'Magda': 'yes',
-          'Edyta': 'no',
-          'Karolina': 'yes',
-        },
-        '11:00': {
-          'Piotr': 'maybe',
-          'Jakub': 'no',
-          'Magda': 'maybe',
-          'Edyta': 'no',
-          'Karolina': 'yes',
-        },
-      },
-    },
+    id: '',
+    name: '',
+    schedule: [],
+    responses: {},
     foldedDays: {},
     currentName: '',
     currentResponse: {},
-    participants: [
-      'Piotr', 'Jakub', 'Magda', 'Edyta', 'Karolina'
-    ],
-    resolution: 60
+    participants: [],
+    resolution: 60,
+    isLoading: true,
   };
+
+  async componentDidMount(){
+    let response = await fetch(`http://localhost:8000/v1/meetings/${this.props.params.meetingHash}`);
+    let { hash, name, resolution, days } = await response.json();
+    let responses = {};
+    let participants = [];
+
+    for (let i in days) {
+      if (!days.hasOwnProperty(i)){
+        continue;
+      }
+
+      let dayResponses = {};
+      for (let j in days[i].hours) {
+        if (!days[i].hours.hasOwnProperty(j)){
+          continue;
+        }
+
+        let hourResponses = {}
+        for (let a in days[i].hours[j].answers) {
+          if (!days[i].hours[j].answers.hasOwnProperty(a)){
+            continue;
+          }
+
+          hourResponses[days[i].hours[j].answers[a].name] = days[i].hours[j].answers[a].answer;
+        }
+
+        if (participants.length === 0) {
+          participants = Object.keys(hourResponses);
+        }
+
+        dayResponses[days[i].hours[j].hour] = hourResponses;
+      }
+
+      let day = moment(days[i].day, 'YYYY-MM-DD').format('YYYY.MM.DD');
+      responses[day] = dayResponses;
+    }
+
+    this.setState({
+      name, participants, responses: responses, id: hash, resolution: parseInt(resolution, 10), schedule: days,
+      isLoading: false
+    });
+  }
 
   handleNameChange(currentName){
     this.setState({ currentName });
@@ -170,17 +217,22 @@ class ViewMeeting extends React.Component {
   }
 
   render() {
-    let { name, resolution, schedule, responses, participants, currentName, currentResponse, foldedDays } = this.state;
+    let {
+      name, resolution, schedule, responses, participants, currentName, currentResponse, foldedDays, isLoading
+    } = this.state;
 
     return (
       <div className="ViewMeeting">
-        <MeetingTitle title={name} />
-        <MeetingTable schedule={schedule} resolution={resolution} participants={participants} responses={responses}
-                      currentName={currentName} foldedDays={foldedDays} onNameChange={this.handleNameChange.bind(this)}
-                      currentResponse={currentResponse} onResponseChange={this.handleResponseChange.bind(this)}
-                      onFold={this.handleDayFolding.bind(this)} />
-        <MeetingSaveButton enabled={this.isProperlyFilled()} label="Zapisz moje odpowiedzi"
-                           onClick={this.saveResponses.bind(this)} />
+        {isLoading && <i className="fa fa-spin fa-circle-o-notch fa-3x fa-fw"></i>}
+        {isLoading === false && <div>
+          <MeetingTitle title={name} />
+          <MeetingTable schedule={schedule} resolution={resolution} participants={participants} responses={responses}
+                        currentName={currentName} foldedDays={foldedDays} onNameChange={this.handleNameChange.bind(this)}
+                        currentResponse={currentResponse} onResponseChange={this.handleResponseChange.bind(this)}
+                        onFold={this.handleDayFolding.bind(this)} />
+          <MeetingSaveButton enabled={this.isProperlyFilled()} label="Zapisz moje odpowiedzi"
+                             onClick={this.saveResponses.bind(this)} />
+        </div>}
       </div>
     );
   }

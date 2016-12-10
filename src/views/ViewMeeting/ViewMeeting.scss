@@ -6,8 +6,18 @@ $brand-warning: #f0da48;
 @import '~bootstrap/scss/_buttons';
 
 .ViewMeeting {
+	text-align: center;
+
 	label.col-form-label {
 		padding-right: 1rem;
 		text-align: right;
+	}
+
+	> div {
+		text-align: left;
+	}
+	.fa-spin {
+		margin-top: 1rem;
+		animation-duration: .75s;
 	}
 }

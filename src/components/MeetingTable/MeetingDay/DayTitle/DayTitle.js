@@ -6,7 +6,7 @@ import './DayTitle.scss';
 
 class DayTitle extends React.PureComponent {
   static propTypes = {
-    day: React.PropTypes.object.isRequired,
+    day: React.PropTypes.string.isRequired,
     isFolded: React.PropTypes.bool.isRequired,
     currentResponse: React.PropTypes.string.isRequired,
     onFoldChange: React.PropTypes.func.isRequired,
@@ -22,7 +22,7 @@ class DayTitle extends React.PureComponent {
           Cały dzień:
         </span>
         <AttendanceSelector value={currentResponse} onChange={onResponseChange} />
-        <span className="day">{moment(day).format('dddd, YYYY.MM.DD')}</span>
+        <span className="day">{moment(day, 'YYYY-MM-DD').format('dddd, YYYY.MM.DD')}</span>
       </div>
     );
   }
