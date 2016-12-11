@@ -97,7 +97,7 @@ class ViewMeeting extends React.Component {
   };
 
   async componentDidMount(){
-    let response = await fetch(`http://localhost:8000/v1/meetings/${this.props.params.meetingHash}`);
+    let response = await fetch(`http://localhost:8000/v1/meetings/${this.props.params.hash}`);
     let { hash, name, resolution, days } = await response.json();
     let responses = {};
     let participants = [];
@@ -223,7 +223,7 @@ class ViewMeeting extends React.Component {
 
     return (
       <div className="ViewMeeting">
-        {isLoading && <i className="fa fa-spin fa-circle-o-notch fa-3x fa-fw"></i>}
+        {isLoading && <i className="fa fa-spin fa-spinner fa-pulse fa-3x fa-fw"></i>}
         {isLoading === false && <div>
           <MeetingTitle title={name} />
           <MeetingTable schedule={schedule} resolution={resolution} participants={participants} responses={responses}

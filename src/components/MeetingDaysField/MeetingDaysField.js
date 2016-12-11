@@ -29,7 +29,7 @@ class MeetingDaysField extends React.Component {
       <div className="MeetingDaysField form-group clearfix">
         <label htmlFor="meeting-name" className="col-form-label col-xs-3">Wybierz dni</label>
         <div className="col-xs-4">
-          <DayPicker initialMonth={month} selectedDays={this.isDaySelected.bind(this)}
+          <DayPicker initialMonth={month} firstDayOfWeek={1} selectedDays={this.isDaySelected.bind(this)}
                      onDayClick={this.handleDayClick.bind(this)} onMonthChange={onMonthChange} />
         </div>
         <div className="col-xs-5">

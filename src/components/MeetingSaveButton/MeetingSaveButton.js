@@ -4,6 +4,7 @@ class MeetingSaveButton extends React.PureComponent {
   static propTypes = {
     enabled: React.PropTypes.bool.isRequired,
     label: React.PropTypes.string.isRequired,
+    onClick: React.PropTypes.func.isRequired,
   };
 
   render() {
