@@ -1,87 +1,11 @@
 import React from 'react';
+import Alert from 'react-s-alert';
 import moment from 'moment';
 import { MeetingTitle } from './../../components/MeetingTitle';
 import { MeetingTable } from './../../components/MeetingTable';
 import { MeetingSaveButton } from './../../components/MeetingSaveButton';
 import './ViewMeeting.scss';
 
-/*
-*
- '2017.02.28': {
- '08:00': {
- 'Piotr': 'yes',
- 'Jakub': 'no',
- 'Magda': 'maybe',
- 'Edyta': 'maybe',
- 'Karolina': 'yes',
- },
- '09:00': {
- 'Piotr': 'yes',
- 'Jakub': 'yes',
- 'Magda': 'yes',
- 'Edyta': 'yes',
- 'Karolina': 'yes',
- },
- '10:00': {
- 'Piotr': 'yes',
- 'Jakub': 'yes',
- 'Magda': 'yes',
- 'Edyta': 'no',
- 'Karolina': 'yes',
- },
- '11:00': {
- 'Piotr': 'maybe',
- 'Jakub': 'no',
- 'Magda': 'maybe',
- 'Edyta': 'no',
- 'Karolina': 'yes',
- },
- },
- '2017.03.01': {
- '08:00': {
- 'Piotr': 'yes',
- 'Jakub': 'maybe',
- 'Magda': 'maybe',
- 'Edyta': 'maybe',
- 'Karolina': 'yes',
- },
- '09:00': {
- 'Piotr': 'yes',
- 'Jakub': 'yes',
- 'Magda': 'yes',
- 'Edyta': 'yes',
- 'Karolina': 'yes',
- },
- '10:00': {
- 'Piotr': 'yes',
- 'Jakub': 'yes',
- 'Magda': 'yes',
- 'Edyta': 'no',
- 'Karolina': 'yes',
- },
- '11:00': {
- 'Piotr': 'maybe',
- 'Jakub': 'no',
- 'Magda': 'maybe',
- 'Edyta': 'no',
- 'Karolina': 'yes',
- },
- },
-
- {
- day: moment('2017.02.28', 'YYYY.MM.DD').toDate(),
- from: 8,
- to: 11
- },
- {
- day: moment('2017.03.01', 'YYYY.MM.DD').toDate(),
- from: 8,
- to: 11
- }
- Testowe spotkanie 1 - sprzedaż Q3
- 1ae3bfc
- 'Piotr', 'Jakub', 'Magda', 'Edyta', 'Karolina'
- * */
 class ViewMeeting extends React.Component {
   state = {
     id: '',
@@ -98,6 +22,16 @@ class ViewMeeting extends React.Component {
 
   async componentDidMount(){
     let response = await fetch(`http://localhost:8000/v1/meetings/${this.props.params.hash}`);
+    if (response.status === 404){
+      Alert.error('Podane spotkanie nie zostało znalezione w systemie.');
+      return this.props.router.push({pathname: '/'});
+    }
+    if (response.status !== 200){
+      let error = await response.json();
+      Alert.error(error);
+      return new Promise();
+    }
+
     let { hash, name, resolution, days } = await response.json();
     let responses = {};
     let participants = [];
@@ -221,6 +155,7 @@ class ViewMeeting extends React.Component {
       name, resolution, schedule, responses, participants, currentName, currentResponse, foldedDays, isLoading
     } = this.state;
 
+    // TODO: Properly handle errors (kind of alerts?)
     return (
       <div className="ViewMeeting">
         {isLoading && <i className="fa fa-spin fa-spinner fa-pulse fa-3x fa-fw"></i>}

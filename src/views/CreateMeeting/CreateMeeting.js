@@ -1,6 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router';
 import {DateUtils} from 'react-day-picker';
+import Alert from 'react-s-alert';
 import {MeetingDaysField} from './../../components/MeetingDaysField';
 import {MeetingNameField} from './../../components/MeetingNameField';
 import {MeetingResolutionField} from './../../components/MeetingResolutionField';
@@ -73,13 +74,19 @@ class CreateMeeting extends React.Component {
         schedule
       })
     });
-    let meeting = await response.json();
-    this.props.router.push({pathname: `/view/${meeting.hash}`});
+    if (response.status !== 201){
+      let error = await response.json();
+      Alert.error(error);
+    } else {
+      let meeting = await response.json();
+      this.props.router.push({pathname: `/view/${meeting.hash}`});
+    }
   }
 
   render(){
     let {name, resolution, schedule, visibleMonth} = this.state;
     let days = schedule.map(event => event.day);
+    // TODO: Properly handle errors (kind of alerts?)
     return (
       <div className="CreateMeeting">
         <MeetingNameField value={name} onChange={this.handleNameChange.bind(this)} />
