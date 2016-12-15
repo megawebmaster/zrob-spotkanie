@@ -1,4 +1,5 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 import { Link } from 'react-router';
 import NavLink from './../../components/NavLink';
 import './App.scss';
@@ -7,6 +8,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="container">
+        <Helmet titleTemplate="%s - ZróbSpotkanie.pl" defaultTitle="ZróbSpotkanie.pl" />
         <nav className="navbar navbar-light">
           <Link className="navbar-brand" to="/">ZróbSpotkanie.pl</Link>
           <ul className="nav navbar-nav float-xs-right">

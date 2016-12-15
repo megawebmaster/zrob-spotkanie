@@ -1,4 +1,5 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 import {withRouter} from 'react-router';
 import {DateUtils} from 'react-day-picker';
 import Alert from 'react-s-alert';
@@ -90,6 +91,7 @@ class CreateMeeting extends React.Component {
 
     return (
       <div className="CreateMeeting">
+        <Helmet title="Utworz nowe spotkanie" />
         <MeetingNameField value={name} onChange={this.handleNameChange.bind(this)} />
         <MeetingDaysField days={days} month={visibleMonth} onDayChange={this.handleDayChange.bind(this)}
                           onMonthChange={this.handleMonthChange.bind(this)}>

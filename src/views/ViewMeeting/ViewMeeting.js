@@ -1,4 +1,5 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 import Alert from 'react-s-alert';
 import moment from 'moment';
 import {API_URL} from './../../constants';
@@ -184,6 +185,7 @@ class ViewMeeting extends React.Component {
 
     return (
       <div className="ViewMeeting">
+        <Helmet title={name} />
         {isLoading && <i className="fa fa-spin fa-spinner fa-pulse fa-3x fa-fw"></i>}
         {isLoading === false && <div>
           <MeetingTitle title={name} />
