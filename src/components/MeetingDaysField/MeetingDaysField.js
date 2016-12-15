@@ -1,5 +1,6 @@
 import React from "react";
 import DayPicker, {DateUtils} from "react-day-picker";
+import moment from 'moment';
 import "./MeetingDaysField.scss";
 
 class MeetingDaysField extends React.Component {
@@ -23,6 +24,10 @@ class MeetingDaysField extends React.Component {
     return this.props.days.findIndex((d) => DateUtils.isSameDay(d, day)) > -1;
   }
 
+  isDayBeforeToday(day) {
+    return moment(day).add(1, 'day').isBefore();
+  }
+
   render(){
     let { month, onMonthChange } = this.props;
     return (
@@ -30,6 +35,7 @@ class MeetingDaysField extends React.Component {
         <label htmlFor="meeting-name" className="col-form-label col-xs-3">Wybierz dni</label>
         <div className="col-xs-4">
           <DayPicker initialMonth={month} firstDayOfWeek={1} selectedDays={this.isDaySelected.bind(this)}
+                     disabledDays={this.isDayBeforeToday.bind(this)} fromMonth={new Date()}
                      onDayClick={this.handleDayClick.bind(this)} onMonthChange={onMonthChange} />
         </div>
         <div className="col-xs-5">
