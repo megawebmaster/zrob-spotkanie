@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class About extends Component {
+class About extends React.PureComponent {
   render() {
     return (
-      <div>
-        <h1>About us</h1>
-        <p>Test</p>
+      <div className="About">
+        <h1>O nas</h1>
       </div>
     );
   }
