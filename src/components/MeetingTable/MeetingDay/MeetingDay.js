@@ -15,6 +15,10 @@ class MeetingDay extends React.Component {
     onFold: React.PropTypes.func.isRequired,
   };
 
+  state = {
+    manualFold: false
+  };
+
   getHours(event, resolution) {
     let hours = [];
     let from = moment(event.from, 'HH:mm');
@@ -51,10 +55,18 @@ class MeetingDay extends React.Component {
     let hours = this.getHours(event, resolution);
     hours.forEach(hour => onResponseChange(hour.format('HH:mm'), answer));
     onFold(true);
+    this.setState({ manualFold: true });
   }
 
   handleResponse(hour, answer) {
     let { event, resolution, currentResponse, onResponseChange, onFold } = this.props;
+    let { manualFold } = this.state;
+    onResponseChange(hour, answer);
+
+    if (manualFold) {
+      return;
+    }
+
     let hours = this.getHours(event, resolution);
 
     let hasResponses = true;
@@ -70,9 +82,9 @@ class MeetingDay extends React.Component {
       }
     }
 
-    onResponseChange(hour, answer);
     if (hasResponses) {
       onFold(true);
+      this.setState({ manualFold: true });
     }
   }
 
