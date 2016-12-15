@@ -23,7 +23,7 @@ class MeetingDay extends React.Component {
     let hours = [];
     let from = moment(event.from, 'HH:mm');
     let to = moment(event.to, 'HH:mm');
-    for (let i = from; i.isSameOrBefore(to); i.add(resolution, 'minutes')) {
+    for (let i = from; i.isBefore(to); i.add(resolution, 'minutes')) {
       hours.push(moment(i));
     }
 

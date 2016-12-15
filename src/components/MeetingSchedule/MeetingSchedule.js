@@ -5,6 +5,7 @@ import "./MeetingSchedule.scss";
 class MeetingSchedule extends React.Component {
   static propTypes = {
     schedule: React.PropTypes.array.isRequired,
+    resolution: React.PropTypes.string.isRequired,
     onDayRemove: React.PropTypes.func.isRequired,
     onUpdateSchedule: React.PropTypes.func.isRequired
   };
@@ -19,7 +20,8 @@ class MeetingSchedule extends React.Component {
       return false;
     }
     return schedule[0].from !== undefined && schedule[0].to !== undefined &&
-      schedule[0].from.length > 0 && schedule[0].to.length > 0;
+      schedule[0].from.length > 0 && schedule[0].to.length > 0 &&
+      parseInt(schedule[0].from, 10) < parseInt(schedule[0].to, 10);
   }
 
   copyFirstRow() {
@@ -36,7 +38,7 @@ class MeetingSchedule extends React.Component {
   }
 
   render(){
-    let { schedule, onDayRemove } = this.props;
+    let { schedule, resolution, onDayRemove } = this.props;
     return (
       <fieldset className="MeetingSchedule">
         <legend>Przedziały godzin</legend>
@@ -45,7 +47,7 @@ class MeetingSchedule extends React.Component {
         </p>}
         {schedule.sort(this.sortDates).map((event, index) =>
           <MeetingScheduleEntry key={event.day.valueOf()} event={event} onDayRemove={() => onDayRemove(event.day)}
-                                onUpdate={this.handleUpdate.bind(this, event)}>
+                                resolution={resolution} onUpdate={this.handleUpdate.bind(this, event)}>
             {index === 0 && <button className="btn btn-secondary ml-1" type="button" tabIndex="-1"
                                     disabled={!this.isFirstRowFilled()} onClick={() => this.copyFirstRow()}>
               Zastosuj do wszystkich

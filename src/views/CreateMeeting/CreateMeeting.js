@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import {withRouter} from 'react-router';
 import {DateUtils} from 'react-day-picker';
 import Alert from 'react-s-alert';
+import moment from 'moment';
 import {API_URL} from './../../constants';
 import {MeetingDaysField} from './../../components/MeetingDaysField';
 import {MeetingNameField} from './../../components/MeetingNameField';
@@ -54,10 +55,19 @@ class CreateMeeting extends React.Component {
 
   isProperlyFilled(){
     let isDefined = (value) => value !== undefined && value.length > 0;
-    let isCorrect = (from, to) => parseInt(from, 10) < parseInt(to, 10);
-    let {name, schedule} = this.state;
+    let isCorrect = (from, to, resolution) => {
+      let fromMoment = moment(from, 'HH:mm');
+      let toMoment = moment(to, 'HH:mm');
+      if(!fromMoment.isBefore(toMoment, 'minute')){
+        return false;
+      }
+
+      return fromMoment.isSameOrBefore(toMoment.subtract(resolution, 'minutes'), 'minute');
+    };
+
+    let {name, schedule, resolution} = this.state;
     return name !== undefined && name.length > 0 && schedule.length > 0 &&
-      schedule.map(event => !isDefined(event.from) || !isDefined(event.to) || !isCorrect(event.from, event.to))
+      schedule.map(event => !isDefined(event.from) || !isDefined(event.to) || !isCorrect(event.from, event.to, resolution))
         .filter(i => i)
         .length === 0;
   }
@@ -76,7 +86,7 @@ class CreateMeeting extends React.Component {
         schedule
       })
     });
-    if (response.status !== 201){
+    if(response.status !== 201){
       let error = await response.json();
       Alert.error(error);
     } else {
@@ -88,7 +98,6 @@ class CreateMeeting extends React.Component {
   render(){
     let {name, resolution, schedule, visibleMonth} = this.state;
     let days = schedule.map(event => event.day);
-
     return (
       <div className="CreateMeeting">
         <Helmet title="Utworz nowe spotkanie" />
@@ -98,7 +107,7 @@ class CreateMeeting extends React.Component {
           <p>Reklama?</p>
         </MeetingDaysField>
         <MeetingResolutionField value={resolution} onChange={this.handleResolutionChange.bind(this)} />
-        <MeetingSchedule schedule={schedule} onDayRemove={this.handleDayChange.bind(this, true)}
+        <MeetingSchedule schedule={schedule} onDayRemove={this.handleDayChange.bind(this, true)} resolution={resolution}
                          onUpdateSchedule={this.handleSchedule.bind(this)} />
         <MeetingSaveButton enabled={this.isProperlyFilled()} label="Utwórz spotkanie"
                            onClick={this.saveMeeting.bind(this)} />
@@ -106,6 +115,5 @@ class CreateMeeting extends React.Component {
     );
   }
 }
-
 export default withRouter(CreateMeeting);
-export { CreateMeeting };
+export {CreateMeeting};
