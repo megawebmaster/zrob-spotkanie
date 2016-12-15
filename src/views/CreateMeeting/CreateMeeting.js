@@ -91,6 +91,7 @@ class CreateMeeting extends React.Component {
       Alert.error(error);
     } else {
       let meeting = await response.json();
+      localStorage.setItem('newly_created_event', meeting.hash);
       this.props.router.push({pathname: `/view/${meeting.hash}`});
     }
   }

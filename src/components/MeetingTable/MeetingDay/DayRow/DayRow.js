@@ -9,10 +9,11 @@ class DayRow extends React.PureComponent {
     responses: React.PropTypes.object.isRequired,
     currentResponse: React.PropTypes.string.isRequired,
     onResponseChange: React.PropTypes.func.isRequired,
+    isDisabled: React.PropTypes.bool.isRequired,
   };
 
   render(){
-    let { hour, responses, currentResponse, onResponseChange } = this.props;
+    let { hour, responses, currentResponse, onResponseChange, isDisabled } = this.props;
     let attendance = [];
     let value = hour.format('HH:mm');
     let isGoodForMeeting = Object.keys(responses).length > 0;
@@ -31,7 +32,7 @@ class DayRow extends React.PureComponent {
           { !isGoodForMeeting && isConditionalForMeeting && <i className="fa fa-fw fa-question"></i> }
           {value}
         </div>
-        <AttendanceSelector value={currentResponse} onChange={onResponseChange} />
+        <AttendanceSelector isDisabled={isDisabled} value={currentResponse} onChange={onResponseChange} />
         {attendance}
       </div>
     );

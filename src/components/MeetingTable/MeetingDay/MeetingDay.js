@@ -10,6 +10,7 @@ class MeetingDay extends React.Component {
     resolution: React.PropTypes.number.isRequired,
     responses: React.PropTypes.object.isRequired,
     isFolded: React.PropTypes.bool.isRequired,
+    isDisabled: React.PropTypes.bool.isRequired,
     currentResponse: React.PropTypes.object.isRequired,
     onResponseChange: React.PropTypes.func.isRequired,
     onFold: React.PropTypes.func.isRequired,
@@ -89,17 +90,17 @@ class MeetingDay extends React.Component {
   }
 
   render(){
-    let { event, resolution, responses, currentResponse, isFolded, onFold } = this.props;
+    let { event, resolution, responses, currentResponse, isDisabled, isFolded, onFold } = this.props;
     let hours = this.getHours(event, resolution);
     let wholeDayResponse = this.getWholeDayResponse(currentResponse, hours);
 
     return (
       <div className="MeetingDay">
-        <DayTitle day={event.day} isFolded={isFolded} onFoldChange={onFold} currentResponse={wholeDayResponse}
-                  onResponseChange={this.updateWholeDayResponse.bind(this)} />
+        <DayTitle day={event.day} isFolded={isFolded} isDisabled={isDisabled} onFoldChange={onFold}
+                  currentResponse={wholeDayResponse} onResponseChange={this.updateWholeDayResponse.bind(this)} />
         {isFolded === false && hours.map(hour => {
             let value = hour.format('HH:mm');
-            return <DayRow key={hour.valueOf()} hour={hour} responses={responses[value]}
+            return <DayRow key={hour.valueOf()} hour={hour} responses={responses[value]} isDisabled={isDisabled}
                            currentResponse={currentResponse[value] || ''}
                            onResponseChange={this.handleResponse.bind(this, value)} />
           }

@@ -26,13 +26,16 @@ class MeetingTable extends React.PureComponent {
       schedule, resolution, participants, responses, currentName, currentResponse, foldedDays,
       onNameChange, onResponseChange, onFold
     } = this.props;
+    let isDisabled = currentName === undefined || currentName.length === 0;
+
     return (
       <div className={"MeetingTable" + (participants.length > 8 ? ' more-than-8' : '' )}>
         <Participants participants={participants} currentName={currentName} onNameChange={onNameChange} />
         {schedule.sort(this.sortDates).map((event) =>{
             let day = moment(event.day).format('YYYY.MM.DD');
             return <MeetingDay key={event.day.valueOf()} event={event} resolution={resolution} responses={responses[day]}
-                               isFolded={foldedDays[day] || false} currentResponse={currentResponse[day] || {}}
+                               isFolded={foldedDays[day] || false} isDisabled={isDisabled}
+                               currentResponse={currentResponse[day] || {}}
                                onResponseChange={onResponseChange.bind(this, day)} onFold={onFold.bind(this, day)} />
           }
         )}

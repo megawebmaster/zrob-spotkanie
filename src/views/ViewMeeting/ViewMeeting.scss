@@ -4,6 +4,8 @@ $brand-warning: #f0da48;
 @import '~bootstrap/scss/mixins';
 @import '~bootstrap/scss/_forms';
 @import '~bootstrap/scss/_buttons';
+@import '~bootstrap/scss/_close';
+@import '~bootstrap/scss/_alert';
 
 .ViewMeeting {
 	text-align: center;
@@ -19,5 +21,9 @@ $brand-warning: #f0da48;
 	.fa-spin {
 		margin-top: 1rem;
 		animation-duration: .5s;
+	}
+
+	.alert-dismissible .close {
+		top: 0;
 	}
 }

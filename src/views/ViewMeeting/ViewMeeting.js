@@ -178,6 +178,27 @@ class ViewMeeting extends React.Component {
     // TODO: Properly behave when more than 15 people are added (kind of stretching? or maybe scrolling?)
   }
 
+  hasNewMeeting(){
+    let hash = localStorage.getItem('newly_created_event');
+
+    if (hash === null) {
+      return false;
+    }
+
+    let { id } = this.state;
+    if (id !== hash) {
+      this.removeNewMeeting();
+      return false;
+    }
+
+    return true;
+  }
+
+  removeNewMeeting() {
+    localStorage.removeItem('newly_created_event');
+    this.setState({});
+  }
+
   render() {
     let {
       name, resolution, schedule, responses, participants, currentName, currentResponse, foldedDays, isLoading
@@ -188,6 +209,12 @@ class ViewMeeting extends React.Component {
         <Helmet title={name} />
         {isLoading && <i className="fa fa-spin fa-spinner fa-pulse fa-3x fa-fw"></i>}
         {isLoading === false && <div>
+          {this.hasNewMeeting() && <p className="alert alert-dismissible alert-success">
+            Twoje spotkanie zostało utworzone. Skopiuj adres do spotkania i wyślij go zaproszonym osobom!
+            <button type="button" className="close" aria-label="Zamknij" onClick={() => this.removeNewMeeting()}>
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </p>}
           <MeetingTitle title={name} />
           <MeetingTable schedule={schedule} resolution={resolution} participants={participants} responses={responses}
                         currentName={currentName} foldedDays={foldedDays} onNameChange={this.handleNameChange.bind(this)}

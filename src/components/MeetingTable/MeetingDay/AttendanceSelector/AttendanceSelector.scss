@@ -10,7 +10,7 @@ $brand-warning: #f0da48;
 		background: $color;
 		border-color: $color;
 
-		&:hover {
+		&:not([disabled]):hover {
 			background: $base-color;
 			border-color: $base-color;
 		}
