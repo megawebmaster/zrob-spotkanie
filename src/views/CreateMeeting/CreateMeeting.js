@@ -101,7 +101,7 @@ class CreateMeeting extends React.Component {
     let days = schedule.map(event => event.day);
     return (
       <div className="CreateMeeting">
-        <Helmet title="Utworz nowe spotkanie" />
+        <Helmet title="Utwórz nowe spotkanie" />
         <MeetingNameField value={name} onChange={this.handleNameChange.bind(this)} />
         <MeetingDaysField days={days} month={visibleMonth} onDayChange={this.handleDayChange.bind(this)}
                           onMonthChange={this.handleMonthChange.bind(this)}>
