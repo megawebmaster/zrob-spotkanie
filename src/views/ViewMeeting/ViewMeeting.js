@@ -1,6 +1,7 @@
 import React from 'react';
 import Alert from 'react-s-alert';
 import moment from 'moment';
+import {API_URL} from './../../constants';
 import { MeetingTitle } from './../../components/MeetingTitle';
 import { MeetingTable } from './../../components/MeetingTable';
 import { MeetingSaveButton } from './../../components/MeetingSaveButton';
@@ -21,7 +22,7 @@ class ViewMeeting extends React.Component {
   };
 
   async componentDidMount(){
-    let response = await fetch(`http://localhost:8000/v1/meetings/${this.props.params.hash}`);
+    let response = await fetch(`${API_URL}/v1/meetings/${this.props.params.hash}`);
     if (response.status === 404){
       Alert.error('Podane spotkanie nie zostało znalezione w systemie.');
       return this.props.router.push({pathname: '/'});
@@ -42,29 +43,32 @@ class ViewMeeting extends React.Component {
       }
 
       let dayResponses = {};
-      for (let j in days[i].hours) {
-        if (!days[i].hours.hasOwnProperty(j)){
+      let day = days[i];
+      for (let j in day.hours) {
+        if (!day.hours.hasOwnProperty(j)){
           continue;
         }
 
-        let hourResponses = {}
-        for (let a in days[i].hours[j].answers) {
-          if (!days[i].hours[j].answers.hasOwnProperty(a)){
+        let hourResponses = {};
+        let hour = day.hours[j] || { answers: [] };
+        for (let a in hour.answers) {
+          if (!hour.answers.hasOwnProperty(a)){
             continue;
           }
 
-          hourResponses[days[i].hours[j].answers[a].name] = days[i].hours[j].answers[a].answer;
+          let answer = hour.answers[a] || { name: '', answer: '' };
+          hourResponses[answer.name] = answer.answer;
         }
 
         if (participants.length === 0) {
           participants = Object.keys(hourResponses);
         }
 
-        dayResponses[days[i].hours[j].hour] = hourResponses;
+        dayResponses[hour.hour] = hourResponses;
       }
 
-      let day = moment(days[i].day, 'YYYY-MM-DD').format('YYYY.MM.DD');
-      responses[day] = dayResponses;
+      let formattedDay = moment(day.day, 'YYYY-MM-DD').format('YYYY.MM.DD');
+      responses[formattedDay] = dayResponses;
     }
 
     this.setState({
@@ -123,8 +127,30 @@ class ViewMeeting extends React.Component {
     return currentName !== undefined && currentName.length > 0 && this.isResponseComplete();
   }
 
-  saveResponses(){
-    let { currentName, currentResponse, responses, participants } = this.state;
+  async saveResponses(){
+    let { id, currentName, currentResponse, responses, participants } = this.state;
+
+    let result = await fetch(`${API_URL}/v1/meetings/${id}`, {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: currentName,
+        response: currentResponse
+      })
+    });
+
+    if (result.status === 500) {
+      Alert.error('Wystąpił błąd serwera. Prosimy spróbować później.');
+      return new Promise();
+    }
+    if (result.status !== 201) {
+      let error = await result.json();
+      Alert.error(error);
+      return new Promise();
+    }
 
     for (let day in currentResponse) {
       if (!currentResponse.hasOwnProperty(day)) {
@@ -147,6 +173,7 @@ class ViewMeeting extends React.Component {
       currentResponse: {},
       foldedDays: {}
     });
+    Alert.success('Twoje odpowiedzi zostały zapisane!');
     // TODO: Properly behave when more than 15 people are added (kind of stretching? or maybe scrolling?)
   }
 
@@ -155,7 +182,6 @@ class ViewMeeting extends React.Component {
       name, resolution, schedule, responses, participants, currentName, currentResponse, foldedDays, isLoading
     } = this.state;
 
-    // TODO: Properly handle errors (kind of alerts?)
     return (
       <div className="ViewMeeting">
         {isLoading && <i className="fa fa-spin fa-spinner fa-pulse fa-3x fa-fw"></i>}

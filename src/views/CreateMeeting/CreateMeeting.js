@@ -2,6 +2,7 @@ import React from 'react';
 import {withRouter} from 'react-router';
 import {DateUtils} from 'react-day-picker';
 import Alert from 'react-s-alert';
+import {API_URL} from './../../constants';
 import {MeetingDaysField} from './../../components/MeetingDaysField';
 import {MeetingNameField} from './../../components/MeetingNameField';
 import {MeetingResolutionField} from './../../components/MeetingResolutionField';
@@ -62,7 +63,7 @@ class CreateMeeting extends React.Component {
 
   async saveMeeting(){
     let {name, schedule, resolution} = this.state;
-    let response = await fetch('http://localhost:8000/v1/meetings', {
+    let response = await fetch(`${API_URL}/v1/meetings`, {
       method: 'post',
       headers: {
         'Accept': 'application/json',
@@ -86,7 +87,7 @@ class CreateMeeting extends React.Component {
   render(){
     let {name, resolution, schedule, visibleMonth} = this.state;
     let days = schedule.map(event => event.day);
-    // TODO: Properly handle errors (kind of alerts?)
+
     return (
       <div className="CreateMeeting">
         <MeetingNameField value={name} onChange={this.handleNameChange.bind(this)} />
