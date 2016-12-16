@@ -111,7 +111,7 @@ class ViewMeeting extends React.Component {
 
       let from = moment(schedule[k].from, 'HH:mm');
       let to = moment(schedule[k].to, 'HH:mm');
-      for (let i = from; i.isSameOrBefore(to); i.add(resolution, 'minutes')) {
+      for (let i = from; i.isBefore(to); i.add(resolution, 'minutes')) {
         let hour = i.format('HH:mm');
         if (!currentResponse[day].hasOwnProperty(hour) || currentResponse[day][hour] === '') {
           return false;
