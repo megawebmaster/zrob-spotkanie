@@ -4,7 +4,6 @@ import {withRouter} from 'react-router';
 import {DateUtils} from 'react-day-picker';
 import Alert from 'react-s-alert';
 import moment from 'moment';
-import {API_URL} from './../../constants';
 import {MeetingDaysField} from './../../components/MeetingDaysField';
 import {MeetingNameField} from './../../components/MeetingNameField';
 import {MeetingResolutionField} from './../../components/MeetingResolutionField';
@@ -74,7 +73,7 @@ class CreateMeeting extends React.Component {
 
   async saveMeeting(){
     let {name, schedule, resolution} = this.state;
-    let response = await fetch(`${API_URL}/v1/meetings`, {
+    let response = await fetch(`${process.env.API_URL}/v1/meetings`, {
       method: 'post',
       headers: {
         'Accept': 'application/json',

@@ -2,7 +2,6 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import Alert from 'react-s-alert';
 import moment from 'moment';
-import {API_URL} from './../../constants';
 import { MeetingTitle } from './../../components/MeetingTitle';
 import { MeetingTable } from './../../components/MeetingTable';
 import { MeetingSaveButton } from './../../components/MeetingSaveButton';
@@ -23,7 +22,7 @@ class ViewMeeting extends React.Component {
   };
 
   async componentDidMount(){
-    let response = await fetch(`${API_URL}/v1/meetings/${this.props.params.hash}`);
+    let response = await fetch(`${process.env.API_URL}/v1/meetings/${this.props.params.hash}`);
     if (response.status === 404){
       Alert.error('Podane spotkanie nie zostało znalezione w systemie.');
       return this.props.router.push({pathname: '/'});
@@ -131,7 +130,7 @@ class ViewMeeting extends React.Component {
   async saveResponses(){
     let { id, currentName, currentResponse, responses, participants } = this.state;
 
-    let result = await fetch(`${API_URL}/v1/meetings/${id}`, {
+    let result = await fetch(`${process.env.API_URL}/v1/meetings/${id}`, {
       method: 'post',
       headers: {
         'Accept': 'application/json',
