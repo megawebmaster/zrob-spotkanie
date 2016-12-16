@@ -25,7 +25,7 @@ class MeetingDaysField extends React.Component {
   }
 
   isDayBeforeToday(day) {
-    return moment(day).add(1, 'day').isBefore();
+    return moment(day).endOf('day').isBefore();
   }
 
   render(){
