@@ -1,8 +1,18 @@
 $fa-font-path: '~font-awesome/fonts';
 @import '~font-awesome/scss/font-awesome';
+@import '~bootstrap/scss/_variables';
+@import '~bootstrap/scss/mixins';
 
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+}
+
+html {
+  font-size: 14px;
+
+  @include media-breakpoint-up(xl) {
+    font-size: 16px;
+  }
 }

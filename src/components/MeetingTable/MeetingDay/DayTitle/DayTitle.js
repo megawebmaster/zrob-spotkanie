@@ -20,7 +20,7 @@ class DayTitle extends React.PureComponent {
       <div className="DayTitle">
         <span className="whole-day">
           <DayVisibilitySelector isFolded={isFolded} onChange={onFoldChange} />
-          Cały dzień:
+          <span>Cały dzień:</span>
         </span>
         <AttendanceSelector isDisabled={isDisabled} value={currentResponse} onChange={onResponseChange} />
         <span className="day">{moment(day, 'YYYY-MM-DD').format('dddd, YYYY.MM.DD')}</span>

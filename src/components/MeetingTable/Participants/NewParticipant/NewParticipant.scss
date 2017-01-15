@@ -3,6 +3,7 @@
 
 .NewParticipant {
 	@include make-col(2, 12);
+	min-width: 115px;
 	padding: 0 .5rem;
 
 	input {

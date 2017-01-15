@@ -14,5 +14,6 @@
 
 	.title {
 		@include make-col(2, 12);
+		min-width: 115px;
 	}
 }
