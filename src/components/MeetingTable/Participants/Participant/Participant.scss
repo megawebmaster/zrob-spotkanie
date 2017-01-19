@@ -3,8 +3,11 @@
 
 .Participant {
 	width: 3rem;
+	min-width: 3rem;
 	line-height: 3;
 	text-align: left;
+	overflow: hidden;
+	display: inline-block;
 
 	> span {
 		display: inline-block;
@@ -16,24 +19,6 @@
 			content: "";
 			float: left;
 			margin-top: 100%;
-		}
-	}
-}
-
-.MeetingTable:not(.more-than-8) .Participant {
-	@media (min-width: breakpoint-min(lg, $grid-breakpoints)){
-		@include make-col(1, 12);
-		text-align: center;
-		padding: 6px .25rem;
-		width: auto;
-		line-height: inherit;
-
-		> span {
-			transform: none;
-
-			&:after {
-				display: none;
-			}
 		}
 	}
 }

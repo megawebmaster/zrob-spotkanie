@@ -7,6 +7,7 @@ import './DayTitle.scss';
 class DayTitle extends React.PureComponent {
   static propTypes = {
     day: React.PropTypes.string.isRequired,
+    participants: React.PropTypes.array.isRequired,
     isFolded: React.PropTypes.bool.isRequired,
     isDisabled: React.PropTypes.bool.isRequired,
     currentResponse: React.PropTypes.string.isRequired,
@@ -15,16 +16,18 @@ class DayTitle extends React.PureComponent {
   };
 
   render(){
-    let {day, isFolded, isDisabled, currentResponse, onFoldChange, onResponseChange} = this.props;
+    let {day, participants, isFolded, isDisabled, currentResponse, onFoldChange, onResponseChange} = this.props;
     return (
-      <div className="DayTitle">
-        <span className="whole-day">
+      <tr className="DayTitle">
+        <td className="whole-day">
           <DayVisibilitySelector isFolded={isFolded} onChange={onFoldChange} />
           <span>Cały dzień:</span>
-        </span>
-        <AttendanceSelector isDisabled={isDisabled} value={currentResponse} onChange={onResponseChange} />
-        <span className="day">{moment(day, 'YYYY-MM-DD').format('dddd, YYYY.MM.DD')}</span>
-      </div>
+        </td>
+        <td className="attendance">
+          <AttendanceSelector isDisabled={isDisabled} value={currentResponse} onChange={onResponseChange} />
+        </td>
+        <td colSpan={participants.length} className="day">{moment(day, 'YYYY-MM-DD').format('dddd, YYYY.MM.DD')}</td>
+      </tr>
     );
   }
 }

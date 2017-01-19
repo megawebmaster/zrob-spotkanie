@@ -9,15 +9,46 @@ class Participants extends React.Component {
     currentName: React.PropTypes.string.isRequired,
     onNameChange: React.PropTypes.func.isRequired,
   };
+  participants = [];
+
+  componentDidMount(){
+    this.recalculatePositions();
+    window.addEventListener('resize', this.recalculatePositions.bind(this));
+  }
+  componentWillUpdate(){
+    this.participants = [];
+  }
+  componentDidUpdate(){
+    this.recalculatePositions();
+  }
+
+  recalculatePositions(){
+    let maxHeight = 0;
+    this.participants.forEach(item => {
+      if (item != null && item.offsetHeight > maxHeight) {
+        maxHeight = item.offsetHeight;
+      }
+    });
+    let top = maxHeight + this.participant.offsetHeight / 4;
+    this.title.style.top = top + 'px';
+    this.participant.style.top = top + 'px';
+  }
 
   render(){
     let { participants, currentName, onNameChange } = this.props;
+    // TODO: Hide new participant after answering
     return (
-      <div className="Participants">
-        <div className="title"><p>Uczestnicy:</p></div>
-        <NewParticipant name={currentName} onNameChange={onNameChange} />
-        {participants.map(participant => <Participant key={participant} participant={participant} />)}
-      </div>
+      <tr className="Participants">
+        <th scope="col" className="title" ref={input => this.title = input}><p>Uczestnicy:</p></th>
+        <th scope="col" className="attendance" ref={input => this.participant = input}>
+          <NewParticipant name={currentName} onNameChange={onNameChange} />
+        </th>
+        {participants.map((participant) =>
+          <th key={participant} ref={input => this.participants.push(input)} scope="col">
+            <Participant participant={participant} />
+          </th>
+        )}
+      </tr>
     );
   }
 }

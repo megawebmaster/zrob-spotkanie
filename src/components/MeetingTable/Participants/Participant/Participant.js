@@ -9,7 +9,7 @@ class Participant extends React.Component {
   render(){
     let {participant} = this.props;
     return (
-      <div className="Participant"><span>{participant}</span></div>
+      <span className="Participant"><span>{participant}</span></span>
     );
   }
 }

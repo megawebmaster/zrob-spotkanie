@@ -14,10 +14,8 @@ class NewParticipant extends React.Component {
   render(){
     let { name } = this.props;
     return (
-      <div className="NewParticipant">
-        <input type="text" className="form-control" placeholder="Podaj swoje imię…" value={name}
-               onChange={this.handleNameChange.bind(this)}/>
-      </div>
+      <input type="text" className="form-control NewParticipant" placeholder="Podaj imię…" value={name}
+             onChange={this.handleNameChange.bind(this)}/>
     );
   }
 }

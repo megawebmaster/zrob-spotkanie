@@ -22,19 +22,25 @@ class DayRow extends React.PureComponent {
       if (responses.hasOwnProperty(name)){
         isGoodForMeeting = isGoodForMeeting && responses[name] === 'yes';
         isConditionalForMeeting = isConditionalForMeeting && (responses[name] === 'yes' || responses[name] === 'maybe');
-        attendance.push(<ParticipantAttendance key={value + name} attendance={responses[name]} />);
+        attendance.push(
+          <td key={value + name}>
+            <ParticipantAttendance attendance={responses[name]} />
+          </td>
+        );
       }
     }
     return (
-      <div className="DayRow">
-        <div className="hour">
+      <tr className="DayRow">
+        <td className="hour">
           { isGoodForMeeting && <i className="fa fa-fw fa-check"></i> }
           { !isGoodForMeeting && isConditionalForMeeting && <i className="fa fa-fw fa-question"></i> }
           {value}
-        </div>
-        <AttendanceSelector isDisabled={isDisabled} value={currentResponse} onChange={onResponseChange} />
+        </td>
+        <td className="attendance">
+          <AttendanceSelector isDisabled={isDisabled} value={currentResponse} onChange={onResponseChange} />
+        </td>
         {attendance}
-      </div>
+      </tr>
     );
   }
 }

@@ -2,41 +2,60 @@
 @import '~bootstrap/scss/mixins';
 
 .DayTitle {
-	display: flex;
-	align-items: center;
 	margin-top: .5rem;
 	padding: .25rem .25rem .25rem 0;
+	height: 2.5rem;
 	background-color: $gray-lighter;
 
 	.DayVisibilitySelector {
 		margin-right: .3rem;
 	}
-	> span.whole-day {
+	> .whole-day {
 		display: flex;
 		align-items: center;
-		@include make-col(2, 12);
-		min-width: 115px;
 		text-transform: uppercase;
 		font-weight: bold;
-		font-size: 10px;
+		font-size: 0.65rem;
 		padding: 0 .25rem;
+		width: 7rem;
+		position: absolute;
+		left: 0;
+		top: auto;
+		background-color: $gray-lighter;
 
 		> span {
 			flex-grow: 1;
 			text-align: right;
 		}
+
+		@include media-breakpoint-up(lg) {
+			font-size: 1rem;
+			width: 11rem;
+		}
 	}
-	> .AttendanceSelector {
-		@include make-col(2, 12);
+	.attendance {
+		width: 8rem;
+		margin-left: 7rem;
+		position: absolute;
+		left: 0;
+		top: auto;
+		background-color: $gray-lighter;
+
+		@include media-breakpoint-up(lg) {
+			width: 12rem;
+			margin-left: 11rem;
+		}
+	}
+	.AttendanceSelector {
+		padding: 0 .5rem;
 		text-align: center;
 	}
-	> span.day {
-		@include make-col(6, 12);
+	> .day {
 		text-align: center;
 		font-weight: bold;
 	}
 	@include media-breakpoint-up(lg){
-		> span.whole-day {
+		> .whole-day {
 			font-size: inherit;
 		}
 	}

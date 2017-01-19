@@ -2,4 +2,21 @@
 @import '~bootstrap/scss/mixins';
 
 .MeetingTable {
+	margin-left: 15rem;
+	overflow-x: auto;
+	overflow-y: visible;
+
+	table {
+		width: 100%;
+	}
+
+	th, td {
+		font-weight: normal;
+		white-space: nowrap;
+		text-align: center;
+	}
+
+	@include media-breakpoint-up(lg) {
+		margin-left: 23rem;
+	}
 }

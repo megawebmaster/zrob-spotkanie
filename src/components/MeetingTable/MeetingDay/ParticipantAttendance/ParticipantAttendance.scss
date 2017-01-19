@@ -2,18 +2,11 @@
 @import '~bootstrap/scss/mixins';
 
 .ParticipantAttendance {
-	float: left;
-	width: 3rem;
 	text-align: center;
 	padding: 5px 0;
 
 	@include media-breakpoint-up(lg) {
-		@include make-col(1, 12);
 		padding: 5px .25rem;
-
-		.more-than-8 & {
-			width: 3rem;
-		}
 	}
 
 	.fa {
