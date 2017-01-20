@@ -91,13 +91,15 @@ class MeetingTable extends React.PureComponent {
 
     return (
       <div className="MeetingTable">
-        <table className="table">
-          <thead>
-            <Participants key="participants-list" participants={participants} currentName={currentName}
-                          onNameChange={onNameChange} />
-          </thead>
-          <tbody>{rows}</tbody>
-        </table>
+        <div>
+          <table className="table">
+            <thead>
+              <Participants key="participants-list" participants={participants} currentName={currentName}
+                            onNameChange={onNameChange} />
+            </thead>
+            <tbody>{rows}</tbody>
+          </table>
+        </div>
       </div>
     );
   }
