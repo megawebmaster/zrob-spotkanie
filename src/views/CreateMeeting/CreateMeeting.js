@@ -72,6 +72,11 @@ class CreateMeeting extends React.Component {
   }
 
   async saveMeeting(){
+    if (!this.isProperlyFilled()) {
+      Alert.error('Brakuje danych do utworzenia spotkania');
+      return false;
+    }
+
     let {name, schedule, resolution} = this.state;
     let response = await fetch(`${process.env.API_URL}/v1/meetings`, {
       method: 'post',
@@ -109,8 +114,7 @@ class CreateMeeting extends React.Component {
         <MeetingResolutionField value={resolution} onChange={this.handleResolutionChange.bind(this)} />
         <MeetingSchedule schedule={schedule} onDayRemove={this.handleDayChange.bind(this, true)} resolution={resolution}
                          onUpdateSchedule={this.handleSchedule.bind(this)} />
-        <MeetingSaveButton enabled={this.isProperlyFilled()} label="Utwórz spotkanie"
-                           onClick={this.saveMeeting.bind(this)} />
+        <MeetingSaveButton label="Utwórz spotkanie" onClick={this.saveMeeting.bind(this)} />
       </div>
     );
   }

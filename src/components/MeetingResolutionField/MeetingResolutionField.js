@@ -14,7 +14,7 @@ class MeetingResolutionField extends React.Component {
     return (
       <div className="MeetingResolutionField form-group clearfix">
         <label htmlFor="meeting-resolution" className="col-form-label col-xs-3">Czas</label>
-        <div className="col-xs-4">
+        <div className="col-xs-4 small-padding">
           <select value={this.props.value} onChange={this.onChange.bind(this)} id="meeting-resolution"
                   className="form-control">
             <option value="60">co godzinę</option>

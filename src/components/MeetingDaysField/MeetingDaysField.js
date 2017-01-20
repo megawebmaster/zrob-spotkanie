@@ -33,12 +33,12 @@ class MeetingDaysField extends React.Component {
     return (
       <div className="MeetingDaysField form-group clearfix">
         <label htmlFor="meeting-name" className="col-form-label col-xs-3">Wybierz dni</label>
-        <div className="col-xs-4">
+        <div className="col-xs-6 col-md-5 col-lg-4">
           <DayPicker initialMonth={month} firstDayOfWeek={1} selectedDays={this.isDaySelected.bind(this)}
                      disabledDays={this.isDayBeforeToday.bind(this)} fromMonth={new Date()}
                      onDayClick={this.handleDayClick.bind(this)} onMonthChange={onMonthChange} />
         </div>
-        <div className="col-xs-5">
+        <div className="col-xs-3 col-md-4 col-lg-5">
           {this.props.children}
         </div>
       </div>

@@ -55,16 +55,19 @@ class MeetingScheduleEntry extends React.Component {
     return (
       <div className={"form-group clearfix " + (status === true ? '' : 'has-danger')}>
         <label htmlFor="meeting-schedule-entry-from" className="col-form-label col-xs-3">{label}</label>
-        <div className="col-xs-2">
+        <div className="col-xs-2 small-padding">
           <input type="text" id="meeting-schedule-entry-from" className="form-control" value={event.from}
                  placeholder="np. 8 lub 8:30" onChange={this.updateFrom.bind(this)} />
         </div>
-        <div className="col-xs-2">
+        <div className="col-xs-2 small-padding">
           <input type="text" id="meeting-schedule-entry-to" className="form-control" value={event.to}
                  placeholder="np. 16 lub 18:45" onChange={this.updateTo.bind(this)} />
         </div>
         <div className="col-xs-5">
-          <button className="btn btn-secondary" tabIndex="-1" onClick={() => onDayRemove(event)}>Usuń ten dzień</button>
+          <button className="btn btn-secondary mr-1" tabIndex="-1" onClick={() => onDayRemove(event)}>
+            <span className="hidden-md-up">Usuń</span>
+            <span className="hidden-sm-down">Usuń ten dzień</span>
+          </button>
           {this.props.children}
         </div>
         {status !== true && <div className="col-xs-9 col-offset-xs-2 form-control-feedback">

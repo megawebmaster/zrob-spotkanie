@@ -14,7 +14,7 @@ class MeetingNameField extends React.Component {
     return (
       <div className="MeetingNameField form-group clearfix">
         <label htmlFor="meeting-name" className="col-form-label col-xs-3">Podaj nazwę</label>
-        <div className="col-xs-9">
+        <div className="col-xs-9 small-padding">
           <input type="text" id="meeting-name" className="form-control" value={this.props.value}
                  onChange={this.onChange.bind(this)} placeholder="np. Podsumowanie sprzedaży Q3" />
         </div>

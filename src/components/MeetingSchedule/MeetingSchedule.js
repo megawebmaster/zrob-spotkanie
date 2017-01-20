@@ -48,9 +48,11 @@ class MeetingSchedule extends React.Component {
         {schedule.sort(this.sortDates).map((event, index) =>
           <MeetingScheduleEntry key={event.day.valueOf()} event={event} onDayRemove={() => onDayRemove(event.day)}
                                 resolution={resolution} onUpdate={this.handleUpdate.bind(this, event)}>
-            {index === 0 && <button className="btn btn-secondary ml-1" type="button" tabIndex="-1"
-                                    disabled={!this.isFirstRowFilled()} onClick={() => this.copyFirstRow()}>
-              Zastosuj do wszystkich
+            {index === 0 && schedule.length > 1 &&
+            <button className="btn btn-secondary" type="button" tabIndex="-1" disabled={!this.isFirstRowFilled()}
+                    onClick={() => this.copyFirstRow()}>
+              <span className="hidden-lg-up">Wszystkie</span>
+              <span className="hidden-md-down">Zastosuj do wszystkich</span>
             </button>}
           </MeetingScheduleEntry>
         )}
