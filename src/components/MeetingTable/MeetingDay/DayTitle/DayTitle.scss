@@ -29,7 +29,7 @@
 		}
 
 		@include media-breakpoint-up(lg) {
-			font-size: 1rem;
+			font-size: inherit;
 			width: 11rem;
 		}
 	}
@@ -54,10 +54,5 @@
 	> .day {
 		text-align: center;
 		font-weight: bold;
-	}
-	@include media-breakpoint-up(lg){
-		> .whole-day {
-			font-size: inherit;
-		}
 	}
 }
