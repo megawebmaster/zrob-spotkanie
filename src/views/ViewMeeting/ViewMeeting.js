@@ -78,6 +78,13 @@ class ViewMeeting extends React.Component {
   }
 
   handleNameChange(currentName){
+    let classNames = this.view.className.split(' ');
+    let nameErrorIdx = classNames.indexOf('error-no-name');
+    if (nameErrorIdx > -1){
+      classNames.splice(nameErrorIdx, 1);
+    }
+    this.view.className = classNames.join(' ');
+
     this.setState({ currentName });
   }
 
@@ -121,14 +128,30 @@ class ViewMeeting extends React.Component {
     return true;
   }
 
-  isProperlyFilled() {
+  isNameFilled() {
     let { currentName } = this.state;
 
-    return currentName !== undefined && currentName.length > 0 && this.isResponseComplete();
+    return currentName !== undefined && currentName.length > 0;
   }
 
   async saveResponses(){
     let { id, currentName, currentResponse, responses, participants } = this.state;
+    let hasErrors = false;
+
+    this.view.className = 'ViewMeeting';
+    if (!this.isNameFilled()) {
+      Alert.error('Brakuje Twojego imienia ;)');
+      this.view.className += ' error-no-name';
+      hasErrors = true;
+    }
+    if (!this.isResponseComplete()) {
+      Alert.error('Brakuje niektórych Twoich odpowiedzi.');
+      this.view.className += ' error-no-answers';
+      hasErrors = true;
+    }
+    if (hasErrors) {
+      return false;
+    }
 
     let result = await fetch(`${process.env.API_URL}/v1/meetings/${id}`, {
       method: 'post',
@@ -174,7 +197,6 @@ class ViewMeeting extends React.Component {
       foldedDays: {}
     });
     Alert.success('Twoje odpowiedzi zostały zapisane!');
-    // TODO: Properly behave when more than 15 people are added (kind of stretching? or maybe scrolling?)
   }
 
   hasNewMeeting(){
@@ -204,7 +226,7 @@ class ViewMeeting extends React.Component {
     } = this.state;
 
     return (
-      <div className="ViewMeeting">
+      <div className="ViewMeeting" ref={input => this.view = input}>
         <Helmet title={name} />
         {isLoading && <i className="fa fa-spin fa-spinner fa-pulse fa-3x fa-fw"></i>}
         {isLoading === false && <div>
@@ -219,8 +241,7 @@ class ViewMeeting extends React.Component {
                         currentName={currentName} foldedDays={foldedDays} onNameChange={this.handleNameChange.bind(this)}
                         currentResponse={currentResponse} onResponseChange={this.handleResponseChange.bind(this)}
                         onFold={this.handleDayFolding.bind(this)} />
-          <MeetingSaveButton enabled={this.isProperlyFilled()} label="Zapisz moje odpowiedzi"
-                             onClick={this.saveResponses.bind(this)} />
+          <MeetingSaveButton label="Zapisz moje odpowiedzi" onClick={this.saveResponses.bind(this)} />
         </div>}
       </div>
     );

@@ -18,6 +18,7 @@ $brand-warning: #f0da48;
 	}
 
 	min-width: 115px;
+	border: 2px solid transparent;
 
 	.btn {
 		padding: .25rem .5rem;
@@ -42,4 +43,9 @@ $brand-warning: #f0da48;
 			@include btn-type($brand-danger);
 		}
 	}
+}
+
+.error-no-answers .AttendanceSelector.not-selected {
+	border-color: $brand-danger;
+	border-radius: .5rem;
 }

@@ -14,7 +14,7 @@ class NewParticipant extends React.Component {
   render(){
     let { name } = this.props;
     return (
-      <input type="text" className="form-control NewParticipant" placeholder="Podaj imię…" value={name}
+      <input type="text" className="form-control NewParticipant" placeholder="Podaj imię…" value={name} autoFocus
              onChange={this.handleNameChange.bind(this)}/>
     );
   }

@@ -1,11 +1,11 @@
 @import '~bootstrap/scss/_variables';
 @import '~bootstrap/scss/mixins';
 
-.NewParticipant {
-	padding: 0 .5rem;
+input.NewParticipant {
+	font-size: .9rem;
+	text-align: center;
+}
 
-	input {
-		font-size: .9rem;
-		text-align: center;
-	}
+.error-no-name input.NewParticipant {
+	border: 2px solid $brand-danger;
 }

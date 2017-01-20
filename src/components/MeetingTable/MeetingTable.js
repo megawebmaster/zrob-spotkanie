@@ -66,7 +66,6 @@ class MeetingTable extends React.PureComponent {
       schedule, resolution, participants, responses, currentName, currentResponse, foldedDays,
       onNameChange, onResponseChange, onFold
     } = this.props;
-    let isDisabled = currentName === undefined || currentName.length === 0;
     let rows = [];
 
     schedule.sort(this.sortDates).forEach((event) => {
@@ -76,13 +75,12 @@ class MeetingTable extends React.PureComponent {
       let dayResponse = currentResponse[day] || {};
       let wholeDayResponse = MeetingTable.getWholeDayResponse(dayResponse, hours);
       rows.push(<DayTitle key={event.day.valueOf()} day={event.day} participants={participants} isFolded={isFolded}
-                          isDisabled={isDisabled} currentResponse={wholeDayResponse}
-                          onFoldChange={onFold.bind(this, day)}
+                          currentResponse={wholeDayResponse} onFoldChange={onFold.bind(this, day)}
                           onResponseChange={this.updateWholeDayResponse.bind(this, day, event)} />);
       if(!isFolded){
         rows = rows.concat(hours.map(hour =>{
           let value = hour.format('HH:mm');
-          return <DayRow key={event.day.valueOf() + '-' +hour.valueOf()} hour={hour} responses={responses[day][value]} isDisabled={isDisabled}
+          return <DayRow key={event.day.valueOf() + '-' +hour.valueOf()} hour={hour} responses={responses[day][value]}
                          currentResponse={dayResponse[value] || ''}
                          onResponseChange={onResponseChange.bind(this, day, value)} />
         }));

@@ -9,14 +9,13 @@ class DayTitle extends React.PureComponent {
     day: React.PropTypes.string.isRequired,
     participants: React.PropTypes.array.isRequired,
     isFolded: React.PropTypes.bool.isRequired,
-    isDisabled: React.PropTypes.bool.isRequired,
     currentResponse: React.PropTypes.string.isRequired,
     onFoldChange: React.PropTypes.func.isRequired,
     onResponseChange: React.PropTypes.func.isRequired,
   };
 
   render(){
-    let {day, participants, isFolded, isDisabled, currentResponse, onFoldChange, onResponseChange} = this.props;
+    let {day, participants, isFolded, currentResponse, onFoldChange, onResponseChange} = this.props;
     return (
       <tr className="DayTitle">
         <td className="whole-day">
@@ -24,7 +23,7 @@ class DayTitle extends React.PureComponent {
           <span>Cały dzień:</span>
         </td>
         <td className="attendance">
-          <AttendanceSelector isDisabled={isDisabled} value={currentResponse} onChange={onResponseChange} />
+          <AttendanceSelector value={currentResponse} onChange={onResponseChange} />
         </td>
         <td colSpan={participants.length} className="day">{moment(day, 'YYYY-MM-DD').format('dddd, YYYY.MM.DD')}</td>
       </tr>
