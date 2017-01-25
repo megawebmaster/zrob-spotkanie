@@ -23,6 +23,9 @@ class Participants extends React.Component {
   }
 
   recalculatePositions(){
+    if (this.participants.length === 0) {
+      return;
+    }
     let maxHeight = 0;
     this.participants.forEach(item => {
       if (item != null && item.offsetHeight > maxHeight) {
@@ -48,6 +51,7 @@ class Participants extends React.Component {
             <Participant participant={participant} />
           </th>
         )}
+        {participants.length === 0 && <th className="empty"></th>}
       </tr>
     );
   }

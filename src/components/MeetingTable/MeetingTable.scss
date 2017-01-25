@@ -28,19 +28,37 @@
 		white-space: nowrap;
 		text-align: center;
 		padding-bottom: .5rem;
+
+		&.empty {
+			height: 2.5rem;
+		}
 	}
-	th:nth-child(3), td:nth-child(3) {
-		background: linear-gradient(to right, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%) no-repeat;
+
+	@mixin shadow-background($r, $g, $b) {
+		background: linear-gradient(to right, rgba($r, $g, $b, 1) 50%, rgba($r, $g, $b, 0) 100%) no-repeat,
+		linear-gradient(to left, rgba($r, $g, $b, 1) 50%, rgba($r, $g, $b, 0) 100%) no-repeat 100% 0;
+		background-size: 20px 100%, 20px 100%;
+	}
+	@mixin shadow-background-left($r, $g, $b) {
+		background: linear-gradient(to right, rgba($r, $g, $b, 1) 50%, rgba($r, $g, $b, 0) 100%) no-repeat;
 		background-size: 20px 100%;
+	}
+	@mixin shadow-background-right($r, $g, $b) {
+		background: linear-gradient(to left, rgba($r, $g, $b, 1) 50%, rgba($r, $g, $b, 0) 100%) no-repeat 100% 0;
+		background-size: 20px 100%;
+	}
+
+	th:nth-child(3), td:nth-child(3) {
+		@include shadow-background-left(255, 255, 255);
 	}
 	th:last-child, td:last-child {
-		background: linear-gradient(to left, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%) no-repeat 100% 0;
-		background-size: 20px 100%;
+		@include shadow-background-right(255, 255, 255);
+	}
+	th:nth-child(3):nth-last-child(1), td:nth-child(3):nth-last-child(1) {
+		@include shadow-background(255, 255, 255);
 	}
 	tr.DayTitle td:last-child {
-		background: linear-gradient(to right, rgba(236, 238, 239, 1) 50%, rgba(236, 238, 239, 0) 100%) no-repeat,
-		linear-gradient(to left, rgba(236, 238, 239, 1) 50%, rgba(236, 238, 239, 0) 100%) no-repeat 100% 0;
-		background-size: 20px 100%, 20px 100%;
+		@include shadow-background(236, 238, 239);
 	}
 
 	@include media-breakpoint-up(lg) {

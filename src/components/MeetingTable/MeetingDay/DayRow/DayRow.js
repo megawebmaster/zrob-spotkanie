@@ -22,12 +22,16 @@ class DayRow extends React.PureComponent {
         isGoodForMeeting = isGoodForMeeting && responses[name] === 'yes';
         isConditionalForMeeting = isConditionalForMeeting && (responses[name] === 'yes' || responses[name] === 'maybe');
         attendance.push(
-          <td key={value + name}>
+          <td key={value + name} className="response">
             <ParticipantAttendance attendance={responses[name]} />
           </td>
         );
       }
     }
+    if (attendance.length === 0) {
+      attendance.push(<td key={"no-attendance-" + value} className="empty"></td>);
+    }
+
     return (
       <tr className="DayRow">
         <td className="hour">

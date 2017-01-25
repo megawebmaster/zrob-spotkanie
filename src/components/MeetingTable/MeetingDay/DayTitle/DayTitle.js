@@ -16,6 +16,7 @@ class DayTitle extends React.PureComponent {
 
   render(){
     let {day, participants, isFolded, currentResponse, onFoldChange, onResponseChange} = this.props;
+
     return (
       <tr className="DayTitle">
         <td className="whole-day">

@@ -2,6 +2,10 @@
 @import '~bootstrap/scss/mixins';
 
 .DayRow {
+	td {
+		min-height: 1rem;
+	}
+
 	.hour {
 		width: 7rem;
 		position: absolute;
