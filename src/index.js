@@ -2,8 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { browserHistory } from 'react-router';
 import { AppContainer } from 'react-hot-loader';
+import {Provider} from 'react-redux';
+import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import Root from './containers/Root';
 import routes from './routes';
+import reducers from './reducers';
+
 import 'font-awesome/fonts/fontawesome-webfont.eot';
 import 'font-awesome/fonts/fontawesome-webfont.svg';
 import 'font-awesome/fonts/fontawesome-webfont.ttf';
@@ -11,10 +17,18 @@ import 'font-awesome/fonts/fontawesome-webfont.woff';
 import 'font-awesome/fonts/fontawesome-webfont.woff2';
 import './index.scss';
 
+const store = createStore(reducers, applyMiddleware(
+  routerMiddleware(browserHistory),
+  thunk
+));
+const history = syncHistoryWithStore(browserHistory, store);
+
 function renderApp(routes) {
   ReactDOM.render(
     <AppContainer>
-      <Root routes={routes} history={browserHistory} />
+      <Provider store={store}>
+        <Root routes={routes} history={history} />
+      </Provider>
     </AppContainer>,
     document.getElementById('root')
   );
