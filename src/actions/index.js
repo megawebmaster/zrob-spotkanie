@@ -1,4 +1,5 @@
 import Alert from 'react-s-alert';
+import ReactGA from 'react-ga';
 import { push } from 'react-router-redux';
 
 export const addDayToSchedule = (day) => ({
@@ -45,7 +46,11 @@ export const updateVisibleMonth = (month) => ({
 export const createMeeting = () => {
   return (dispatch, getState) => {
     let meeting = getState().createMeeting;
-    return fetch(`${process.env.API_URL}/v1/meetings`, {
+    ReactGA.event({
+      category: 'CreateEvent',
+      action: `Resolution: ${meeting.resolution} minutes`
+    });
+    fetch(`${process.env.API_URL}/v1/meetings`, {
       method: 'post',
       headers: {
         'Accept': 'application/json',
@@ -57,15 +62,16 @@ export const createMeeting = () => {
         schedule: meeting.schedule
       })
     }).then(
-      async result => {
-        let response = await result.json();
-        if (result.code !== 201) {
+      result => {
+        if (result.status !== 201) {
           Alert.error('Wystąpiły błędy w formularzu, nie można utworzyć spotkania');
-          return dispatch(setCreateMeetingErrors(response));
+          return result.json().then(response => dispatch(setCreateMeetingErrors(response)));
         }
 
-        localStorage.setItem('newly_created_event', response.hash);
-        return dispatch(push(`/view/${response.hash}`));
+        return result.json().then(response => {
+          localStorage.setItem('newly_created_event', response.hash);
+          return dispatch(push(`/view/${response.hash}`));
+        });
       },
       error => Alert.error(error)
     );

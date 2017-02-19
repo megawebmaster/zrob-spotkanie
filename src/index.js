@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ReactGA from 'react-ga';
 import { browserHistory } from 'react-router';
 import { AppContainer } from 'react-hot-loader';
 import {Provider} from 'react-redux';
@@ -22,6 +23,8 @@ const store = createStore(reducers, applyMiddleware(
   thunk
 ));
 const history = syncHistoryWithStore(browserHistory, store);
+
+ReactGA.initialize('UA-91765101-1');
 
 function renderApp(routes) {
   ReactDOM.render(
