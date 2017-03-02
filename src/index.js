@@ -7,6 +7,7 @@ import {Provider} from 'react-redux';
 import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import moment from 'moment';
 import Root from './containers/Root';
 import routes from './routes';
 import reducers from './reducers';
@@ -23,6 +24,7 @@ const store = createStore(reducers, applyMiddleware(
   thunk
 ));
 const history = syncHistoryWithStore(browserHistory, store);
+moment.locale('pl');
 
 ReactGA.initialize('UA-91765101-1');
 

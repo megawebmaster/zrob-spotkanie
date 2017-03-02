@@ -68,7 +68,7 @@ class ViewMeeting extends React.Component {
         dayResponses[hour.hour] = hourResponses;
       }
 
-      let formattedDay = moment(day.day, 'YYYY-MM-DD').format('YYYY.MM.DD');
+      let formattedDay = day.day.format('YYYY.MM.DD');
       responses[formattedDay] = dayResponses;
     }
 
