@@ -1,12 +1,11 @@
 import React from 'react';
-import moment from 'moment';
 import { AttendanceSelector } from '../AttendanceSelector';
 import { DayVisibilitySelector } from '../DayVisibilitySelector';
 import './DayTitle.scss';
 
 class DayTitle extends React.PureComponent {
   static propTypes = {
-    day: React.PropTypes.string.isRequired,
+    day: React.PropTypes.object.isRequired,
     participants: React.PropTypes.array.isRequired,
     isFolded: React.PropTypes.bool.isRequired,
     currentResponse: React.PropTypes.string.isRequired,
@@ -26,7 +25,7 @@ class DayTitle extends React.PureComponent {
         <td className="attendance">
           <AttendanceSelector value={currentResponse} onChange={onResponseChange} />
         </td>
-        <td colSpan={participants.length} className="day">{moment(day, 'YYYY-MM-DD').format('dddd, YYYY.MM.DD')}</td>
+        <td colSpan={participants.length} className="day">{day.format('dddd, YYYY.MM.DD')}</td>
       </tr>
     );
   }

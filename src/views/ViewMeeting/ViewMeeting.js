@@ -44,6 +44,7 @@ class ViewMeeting extends React.Component {
 
       let dayResponses = {};
       let day = days[i];
+      day.day = moment(day.day, 'YYYY-MM-DD');
       for (let j in day.hours) {
         if (!day.hours.hasOwnProperty(j)){
           continue;

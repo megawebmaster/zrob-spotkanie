@@ -65,7 +65,12 @@ export const createMeeting = () => {
       result => {
         if (result.status !== 201) {
           Alert.error('Wystąpiły błędy w formularzu, nie można utworzyć spotkania');
-          return result.json().then(response => dispatch(setCreateMeetingErrors(response)));
+          return result.json().then(response => {
+            if (response.hasOwnProperty('name')) {
+              Alert.error('Brakuje nazwy spotkania!');
+            }
+            return dispatch(setCreateMeetingErrors(response))
+          });
         }
 
         return result.json().then(response => {

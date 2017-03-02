@@ -68,7 +68,7 @@ class MeetingTable extends React.PureComponent {
     } = this.props;
     let rows = [];
 
-    schedule.sort(this.sortDates).forEach((event) => {
+    schedule.sort(MeetingTable.sortDates).forEach((event) => {
       let day = moment(event.day).format('YYYY.MM.DD');
       let hours = MeetingTable.getHours(event, resolution);
       let isFolded = foldedDays[day] || false;
