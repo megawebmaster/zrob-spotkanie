@@ -5,27 +5,28 @@ import './DayTitle.scss';
 
 class DayTitle extends React.PureComponent {
   static propTypes = {
-    day: React.PropTypes.object.isRequired,
+    event: React.PropTypes.object.isRequired,
     participants: React.PropTypes.array.isRequired,
     isFolded: React.PropTypes.bool.isRequired,
     currentResponse: React.PropTypes.string.isRequired,
+    showForm: React.PropTypes.bool.isRequired,
     onFoldChange: React.PropTypes.func.isRequired,
     onResponseChange: React.PropTypes.func.isRequired,
   };
 
   render(){
-    let {day, participants, isFolded, currentResponse, onFoldChange, onResponseChange} = this.props;
+    let {event, participants, isFolded, currentResponse, showForm, onFoldChange, onResponseChange} = this.props;
 
     return (
       <tr className="DayTitle">
         <td className="whole-day">
           <DayVisibilitySelector isFolded={isFolded} onChange={onFoldChange} />
-          <span>Cały dzień:</span>
+          {showForm && <span>Cały dzień:</span>}
         </td>
-        <td className="attendance">
+        {showForm && <td className="attendance">
           <AttendanceSelector value={currentResponse} onChange={onResponseChange} />
-        </td>
-        <td colSpan={participants.length} className="day">{day.format('dddd, YYYY.MM.DD')}</td>
+        </td>}
+        <td colSpan={participants.length} className="day">{event.day.format('dddd, YYYY.MM.DD')}</td>
       </tr>
     );
   }

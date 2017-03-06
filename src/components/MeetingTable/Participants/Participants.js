@@ -1,13 +1,12 @@
 import React from 'react';
 import { Participant } from './Participant';
-import { NewParticipant } from './NewParticipant';
+import NewParticipant from './../../../containers/ViewMeeting/NewParticipant';
 import './Participants.scss';
 
 class Participants extends React.Component {
   static propTypes = {
     participants: React.PropTypes.array.isRequired,
-    currentName: React.PropTypes.string.isRequired,
-    onNameChange: React.PropTypes.func.isRequired,
+    showForm: React.PropTypes.bool.isRequired,
   };
   participants = [];
 
@@ -26,26 +25,38 @@ class Participants extends React.Component {
     if (this.participants.length === 0) {
       return;
     }
+
     let maxHeight = 0;
     this.participants.forEach(item => {
       if (item != null && item.offsetHeight > maxHeight) {
         maxHeight = item.offsetHeight;
       }
     });
-    let top = maxHeight + this.participant.offsetHeight / 4;
-    this.title.style.top = top + 'px';
-    this.participant.style.top = top + 'px';
+
+    let offset = 8;
+    if (this.participant) {
+      offset = this.participant.offsetHeight / 4;
+    }
+
+    let top = maxHeight + offset;
+
+    if (this.title){
+      this.title.style.top = top + 'px';
+    }
+
+    if (this.participant){
+      this.participant.style.top = top + 'px';
+    }
   }
 
   render(){
-    let { participants, currentName, onNameChange } = this.props;
-    // TODO: Hide new participant after answering
+    let { participants, showForm } = this.props;
     return (
       <tr className="Participants">
         <th scope="col" className="title" ref={input => this.title = input}><p>Uczestnicy:</p></th>
-        <th scope="col" className="attendance" ref={input => this.participant = input}>
-          <NewParticipant name={currentName} onNameChange={onNameChange} />
-        </th>
+        {showForm && <th scope="col" className="attendance" ref={input => this.participant = input}>
+          <NewParticipant />
+        </th>}
         {participants.map((participant) =>
           <th key={participant} ref={input => this.participants.push(input)} scope="col">
             <Participant participant={participant} />
