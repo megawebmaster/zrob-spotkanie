@@ -1,5 +1,6 @@
 import React from "react";
 import DayPicker, {DateUtils} from "react-day-picker";
+import LocaleUtils from "react-day-picker/moment";
 import moment from 'moment';
 import "./MeetingDaysField.scss";
 
@@ -37,7 +38,8 @@ class MeetingDaysField extends React.Component {
         <div className="col-xs-6 col-md-5 col-lg-4">
           <DayPicker initialMonth={month} firstDayOfWeek={1} selectedDays={this.isDaySelected.bind(this)}
                      disabledDays={MeetingDaysField.isDayBeforeToday} fromMonth={new Date()}
-                     onDayClick={this.handleDayClick.bind(this)} onMonthChange={onMonthChange} />
+                     onDayClick={this.handleDayClick.bind(this)} onMonthChange={onMonthChange} localeUtils={LocaleUtils}
+                     locale="pl" />
         </div>
         <div className="col-xs-3 col-md-4 col-lg-5">
           {this.props.children}
