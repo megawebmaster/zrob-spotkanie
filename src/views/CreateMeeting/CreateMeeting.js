@@ -22,9 +22,7 @@ class CreateMeeting extends React.Component {
       <div className="CreateMeeting">
         <Helmet title="Utwórz nowe spotkanie" />
         <MeetingNameField />
-        <MeetingDaysField>
-          <p>Reklama?</p>
-        </MeetingDaysField>
+        <MeetingDaysField></MeetingDaysField>
         <MeetingResolutionField />
         <MeetingSchedule />
         <MeetingSaveButton label="Utwórz spotkanie" onClick={this.props.onCreateMeeting} />

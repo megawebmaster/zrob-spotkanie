@@ -14,7 +14,6 @@ class App extends React.Component {
           <ul className="nav navbar-nav float-xs-right">
             <NavLink to="/">Nowe spotkanie</NavLink>
             <NavLink to="/how-it-works">Jak to działa?</NavLink>
-            <NavLink to="/about">O nas</NavLink>
           </ul>
         </nav>
         {this.props.children}

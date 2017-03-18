@@ -51,7 +51,7 @@ class ViewMeeting extends React.Component {
         {isLoading === false && <div>
           {this.hasNewMeeting() && <p className="alert alert-dismissible alert-success">
             Twoje spotkanie zostało utworzone. Skopiuj adres do spotkania i wyślij go zaproszonym osobom!
-            <button type="button" className="close" aria-label="Zamknij" onClick={() => this.removeNewMeeting()}>
+            <button type="button" className="close" aria-label="Zamknij" onClick={this.removeNewMeeting}>
               <span aria-hidden="true">&times;</span>
             </button>
           </p>}
