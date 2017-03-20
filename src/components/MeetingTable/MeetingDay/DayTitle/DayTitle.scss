@@ -52,8 +52,24 @@
 		border: 0;
 	}
 	> .day {
-		text-align: center;
+		text-align: left;
 		font-weight: bold;
 		padding: 0 1rem;
+		font-size: 0.8rem;
+
+		> div {
+			width: 75px;
+			text-align: center;
+			white-space: normal;
+
+			@include media-breakpoint-up(sm) {
+				width: auto;
+			}
+		}
+
+		@include media-breakpoint-up(sm) {
+			text-align: center;
+			font-size: 1rem;
+		}
 	}
 }

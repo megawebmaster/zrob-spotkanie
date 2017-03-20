@@ -26,7 +26,10 @@ class DayTitle extends React.PureComponent {
         {showForm && <td className="attendance">
           <AttendanceSelector value={currentResponse} onChange={onResponseChange} />
         </td>}
-        <td colSpan={participants.length} className="day">{event.day.format('dddd, YYYY.MM.DD')}</td>
+        <td colSpan={participants.length} className="day">
+          <div className="hidden-sm-up">{event.day.format('dddd YYYY.MM.DD')}</div>
+          <div className="hidden-xs-down">{event.day.format('dddd, YYYY.MM.DD')}</div>
+        </td>
       </tr>
     );
   }
