@@ -10,7 +10,10 @@ class App extends React.Component {
       <div className="container">
         <Helmet titleTemplate="%s - ZróbSpotkanie.pl" defaultTitle="ZróbSpotkanie.pl" />
         <nav className="navbar navbar-light">
-          <Link className="navbar-brand" to="/">ZróbSpotkanie.pl</Link>
+          <Link className="navbar-brand" to="/">
+            <span className="hidden-xs-down">ZróbSpotkanie.pl</span>
+            <i className="fa fa-calendar hidden-sm-up"></i>
+          </Link>
           <ul className="nav navbar-nav float-xs-right">
             <NavLink to="/">Nowe spotkanie</NavLink>
             <NavLink to="/how-it-works">Jak to działa?</NavLink>
