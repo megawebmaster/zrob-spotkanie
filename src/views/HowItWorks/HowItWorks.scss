@@ -10,9 +10,15 @@
 		xl: 1110px
 	) !default;
 
+	@include media-breakpoint-only(xs) {
+		h1 {
+			font-size: 1.5rem;
+		}
+	}
+
 	.how-to-create {
-		$image-width: 366px;
-		$image-height: 290px;
+		$image-width: 330px;
+		$image-height: 261px;
 		position: relative;
 		box-shadow: 0 1px 20px 0 rgba(0, 0, 0, .2);
 		background: url('/assets/how-it-works/create-meeting/base.png') no-repeat;
@@ -59,8 +65,8 @@
 		> .magnifier {
 			position: absolute;
 			overflow: hidden;
-			background: url('/assets/how-it-works/create-meeting/full.png') -131px -60px; // Position for first step
-			background-size: 250% auto;
+			background: url('/assets/how-it-works/create-meeting/full.png') -116px -53px; // Position for first step
+			background-size: 275% auto;
 			border: 8px solid white;
 			border-radius: 20px;
 			box-shadow: 0 1px 20px 0 rgba(0,0,0,.2);
@@ -69,6 +75,10 @@
 			transition: left $transition-time, top $transition-time, width $transition-time, height $transition-time,
 									background-position $transition-time, background-size $transition-time, opacity 700ms;
 
+			@include media-breakpoint-up(sm) {
+				background-size: 250% auto;
+				background-position: -131px -60px;
+			}
 			@include media-breakpoint-up(md) {
 				background-position: -231px -105px;
 			}
@@ -125,7 +135,7 @@
 			// Base positions for animations
 			&.meeting-name {
 				top: 125px;
-				left: 83px;
+				left: 65px;
 
 				@include media-breakpoint-up(sm) {
 					left: 140px;
@@ -189,7 +199,7 @@
 			}
 
 			&.meeting-schedule {
-				top: 102px;
+				top: 90px;
 				left: 35px;
 
 				@include media-breakpoint-up(sm) {
@@ -211,8 +221,8 @@
 			}
 
 			&.create-meeting {
-				top: 173px;
-				left: 20px;
+				top: 165px;
+				left: -25px;
 
 				@include media-breakpoint-up(sm) {
 					top: 238px;
@@ -243,7 +253,7 @@
 			@extend %step-visible;
 
 			> .magnifier {
-				width: 356px;
+				width: 320px;
 				height: 46px;
 				top: 32px;
 				left: 5px;
@@ -275,7 +285,7 @@
 			> .caption > div.meeting-name {
 				opacity: 1;
 				top: 84px;
-				left: 83px;
+				left: 65px;
 				width: 200px;
 				height: 44px;
 
@@ -305,7 +315,7 @@
 			@extend %step-visible;
 
 			> .magnifier {
-				width: 356px;
+				width: 320px;
 				height: 160px;
 				top: 65px;
 				left: 5px;
@@ -335,10 +345,10 @@
 			}
 			> .caption > div.meeting-days {
 				opacity: 1;
-				top: 16px;
+				top: 6px;
 				left: 5px;
-				width: 356px;
-				height: 44px;
+				width: 320px;
+				height: 54px;
 
 				@include media-breakpoint-up(sm) {
 					top: 38px;
@@ -379,11 +389,11 @@
 			@extend %step-visible;
 
 			> .magnifier {
-				width: 356px;
-				height: 46px;
+				width: 320px;
+				height: 40px;
 				top: 200px;
 				left: 5px;
-				background-position: -161px -338px;
+				background-position: -161px -336px;
 
 				@include media-breakpoint-up(sm) {
 					top: 270px;
@@ -413,7 +423,7 @@
 				opacity: 1;
 				top: 136px;
 				left: 5px;
-				width: 356px;
+				width: 320px;
 				height: 58px;
 
 				> span {
@@ -456,11 +466,11 @@
 			@extend %step-visible;
 
 			> .magnifier {
-				width: 356px;
-				height: 88px;
+				width: 320px;
+				height: 81px;
 				top: 165px;
 				left: 5px;
-				background-position: -130px -452px;
+				background-position: -110px -442px;
 				background-size: 250% auto;
 
 				@include media-breakpoint-up(sm) {
@@ -492,13 +502,13 @@
 			}
 			> .caption > div.meeting-schedule {
 				opacity: 1;
-				top: 102px;
+				top: 90px;
 				left: 5px;
-				width: 356px;
-				height: 60px;
+				width: 320px;
+				height: 72px;
 
 				> span {
-					margin-top: 7px;
+					margin-top: 14px;
 				}
 
 				@include media-breakpoint-up(sm) {
@@ -546,8 +556,8 @@
 			> .magnifier {
 				width: 300px;
 				height: 43px;
-				top: 243px;
-				left: 28px;
+				top: 215px;
+				left: 15px;
 				background-position: -290px -1239px;
 				background-size: 305% auto;
 
@@ -577,9 +587,9 @@
 			}
 			> .caption > div.create-meeting {
 				opacity: 1;
-				top: 195px;
-				left: 20px;
-				width: 325px;
+				top: 165px;
+				left: 5px;
+				width: 320px;
 				height: 44px;
 
 				@include media-breakpoint-up(sm) {
