@@ -32,6 +32,12 @@ $brand-warning: #f0da48;
 		}
 	}
 
+	.btn-group.has-error {
+		border: 1px solid $brand-danger;
+		border-radius: .25rem;
+		box-shadow: $input-box-shadow, 0 0 6px lighten($brand-danger, 20%);
+	}
+
 	.btn.inactive {
 		&.btn-success {
 			@include btn-type($brand-success);

@@ -112,6 +112,11 @@ export const responseSaved = (response) => ({
   response
 });
 
+export const responseSaveError = (error) => ({
+  type: 'RESPONSE_SAVE_ERROR',
+  error
+});
+
 export const addNewResponse = () => ({
   type: 'RESPONSE_NEW'
 });
@@ -138,12 +143,19 @@ export const saveResponse = () => {
 
     if (response.status === 500) {
       Alert.error('Wystąpił błąd serwera. Prosimy spróbować później.');
+
       return new Promise();
     }
     if (response.status !== 201) {
       let error = await response.json();
-      Alert.error(error);
-      return new Promise();
+      if (error.hasOwnProperty('name')){
+        Alert.error(error.name.join(', '));
+      }
+      if (error.hasOwnProperty('response')){
+        Alert.error('Brakuje niektórych odpowiedzi');
+      }
+
+      return dispatch(responseSaveError(error));
     }
 
     Alert.success('Twoje odpowiedzi zostały zapisane!');

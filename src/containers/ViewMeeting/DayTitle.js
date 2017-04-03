@@ -28,9 +28,9 @@ const getWholeDayResponse = (currentResponse, hours) => {
 
 const mapStateToProps = (state, ownProps) => ({
   participants: state.viewMeeting.participants,
-  isFolded: state.viewMeeting.response.foldedDays[ownProps.event.day.format('YYYY.MM.DD')] || false,
+  isFolded: state.viewMeeting.response.foldedDays[ownProps.event.day.format('YYYY-MM-DD')] || false,
   currentResponse: getWholeDayResponse(
-    state.viewMeeting.response.responses[ownProps.event.day.format('YYYY.MM.DD')],
+    state.viewMeeting.response.responses[ownProps.event.day.format('YYYY-MM-DD')],
     ownProps.event.available_hours
   ),
   showForm: !state.viewMeeting.response.hasResponded,

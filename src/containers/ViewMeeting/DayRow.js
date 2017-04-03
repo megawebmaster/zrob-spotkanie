@@ -4,12 +4,14 @@ import {updateDayHour} from '../../actions';
 
 const mapStateToProps = (state, ownProps) => {
   let response = state.viewMeeting.response.responses;
-  let formattedDay = ownProps.day.format('YYYY.MM.DD');
+  let errors = state.viewMeeting.errors.responses;
+  let formattedDay = ownProps.day.format('YYYY-MM-DD');
   let formattedHour = ownProps.hour.format('HH:mm');
 
   return {
     responses: state.viewMeeting.meeting.responses[formattedDay][formattedHour],
     currentResponse: response.hasOwnProperty(formattedDay) ? response[formattedDay][formattedHour] || '' : '',
+    error: errors.hasOwnProperty(formattedDay) ? errors[formattedDay][formattedHour] : undefined,
     showForm: !state.viewMeeting.response.hasResponded,
   };
 };

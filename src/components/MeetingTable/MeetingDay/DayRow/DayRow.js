@@ -8,12 +8,13 @@ class DayRow extends React.PureComponent {
     hour: React.PropTypes.object.isRequired,
     responses: React.PropTypes.object.isRequired,
     currentResponse: React.PropTypes.string.isRequired,
+    error: React.PropTypes.string,
     showForm: React.PropTypes.bool.isRequired,
     onResponseChange: React.PropTypes.func.isRequired,
   };
 
   render(){
-    let { hour, responses, currentResponse, showForm, onResponseChange } = this.props;
+    let { hour, responses, currentResponse, error, showForm, onResponseChange } = this.props;
     let attendance = [];
     let value = hour.format('HH:mm');
     let isGoodForMeeting = Object.keys(responses).length > 0;
@@ -41,7 +42,7 @@ class DayRow extends React.PureComponent {
           {value}
         </td>
         {showForm && <td className="attendance">
-          <AttendanceSelector value={currentResponse} onChange={onResponseChange} />
+          <AttendanceSelector error={error} value={currentResponse} onChange={onResponseChange} />
         </td>}
         {attendance}
       </tr>

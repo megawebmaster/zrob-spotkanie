@@ -4,6 +4,7 @@ import './NewParticipant.scss';
 class NewParticipant extends React.Component {
   static propTypes = {
     name: React.PropTypes.string.isRequired,
+    error: React.PropTypes.array,
     onNameChange: React.PropTypes.func.isRequired,
   };
 
@@ -12,10 +13,13 @@ class NewParticipant extends React.Component {
   }
 
   render(){
-    let { name } = this.props;
+    let { name, error } = this.props;
+
     return (
-      <input type="text" className="form-control NewParticipant" placeholder="Podaj imię…" value={name} autoFocus
-             onChange={this.handleNameChange.bind(this)}/>
+      <div className={"form-group" + (error.length > 0 ? ' has-danger' : '')}>
+        <input type="text" className="form-control NewParticipant" placeholder="Podaj imię…" value={name} autoFocus
+               onChange={this.handleNameChange.bind(this)}/>
+      </div>
     );
   }
 }

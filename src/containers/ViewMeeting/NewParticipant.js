@@ -4,6 +4,7 @@ import {updateResponseName} from '../../actions';
 
 const mapStateToProps = (state) => ({
   name: state.viewMeeting.response.name,
+  error: state.viewMeeting.errors.name,
 });
 const mapDispatchToProps = (dispatch) => ({
   onNameChange: (name) => dispatch(updateResponseName(name))

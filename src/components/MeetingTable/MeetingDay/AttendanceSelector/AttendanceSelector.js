@@ -4,18 +4,20 @@ import './AttendanceSelector.scss';
 class AttendanceSelector extends React.Component {
   static propTypes = {
     value: React.PropTypes.string.isRequired,
+    error: React.PropTypes.string,
     onChange: React.PropTypes.func.isRequired,
   };
 
   render(){
-    let { value, onChange } = this.props;
+    let { value, error, onChange } = this.props;
     let isActive = (type) => {
       return value === '' || value === type ? '' : ' inactive';
     };
 
     return (
       <div className={"AttendanceSelector" + (value === '' ? ' not-selected' : '')}>
-        <div className="btn-group" role="group" aria-label="Obecność">
+        <div className={"btn-group" + (error && error.length > 0 ? ' has-error' : '')} role="group"
+             aria-label="Obecność">
           <button className={"btn btn-success" + isActive('yes')} type="button"
                   onClick={() => onChange('yes')} >
             <i className="fa fa-fw fa-check"></i><span className="sr-only">Tak, mogę</span>
