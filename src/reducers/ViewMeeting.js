@@ -102,16 +102,32 @@ const response = (state = {
         }
       };
     case 'RESPONSE_UPDATE_DAY_AND_HOUR':
-      // TODO: Check for proper folding ;)
-      formattedDay = action.day.format('YYYY-MM-DD');
+      const shouldFold = function(state, action, day, hour) {
+        let hasAnswerForCurrentDay = () => state.responses[day] !== undefined;
+        let hasAllAnswers = () => Object.keys(state.responses[day]).length !== action.event.available_hours.length;
+        let hasAllAnswersWithCurrent = () => action.event.available_hours.reduce((result, item) =>{
+          let formattedItem = item.format('HH:mm');
+          return result && (formattedItem === hour || state.responses[day].hasOwnProperty(formattedItem));
+        }, true);
+
+        return hasAnswerForCurrentDay() && hasAllAnswers() && hasAllAnswersWithCurrent();
+      };
+
+      formattedDay = action.event.day.format('YYYY-MM-DD');
+      let formattedHour = action.hour.format('HH:mm');
+
       return {
         ...state,
         responses: {
           ...state.responses,
           [formattedDay]: {
             ...state.responses[formattedDay],
-            [action.hour.format('HH:mm')]: action.response
+            [formattedHour]: action.response
           }
+        },
+        foldedDays: {
+          ...state.foldedDays,
+          [formattedDay]: shouldFold(state, action, formattedDay, formattedHour)
         }
       };
     case 'RESPONSE_SAVED':
@@ -140,10 +156,10 @@ const stateHasResponseErrors = state =>{
     Object.keys(state.errors.responses).length > 0;
 };
 
-const filterObject = (obj, predicate) => {
+const filterObject = (obj, predicate) =>{
   let result = {};
-  for (let key in obj) {
-    if (obj.hasOwnProperty(key) && predicate(key, obj[key])) {
+  for(let key in obj){
+    if(obj.hasOwnProperty(key) && predicate(key, obj[key])){
       result[key] = obj[key];
     }
   }

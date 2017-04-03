@@ -53,7 +53,7 @@ class MeetingTable extends React.PureComponent {
       rows.push(<DayTitle key={event.day.valueOf()} event={event} />);
       if(!isFolded){
         rows = rows.concat(event.available_hours.map(hour =>{
-          return <DayRow key={event.day.valueOf() + '-' +hour.valueOf()} day={event.day} hour={hour} />
+          return <DayRow key={event.day.valueOf() + '-' +hour.valueOf()} event={event} hour={hour} />
         }));
       }
     });

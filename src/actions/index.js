@@ -181,9 +181,9 @@ export const updateWholeDay = (event, response) => ({
   response
 });
 
-export const updateDayHour = (day, hour, response) => ({
+export const updateDayHour = (event, hour, response) => ({
   type: 'RESPONSE_UPDATE_DAY_AND_HOUR',
-  day,
+  event,
   hour,
   response
 });

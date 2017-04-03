@@ -5,7 +5,7 @@ import {updateDayHour} from '../../actions';
 const mapStateToProps = (state, ownProps) => {
   let response = state.viewMeeting.response.responses;
   let errors = state.viewMeeting.errors.responses;
-  let formattedDay = ownProps.day.format('YYYY-MM-DD');
+  let formattedDay = ownProps.event.day.format('YYYY-MM-DD');
   let formattedHour = ownProps.hour.format('HH:mm');
 
   return {
@@ -17,7 +17,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onResponseChange: (response) => dispatch(updateDayHour(ownProps.day, ownProps.hour, response))
+  onResponseChange: (response) => dispatch(updateDayHour(ownProps.event, ownProps.hour, response))
 });
 
 export default connect(
