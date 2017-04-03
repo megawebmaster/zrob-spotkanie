@@ -48,7 +48,7 @@ class MeetingTable extends React.PureComponent {
     let rows = [];
 
     schedule.sort(MeetingTable.sortDates).forEach((event) => {
-      let day = moment(event.day).format('YYYY.MM.DD');
+      let day = moment(event.day).format('YYYY-MM-DD');
       let isFolded = foldedDays[day] || false;
       rows.push(<DayTitle key={event.day.valueOf()} event={event} />);
       if(!isFolded){
