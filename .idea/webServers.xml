@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="baef5a75-781f-4009-8f30-b5f958082b02" name="zrobspotkanie.pl" url="http://zrobspotkanie.pl">
+        <fileTransfer host="s49.hekko.pl" port="21" rootFolder="/domains/">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" showHiddenFiles="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
