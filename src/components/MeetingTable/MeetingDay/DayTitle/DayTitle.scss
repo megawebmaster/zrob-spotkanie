@@ -16,7 +16,7 @@
 		text-transform: uppercase;
 		font-weight: bold;
 		font-size: 0.65rem;
-		padding: 0 .25rem;
+		padding: .063rem .25rem;
 		width: 7rem;
 		position: absolute;
 		left: 0;
@@ -36,15 +36,16 @@
 	.attendance {
 		width: 8rem;
 		margin-left: 7rem;
+		padding: .33rem 0;
 		position: absolute;
 		left: 0;
 		top: auto;
 		background-color: $gray-lighter;
-		padding: 0;
 
 		@include media-breakpoint-up(lg) {
 			width: 12rem;
 			margin-left: 11rem;
+			padding: .063rem 0;
 		}
 	}
 	.AttendanceSelector {

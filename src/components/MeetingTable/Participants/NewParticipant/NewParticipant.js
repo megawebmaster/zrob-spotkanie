@@ -16,7 +16,7 @@ class NewParticipant extends React.Component {
     let { name, error } = this.props;
 
     return (
-      <div className={"form-group" + (error.length > 0 ? ' has-danger' : '')}>
+      <div className={"form-group" + (error && error.length > 0 ? ' has-danger' : '')}>
         <input type="text" className="form-control NewParticipant" placeholder="Podaj imię…" value={name} autoFocus
                onChange={this.handleNameChange.bind(this)}/>
       </div>
