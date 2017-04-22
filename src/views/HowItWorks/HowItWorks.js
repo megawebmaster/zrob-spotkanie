@@ -1,9 +1,14 @@
 import React from 'react';
 import Helmet from 'react-helmet';
+import {injectIntl} from 'react-intl';
 
 import './HowItWorks.scss';
 
 class HowItWorks extends React.Component {
+  static propTypes = {
+    intl: React.PropTypes.object.isRequired,
+  };
+
   state = {
     create: {
       step: 0,
@@ -101,29 +106,29 @@ class HowItWorks extends React.Component {
 
   render(){
     let {create: {step, steps, animate}} = this.state;
+    let {intl} = this.props;
     return (
       <div className="HowItWorks">
-        <Helmet title="Jak to działa?" />
-        <h1>Jak dodać spotkanie?</h1>
+        <Helmet title={intl.formatMessage({id: 'howItWorks.title'})} />
+        <h1>{intl.formatMessage({id: 'howItWorks.create.title'})}</h1>
         <div className={"how-to-create step-" + step} ref={input => this.createMeeting = input}>
           <div className="curtain"></div>
           <div className="magnifier"></div>
           <div className="caption">
             <div className="meeting-name">
-              <span>1</span>Nazwij swoje spotkanie
+              <span>1</span>{intl.formatMessage({id: 'howItWorks.create.step1'})}
             </div>
             <div className="meeting-days">
-              <span>2</span>Wybierz dni, w których spotkanie może się odbyć
+              <span>2</span>{intl.formatMessage({id: 'howItWorks.create.step2'})}
             </div>
             <div className="meeting-resolution">
-              <span>3</span>Wybierz na jakie części ma zostać podzielony czas do wyboru
+              <span>3</span>{intl.formatMessage({id: 'howItWorks.create.step3'})}
             </div>
             <div className="meeting-schedule">
-              <span>4</span>
-              Podaj przedziały godzin, które można wybrać - zostaną podzielone na części wybrane wcześniej
+              <span>4</span>{intl.formatMessage({id: 'howItWorks.create.step4'})}
             </div>
             <div className="create-meeting">
-              <span>5</span>Utwórz spotkanie i roześlij link zaproszonym!
+              <span>5</span>{intl.formatMessage({id: 'howItWorks.create.step5'})}
             </div>
           </div>
           <div className="buttons">
@@ -158,4 +163,4 @@ class HowItWorks extends React.Component {
   }
 }
 
-export default HowItWorks;
+export default injectIntl(HowItWorks);

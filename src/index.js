@@ -53,6 +53,13 @@ const messages = {
   'createMeeting.scheduleEntryEnd': 'np. 16 lub 18:45',
   'createMeeting.scheduleEntryRemoveSmall': 'Usuń',
   'createMeeting.scheduleEntryRemove': 'Usuń ten dzień',
+  'howItWorks.title': 'Jak to działa?',
+  'howItWorks.create.title': 'Jak dodać spotkanie?',
+  'howItWorks.create.step1': 'Nazwij swoje spotkanie',
+  'howItWorks.create.step2': 'Wybierz dni, w których spotkanie może się odbyć',
+  'howItWorks.create.step3': 'Wybierz na jakie części ma zostać podzielony czas do wyboru',
+  'howItWorks.create.step4': 'Podaj przedziały godzin, które można wybrać - zostaną podzielone na części wybrane wcześniej',
+  'howItWorks.create.step5': 'Utwórz spotkanie i roześlij link zaproszonym!',
 };
 
 ReactGA.initialize('UA-91765101-1');
