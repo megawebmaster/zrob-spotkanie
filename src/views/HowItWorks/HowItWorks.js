@@ -3,7 +3,7 @@ import Helmet from 'react-helmet';
 
 import './HowItWorks.scss';
 
-class HowItWorks extends React.PureComponent {
+class HowItWorks extends React.Component {
   state = {
     create: {
       step: 0,

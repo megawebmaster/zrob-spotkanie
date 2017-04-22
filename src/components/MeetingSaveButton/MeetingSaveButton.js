@@ -1,4 +1,5 @@
 import React from 'react';
+import {FormattedMessage} from 'react-intl';
 
 class MeetingSaveButton extends React.PureComponent {
   static propTypes = {
@@ -10,7 +11,9 @@ class MeetingSaveButton extends React.PureComponent {
     let { label, onClick } = this.props;
     return (
       <div className="MeetingSaveButton form-group pt-1">
-        <button className="btn btn-success btn-block" onClick={onClick}>{label}</button>
+        <button className="btn btn-success btn-block" onClick={onClick}>
+          <FormattedMessage id={label} />
+        </button>
       </div>
     );
   }

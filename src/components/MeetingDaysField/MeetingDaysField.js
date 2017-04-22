@@ -1,6 +1,7 @@
 import React from "react";
 import DayPicker, {DateUtils} from "react-day-picker";
 import LocaleUtils from "react-day-picker/moment";
+import {FormattedMessage} from 'react-intl';
 import moment from 'moment';
 import "./MeetingDaysField.scss";
 
@@ -34,7 +35,9 @@ class MeetingDaysField extends React.Component {
     // TODO: Create Redux version of DayPicker
     return (
       <div className="MeetingDaysField form-group clearfix">
-        <label htmlFor="meeting-name" className="col-form-label col-xs-3">Wybierz dni</label>
+        <label htmlFor="meeting-name" className="col-form-label col-xs-3">
+          <FormattedMessage id="createMeeting.days" />
+        </label>
         <div className="col-xs-6 col-md-5 col-lg-4">
           <DayPicker initialMonth={month} firstDayOfWeek={1} selectedDays={this.isDaySelected.bind(this)}
                      disabledDays={MeetingDaysField.isDayBeforeToday} fromMonth={new Date()}

@@ -2,6 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import {withRouter} from 'react-router';
 import {connect} from 'react-redux';
+import {injectIntl} from 'react-intl';
 
 import MeetingDaysField from './../../containers/CreateMeeting/MeetingDaysField';
 import MeetingNameField from './../../containers/CreateMeeting/MeetingNameField';
@@ -14,18 +15,19 @@ import './CreateMeeting.scss';
 
 class CreateMeeting extends React.Component {
   static propTypes = {
-    onCreateMeeting: React.PropTypes.func.isRequired
+    onCreateMeeting: React.PropTypes.func.isRequired,
+    intl: React.PropTypes.object.isRequired,
   };
 
   render(){
     return (
       <div className="CreateMeeting">
-        <Helmet title="Utwórz nowe spotkanie" />
+        <Helmet title={this.props.intl.formatMessage({id: 'createMeeting.title'})} />
         <MeetingNameField />
         <MeetingDaysField></MeetingDaysField>
         <MeetingResolutionField />
         <MeetingSchedule />
-        <MeetingSaveButton label="Utwórz spotkanie" onClick={this.props.onCreateMeeting} />
+        <MeetingSaveButton label="createMeeting.button" onClick={this.props.onCreateMeeting} />
       </div>
     );
   }
@@ -36,8 +38,8 @@ const mapDispatchToProps = (dispatch) => ({
   onCreateMeeting: () => dispatch(createMeeting())
 });
 
-export default connect(
+export default injectIntl(connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(CreateMeeting));
+)(withRouter(CreateMeeting)));
 export {CreateMeeting};
