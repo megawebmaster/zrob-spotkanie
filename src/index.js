@@ -60,6 +60,15 @@ const messages = {
   'howItWorks.create.step3': 'Wybierz na jakie części ma zostać podzielony czas do wyboru',
   'howItWorks.create.step4': 'Podaj przedziały godzin, które można wybrać - zostaną podzielone na części wybrane wcześniej',
   'howItWorks.create.step5': 'Utwórz spotkanie i roześlij link zaproszonym!',
+  'viewMeeting.close': 'Zamknij',
+  'viewMeeting.meetingCreated': 'Twoje spotkanie zostało utworzone. Skopiuj adres do spotkania i wyślij go zaproszonym osobom!',
+  'viewMeeting.saveAnswers': 'Zapisz moje odpowiedzi',
+  'viewMeeting.newAnswer': 'Dodaj kolejną odpowiedź',
+  'viewMeeting.wholeDay': 'Cały dzień:',
+  'viewMeeting.attendance': 'Obecność',
+  'viewMeeting.attendance.yes': 'Tak, mogę',
+  'viewMeeting.attendance.maybe': 'Nie wiem',
+  'viewMeeting.attendance.no': 'Nie, nie mogę',
 };
 
 ReactGA.initialize('UA-91765101-1');

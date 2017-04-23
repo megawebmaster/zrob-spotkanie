@@ -1,4 +1,5 @@
 import React from 'react';
+import {FormattedMessage, FormattedDate} from 'react-intl';
 import { AttendanceSelector } from '../AttendanceSelector';
 import { DayVisibilitySelector } from '../DayVisibilitySelector';
 import './DayTitle.scss';
@@ -21,14 +22,15 @@ class DayTitle extends React.PureComponent {
       <tr className="DayTitle">
         <td className="whole-day">
           <DayVisibilitySelector isFolded={isFolded} onChange={onFoldChange} />
-          {showForm && <span>Cały dzień:</span>}
+          {showForm && <FormattedMessage id="viewMeeting.wholeDay" defaultMessage="Cały dzień:"></FormattedMessage>}
         </td>
         {showForm && <td className="attendance">
           <AttendanceSelector value={currentResponse} onChange={onResponseChange} />
         </td>}
         <td colSpan={participants.length} className="day">
-          <div className="hidden-sm-up">{event.day.format('dddd YYYY.MM.DD')}</div>
-          <div className="hidden-xs-down">{event.day.format('dddd, YYYY.MM.DD')}</div>
+          <div className="hidden-sm-up">{event.day.format('dddd')}</div>
+          <div className="hidden-xs-down">{event.day.format('dddd, ')}</div>
+          <FormattedDate value={event.day} format={{year: 'numeric', month: 'numeric', day: 'numeric'}}/>
         </td>
       </tr>
     );

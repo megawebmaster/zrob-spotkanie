@@ -2,6 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import {withRouter} from 'react-router';
 import {connect} from 'react-redux';
+import {injectIntl} from 'react-intl';
 import MeetingTitle from './../../containers/ViewMeeting/MeetingTitle';
 import MeetingTable from './../../containers/ViewMeeting/MeetingTable';
 import {MeetingSaveButton} from './../../components/MeetingSaveButton';
@@ -16,6 +17,7 @@ class ViewMeeting extends React.Component {
     fetchMeeting: React.PropTypes.func.isRequired,
     addNewResponse: React.PropTypes.func.isRequired,
     onSaveResponse: React.PropTypes.func.isRequired,
+    intl: React.PropTypes.object.isRequired,
   };
 
   componentDidMount(){
@@ -42,8 +44,8 @@ class ViewMeeting extends React.Component {
   }
 
   render(){
-    // TODO: Translate with Intl
     let {isLoading, meeting, showForm, onSaveResponse, addNewResponse} = this.props;
+    let format = (id, message) => this.props.intl.formatMessage({id, defaultMessage: message});
 
     return (
       <div className="ViewMeeting">
@@ -51,15 +53,16 @@ class ViewMeeting extends React.Component {
         {isLoading && <i className="fa fa-spin fa-spinner fa-pulse fa-3x fa-fw"></i>}
         {isLoading === false && <div>
           {this.hasNewMeeting() && <p className="alert alert-dismissible alert-success">
-            Twoje spotkanie zostało utworzone. Skopiuj adres do spotkania i wyślij go zaproszonym osobom!
-            <button type="button" className="close" aria-label="Zamknij" onClick={this.removeNewMeeting}>
+            {format('viewMeeting.meetingCreated', 'Twoje spotkanie zostało utworzone. Skopiuj adres do spotkania i wyślij go zaproszonym osobom!')}
+            <button type="button" className="close" aria-label={format('viewMeeting.close', 'Zamknij')}
+                    onClick={this.removeNewMeeting}>
               <span aria-hidden="true">&times;</span>
             </button>
           </p>}
           <MeetingTitle />
           <MeetingTable />
-          {showForm && <MeetingSaveButton onClick={onSaveResponse}>Zapisz moje odpowiedzi</MeetingSaveButton>}
-          {!showForm && <MeetingSaveButton onClick={addNewResponse}>Dodaj kolejną odpowiedź</MeetingSaveButton>}
+          {showForm && <MeetingSaveButton onClick={onSaveResponse}>{format('viewMeeting.saveAnswers', 'Zapisz moje odpowiedzi')}</MeetingSaveButton>}
+          {!showForm && <MeetingSaveButton onClick={addNewResponse}>{format('viewMeeting.newAnswer', 'Dodaj kolejną odpowiedź')}</MeetingSaveButton>}
         </div>}
       </div>
     );
@@ -77,8 +80,8 @@ const mapDispatchToProps = (dispatch) => ({
   addNewResponse: () => dispatch(addNewResponse())
 });
 
-export default connect(
+export default injectIntl(connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(ViewMeeting));
+)(withRouter(ViewMeeting)));
 export {ViewMeeting};

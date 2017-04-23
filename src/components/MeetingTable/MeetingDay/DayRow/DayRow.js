@@ -1,4 +1,5 @@
 import React from 'react';
+import {FormattedTime} from 'react-intl';
 import { AttendanceSelector } from '../AttendanceSelector';
 import { ParticipantAttendance } from '../ParticipantAttendance';
 import './DayRow.scss';
@@ -39,7 +40,7 @@ class DayRow extends React.PureComponent {
         <td className="hour">
           { isGoodForMeeting && <i className="fa fa-fw fa-check"></i> }
           { !isGoodForMeeting && isConditionalForMeeting && <i className="fa fa-fw fa-question"></i> }
-          {value}
+          <FormattedTime value={hour}></FormattedTime>
         </td>
         {showForm && <td className="attendance">
           <AttendanceSelector error={error} value={currentResponse} onChange={onResponseChange} />
