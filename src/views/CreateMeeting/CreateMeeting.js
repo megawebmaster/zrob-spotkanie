@@ -2,7 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import {withRouter} from 'react-router';
 import {connect} from 'react-redux';
-import {injectIntl} from 'react-intl';
+import {FormattedMessage, injectIntl} from 'react-intl';
 
 import MeetingDaysField from './../../containers/CreateMeeting/MeetingDaysField';
 import MeetingNameField from './../../containers/CreateMeeting/MeetingNameField';
@@ -22,12 +22,14 @@ class CreateMeeting extends React.Component {
   render(){
     return (
       <div className="CreateMeeting">
-        <Helmet title={this.props.intl.formatMessage({id: 'createMeeting.title'})} />
+        <Helmet title={this.props.intl.formatMessage({id: 'createMeeting.title', defaultMessage: 'Utwórz nowe spotkanie'})} />
         <MeetingNameField />
         <MeetingDaysField></MeetingDaysField>
         <MeetingResolutionField />
         <MeetingSchedule />
-        <MeetingSaveButton label="createMeeting.button" onClick={this.props.onCreateMeeting} />
+        <MeetingSaveButton onClick={this.props.onCreateMeeting}>
+          <FormattedMessage id="createMeeting.button" defaultMessage="Utwórz spotkanie" />
+        </MeetingSaveButton>
       </div>
     );
   }

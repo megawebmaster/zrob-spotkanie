@@ -11,20 +11,22 @@ class App extends React.Component {
   };
 
   render() {
-    let {intl} = this.props;
+    let format = (id, message) => this.props.intl.formatMessage({id, defaultMessage: message});
 
     return (
       <div className="container">
-        <Helmet titleTemplate={"%s - " + intl.formatMessage({id: 'app.name'})}
-                defaultTitle={intl.formatMessage({id: 'app.name'})} />
+        <Helmet titleTemplate={"%s - " + format('app.name', 'ZróbSpotkanie.pl')}
+                defaultTitle={format('app.name', 'ZróbSpotkanie.pl')} />
         <nav className="navbar navbar-light">
           <Link className="navbar-brand" to="/">
-            <span className="hidden-xs-down">{intl.formatMessage({id: 'app.name'})}</span>
+            <span className="hidden-xs-down">
+              {format('app.name', 'ZróbSpotkanie.pl')}
+            </span>
             <i className="fa fa-calendar hidden-sm-up"></i>
           </Link>
           <ul className="nav navbar-nav float-xs-right">
-            <NavLink to="/">{intl.formatMessage({id: 'links.newMeeting'})}</NavLink>
-            <NavLink to="/how-it-works">{intl.formatMessage({id: 'links.howItWorks'})}</NavLink>
+            <NavLink to="/">{format('links.newMeeting', 'Nowe spotkanie')}</NavLink>
+            <NavLink to="/how-it-works">{format('links.howItWorks', 'Jak to działa?')}</NavLink>
           </ul>
         </nav>
         {this.props.children}

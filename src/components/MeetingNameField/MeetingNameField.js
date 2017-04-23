@@ -19,12 +19,12 @@ class MeetingNameField extends React.Component {
     return (
       <div className={"MeetingNameField form-group clearfix" + (errors.length > 0 ? ' has-danger' : '')}>
         <label htmlFor="meeting-name" className="col-form-label col-xs-3">
-          <FormattedMessage id="createMeeting.name" />
+          <FormattedMessage id="createMeeting.name" defaultMessage="Podaj nazwę" />
         </label>
         <div className="col-xs-9 small-padding">
           <input type="text" id="meeting-name" className="form-control" value={value}
                  onChange={this.onChange.bind(this)}
-                 placeholder={intl.formatMessage({id: 'createMeeting.namePlaceholder'})} />
+                 placeholder={intl.formatMessage({id: 'createMeeting.namePlaceholder', defaultMessage: 'np. Podsumowanie sprzedaży Q3'})} />
           {errors.length > 0 &&
           <div className="form-control-feedback">{errors.join(', ')}</div>
           }

@@ -16,6 +16,7 @@ class HowItWorks extends React.Component {
       autoplay: true,
       steps: 5,
       times: {
+        0: 5000,
         1: 5000,
         2: 5000,
         3: 5000,
@@ -38,6 +39,7 @@ class HowItWorks extends React.Component {
 
   componentWillUnmount(){
     window.removeEventListener('scroll', this.createMeetingScrollHandle);
+    this.pauseAnimation('create');
   }
 
   tryToStartAnimations(){
@@ -49,11 +51,11 @@ class HowItWorks extends React.Component {
   }
 
   startAnimation(type, position, element){
-    let {autoplay} = this.state[type];
+    let {autoplay, step} = this.state[type];
     let minAnimationImageBottom = element.offsetTop + element.offsetHeight * 4 / 5;
     let browserBottom = position + window.innerHeight;
 
-    if(autoplay && minAnimationImageBottom < browserBottom){
+    if(autoplay && step === 0 && minAnimationImageBottom < browserBottom){
       this.setState({[type]: { ...this.state[type], autoplay: false }});
       this._runAnimation(type, 1000);
     }
@@ -106,29 +108,34 @@ class HowItWorks extends React.Component {
 
   render(){
     let {create: {step, steps, animate}} = this.state;
-    let {intl} = this.props;
+    let format = (id, message) => this.props.intl.formatMessage({id, defaultMessage: message});
     return (
       <div className="HowItWorks">
-        <Helmet title={intl.formatMessage({id: 'howItWorks.title'})} />
-        <h1>{intl.formatMessage({id: 'howItWorks.create.title'})}</h1>
+        <Helmet title={format('howItWorks.title', 'Jak to działa?')} />
+        <h1>{format('howItWorks.create.title', 'Jak dodać spotkanie?')}</h1>
         <div className={"how-to-create step-" + step} ref={input => this.createMeeting = input}>
           <div className="curtain"></div>
           <div className="magnifier"></div>
           <div className="caption">
             <div className="meeting-name">
-              <span>1</span>{intl.formatMessage({id: 'howItWorks.create.step1'})}
+              <span>1</span>
+              {format('howItWorks.create.step1', 'Nazwij swoje spotkanie')}
             </div>
             <div className="meeting-days">
-              <span>2</span>{intl.formatMessage({id: 'howItWorks.create.step2'})}
+              <span>2</span>
+              {format('howItWorks.create.step2', 'Wybierz dni, w których spotkanie może się odbyć')}
             </div>
             <div className="meeting-resolution">
-              <span>3</span>{intl.formatMessage({id: 'howItWorks.create.step3'})}
+              <span>3</span>
+              {format('howItWorks.create.step3', 'Wybierz na jakie części ma zostać podzielony czas do wyboru')}
             </div>
             <div className="meeting-schedule">
-              <span>4</span>{intl.formatMessage({id: 'howItWorks.create.step4'})}
+              <span>4</span>
+              {format('howItWorks.create.step4', 'Podaj przedziały godzin, które można wybrać - zostaną podzielone na części wybrane wcześniej')}
             </div>
             <div className="create-meeting">
-              <span>5</span>{intl.formatMessage({id: 'howItWorks.create.step5'})}
+              <span>5</span>
+              {format('howItWorks.create.step5', 'Utwórz spotkanie i roześlij link zaproszonym!')}
             </div>
           </div>
           <div className="buttons">

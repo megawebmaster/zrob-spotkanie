@@ -42,6 +42,7 @@ class ViewMeeting extends React.Component {
   }
 
   render(){
+    // TODO: Translate with Intl
     let {isLoading, meeting, showForm, onSaveResponse, addNewResponse} = this.props;
 
     return (
@@ -57,8 +58,8 @@ class ViewMeeting extends React.Component {
           </p>}
           <MeetingTitle />
           <MeetingTable />
-          {showForm && <MeetingSaveButton label="Zapisz moje odpowiedzi" onClick={onSaveResponse} />}
-          {!showForm && <MeetingSaveButton label="Dodaj kolejną odpowiedź" onClick={addNewResponse} />}
+          {showForm && <MeetingSaveButton onClick={onSaveResponse}>Zapisz moje odpowiedzi</MeetingSaveButton>}
+          {!showForm && <MeetingSaveButton onClick={addNewResponse}>Dodaj kolejną odpowiedź</MeetingSaveButton>}
         </div>}
       </div>
     );

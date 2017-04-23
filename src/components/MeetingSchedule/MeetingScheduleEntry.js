@@ -34,20 +34,24 @@ class MeetingScheduleEntry extends React.Component {
         </label>
         <div className={"col-xs-2 small-padding" + (hasFromErrors ? ' has-danger' : '')}>
           <input type="text" id="meeting-schedule-entry-from" className="form-control" value={event.from || ''}
-                 placeholder={intl.formatMessage({id: 'createMeeting.scheduleEntryStart'})}
+                 placeholder={intl.formatMessage({id: 'createMeeting.scheduleEntryStart', defaultMessage: 'np. 10 lub 8:30'})}
                  onChange={this.updateFrom.bind(this)} />
           {hasFromErrors && <div className="form-control-feedback">{errors.from.join(', ')}</div>}
         </div>
         <div className={"col-xs-2 small-padding" + (hasToErrors ? ' has-danger' : '')}>
           <input type="text" id="meeting-schedule-entry-to" className="form-control" value={event.to || ''}
-                 placeholder={intl.formatMessage({id: 'createMeeting.scheduleEntryEnd'})}
+                 placeholder={intl.formatMessage({id: 'createMeeting.scheduleEntryEnd', defaultMessage: 'np. 16 lub 18:45'})}
                  onChange={this.updateTo.bind(this)} />
           {hasToErrors && <div className="form-control-feedback">{errors.to.join(', ')}</div>}
         </div>
         <div className="col-xs-5">
           <button className="btn btn-secondary mr-1" tabIndex="-1" onClick={() => onDayRemove(event)}>
-            <span className="hidden-lg-up"><FormattedMessage id="createMeeting.scheduleEntryRemoveSmall" /></span>
-            <span className="hidden-md-down"><FormattedMessage id="createMeeting.scheduleEntryRemove" /></span>
+            <span className="hidden-lg-up">
+              <FormattedMessage id="createMeeting.scheduleEntryRemoveSmall" defaultMessage="Usuń" />
+            </span>
+            <span className="hidden-md-down">
+              <FormattedMessage id="createMeeting.scheduleEntryRemove" defaultMessage="Usuń ten dzień" />
+            </span>
           </button>
           {this.props.children}
         </div>

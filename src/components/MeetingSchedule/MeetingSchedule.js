@@ -28,17 +28,21 @@ class MeetingSchedule extends React.Component {
     let {intl, schedule, onCopyFirstDay} = this.props;
     return (
       <fieldset className="MeetingSchedule">
-        <legend>{intl.formatMessage({id: 'createMeeting.schedule'})}</legend>
+        <legend>{intl.formatMessage({id: 'createMeeting.schedule', defaultMessage: 'Przedziały godzin'})}</legend>
         {schedule.length === 0 && <p className="px-2 m-0 float-xs-left" style={{lineHeight: '1.8rem'}}>
-          <FormattedMessage id="createMeeting.scheduleDays" />
+          <FormattedMessage id="createMeeting.scheduleDays" defaultMessage="Wybierz dni dla spotkania" />
         </p>}
         {schedule.sort(MeetingSchedule.sortDates).map((event, index) =>
           <MeetingScheduleEntry key={event.day.valueOf()} index={index} event={event}>
             {index === 0 && schedule.length > 1 &&
             <button className="btn btn-secondary" type="button" tabIndex="-1" disabled={!this.isFirstRowFilled()}
                     onClick={onCopyFirstDay}>
-              <span className="hidden-lg-up"><FormattedMessage id="createMeeting.scheduleDaysAllSmall" /></span>
-              <span className="hidden-md-down"><FormattedMessage id="createMeeting.scheduleDaysAll" /></span>
+              <span className="hidden-lg-up">
+                <FormattedMessage id="createMeeting.scheduleDaysAllSmall" defaultMessage="Wszystkie" />
+              </span>
+              <span className="hidden-md-down">
+                <FormattedMessage id="createMeeting.scheduleDaysAll" defaultMessage="Zastosuj do wszystkich" />
+              </span>
             </button>}
           </MeetingScheduleEntry>
         )}

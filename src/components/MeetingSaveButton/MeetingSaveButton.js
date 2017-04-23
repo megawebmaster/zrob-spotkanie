@@ -1,18 +1,17 @@
 import React from 'react';
-import {FormattedMessage} from 'react-intl';
 
 class MeetingSaveButton extends React.PureComponent {
   static propTypes = {
-    label: React.PropTypes.string.isRequired,
+    children: React.PropTypes.object.isRequired,
     onClick: React.PropTypes.func.isRequired,
   };
 
   render() {
-    let { label, onClick } = this.props;
+    let { onClick, children } = this.props;
     return (
       <div className="MeetingSaveButton form-group pt-1">
         <button className="btn btn-success btn-block" onClick={onClick}>
-          <FormattedMessage id={label} />
+          {children}
         </button>
       </div>
     );
