@@ -7,7 +7,7 @@ import {Provider} from 'react-redux';
 import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
 import { createStore, applyMiddleware } from 'redux';
 import {addLocaleData, IntlProvider} from 'react-intl';
-// import en from 'react-intl/locale-data/en';
+import en from 'react-intl/locale-data/en';
 import pl from 'react-intl/locale-data/pl';
 import thunk from 'redux-thunk';
 import moment from 'moment';
@@ -22,7 +22,7 @@ import 'font-awesome/fonts/fontawesome-webfont.woff';
 import 'font-awesome/fonts/fontawesome-webfont.woff2';
 import './index.scss';
 
-addLocaleData([...pl]);
+addLocaleData([...pl, ...en]);
 
 const store = createStore(reducers, applyMiddleware(
   routerMiddleware(browserHistory),
