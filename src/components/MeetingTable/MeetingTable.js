@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import DayRow from './../../containers/ViewMeeting/DayRow';
 import DayTitle from './../../containers/ViewMeeting/DayTitle';
@@ -7,9 +8,9 @@ import './MeetingTable.scss';
 
 class MeetingTable extends React.PureComponent {
   static propTypes = {
-    schedule: React.PropTypes.array.isRequired,
-    foldedDays: React.PropTypes.object.isRequired,
-    showForm: React.PropTypes.bool.isRequired,
+    schedule: PropTypes.array.isRequired,
+    foldedDays: PropTypes.object.isRequired,
+    showForm: PropTypes.bool.isRequired,
   };
 
   static sortDates(a, b){

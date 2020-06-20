@@ -1,13 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {injectIntl, FormattedMessage} from 'react-intl';
 import MeetingScheduleEntry from './../../containers/CreateMeeting/MeetingSchedule/MeetingScheduleEntry';
 import './MeetingSchedule.scss';
 
 class MeetingSchedule extends React.Component {
   static propTypes = {
-    schedule: React.PropTypes.array.isRequired,
-    onCopyFirstDay: React.PropTypes.func.isRequired,
-    intl: React.PropTypes.object.isRequired,
+    schedule: PropTypes.array.isRequired,
+    onCopyFirstDay: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired,
   };
 
   isFirstRowFilled(){
@@ -27,26 +28,30 @@ class MeetingSchedule extends React.Component {
   render(){
     let {intl, schedule, onCopyFirstDay} = this.props;
     return (
-      <fieldset className="MeetingSchedule">
-        <legend>{intl.formatMessage({id: 'createMeeting.schedule', defaultMessage: 'Przedziały godzin'})}</legend>
-        {schedule.length === 0 && <p className="px-2 m-0 float-xs-left" style={{lineHeight: '1.8rem'}}>
-          <FormattedMessage id="createMeeting.scheduleDays" defaultMessage="Wybierz dni dla spotkania" />
-        </p>}
-        {schedule.sort(MeetingSchedule.sortDates).map((event, index) =>
-          <MeetingScheduleEntry key={event.day.valueOf()} index={index} event={event}>
-            {index === 0 && schedule.length > 1 &&
-            <button className="btn btn-secondary" type="button" tabIndex="-1" disabled={!this.isFirstRowFilled()}
-                    onClick={onCopyFirstDay}>
-              <span className="hidden-lg-up">
+      <div className="MeetingSchedule form-group form-row">
+        <label className="col-form-label col-sm-3 legend">
+          {intl.formatMessage({id: 'createMeeting.schedule', defaultMessage: 'Przedziały godzin'})}
+        </label>
+        <div className="col-sm-9">
+          {schedule.length === 0 && <p className="px-2 m-0">
+            <FormattedMessage id="createMeeting.scheduleDays" defaultMessage="Wybierz dni dla spotkania" />
+          </p>}
+          {schedule.sort(MeetingSchedule.sortDates).map((event, index) =>
+            <MeetingScheduleEntry key={event.day.valueOf()} index={index} event={event}>
+              {index === 0 && schedule.length > 1 &&
+              <button className="btn btn-secondary" type="button" tabIndex="-1" disabled={!this.isFirstRowFilled()}
+                      onClick={onCopyFirstDay}>
+              <span className="d-lg-none">
                 <FormattedMessage id="createMeeting.scheduleDaysAllSmall" defaultMessage="Wszystkie" />
               </span>
-              <span className="hidden-md-down">
+              <span className="d-none d-lg-block">
                 <FormattedMessage id="createMeeting.scheduleDaysAll" defaultMessage="Zastosuj do wszystkich" />
               </span>
-            </button>}
-          </MeetingScheduleEntry>
-        )}
-      </fieldset>
+              </button>}
+            </MeetingScheduleEntry>
+          )}
+        </div>
+      </div>
     );
   }
 }

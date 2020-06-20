@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './NewParticipant.scss';
 
 class NewParticipant extends React.Component {
   static propTypes = {
-    name: React.PropTypes.string.isRequired,
-    error: React.PropTypes.array,
-    onNameChange: React.PropTypes.func.isRequired,
+    name: PropTypes.string.isRequired,
+    error: PropTypes.array,
+    onNameChange: PropTypes.func.isRequired,
   };
 
   handleNameChange(event) {

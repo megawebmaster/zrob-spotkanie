@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Participant.scss';
 
 class Participant extends React.Component {
   static propTypes = {
-    participant: React.PropTypes.string.isRequired,
+    participant: PropTypes.string.isRequired,
   };
 
   render(){

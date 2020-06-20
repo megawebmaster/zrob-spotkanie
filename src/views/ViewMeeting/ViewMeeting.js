@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import {withRouter} from 'react-router';
 import {connect} from 'react-redux';
@@ -11,13 +12,13 @@ import './ViewMeeting.scss';
 
 class ViewMeeting extends React.Component {
   static propTypes = {
-    isLoading: React.PropTypes.bool.isRequired,
-    meeting: React.PropTypes.object.isRequired,
-    showForm: React.PropTypes.bool.isRequired,
-    fetchMeeting: React.PropTypes.func.isRequired,
-    addNewResponse: React.PropTypes.func.isRequired,
-    onSaveResponse: React.PropTypes.func.isRequired,
-    intl: React.PropTypes.object.isRequired,
+    isLoading: PropTypes.bool.isRequired,
+    meeting: PropTypes.object.isRequired,
+    showForm: PropTypes.bool.isRequired,
+    fetchMeeting: PropTypes.func.isRequired,
+    addNewResponse: PropTypes.func.isRequired,
+    onSaveResponse: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired,
   };
 
   componentDidMount(){

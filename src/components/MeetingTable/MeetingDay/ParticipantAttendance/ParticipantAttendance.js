@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './ParticipantAttendance.scss';
 
 class ParticipantAttendance extends React.Component {
   static propTypes = {
-    attendance: React.PropTypes.string.isRequired,
+    attendance: PropTypes.string.isRequired,
   };
 
   render(){

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import {injectIntl} from 'react-intl';
 
@@ -6,7 +7,7 @@ import './HowItWorks.scss';
 
 class HowItWorks extends React.Component {
   static propTypes = {
-    intl: React.PropTypes.object.isRequired,
+    intl: PropTypes.object.isRequired,
   };
 
   state = {

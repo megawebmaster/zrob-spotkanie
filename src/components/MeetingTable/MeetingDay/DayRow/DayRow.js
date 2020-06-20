@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {FormattedTime} from 'react-intl';
 import { AttendanceSelector } from '../AttendanceSelector';
 import { ParticipantAttendance } from '../ParticipantAttendance';
@@ -6,12 +7,12 @@ import './DayRow.scss';
 
 class DayRow extends React.PureComponent {
   static propTypes = {
-    hour: React.PropTypes.object.isRequired,
-    responses: React.PropTypes.object.isRequired,
-    currentResponse: React.PropTypes.string.isRequired,
-    error: React.PropTypes.string,
-    showForm: React.PropTypes.bool.isRequired,
-    onResponseChange: React.PropTypes.func.isRequired,
+    hour: PropTypes.object.isRequired,
+    responses: PropTypes.object.isRequired,
+    currentResponse: PropTypes.string.isRequired,
+    error: PropTypes.string,
+    showForm: PropTypes.bool.isRequired,
+    onResponseChange: PropTypes.func.isRequired,
   };
 
   render(){

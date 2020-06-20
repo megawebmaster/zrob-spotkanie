@@ -1,12 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {injectIntl, FormattedMessage} from 'react-intl';
 
 class MeetingResolutionField extends React.Component {
   static propTypes = {
-    value: React.PropTypes.string.isRequired,
-    errors: React.PropTypes.array.isRequired,
-    onChange: React.PropTypes.func.isRequired,
-    intl: React.PropTypes.object.isRequired,
+    value: PropTypes.string.isRequired,
+    errors: PropTypes.array.isRequired,
+    onChange: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired,
   };
 
   onChange(event) {
@@ -17,11 +18,11 @@ class MeetingResolutionField extends React.Component {
     let {intl, value, errors} = this.props;
 
     return (
-      <div className={"MeetingResolutionField form-group clearfix" + (errors.length > 0 ? ' has-danger' : '')}>
-        <label htmlFor="meeting-resolution" className="col-form-label col-xs-3">
+      <div className={"MeetingResolutionField form-group form-row" + (errors.length > 0 ? ' has-danger' : '')}>
+        <label htmlFor="meeting-resolution" className="col-form-label col-sm-3">
           <FormattedMessage id="createMeeting.resolution" defaultMessage="Czas" />
         </label>
-        <div className="col-xs-4 small-padding">
+        <div className="col-sm-4">
           <select value={value} onChange={this.onChange.bind(this)} id="meeting-resolution"
                   className="form-control">
             <option value="60">
@@ -38,7 +39,7 @@ class MeetingResolutionField extends React.Component {
           <div className="form-control-feedback">{errors.join(', ')}</div>
           }
         </div>
-        <div className="col-xs-5">
+        <div className="col-sm-5">
           <p className="col-form-label">
             <FormattedMessage id="createMeeting.resolutionSuffix" defaultMessage="do wyboru" />
           </p>

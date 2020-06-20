@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import {withRouter} from 'react-router';
 import {connect} from 'react-redux';
@@ -15,8 +16,8 @@ import './CreateMeeting.scss';
 
 class CreateMeeting extends React.Component {
   static propTypes = {
-    onCreateMeeting: React.PropTypes.func.isRequired,
-    intl: React.PropTypes.object.isRequired,
+    onCreateMeeting: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired,
   };
 
   render(){
@@ -24,7 +25,7 @@ class CreateMeeting extends React.Component {
       <div className="CreateMeeting">
         <Helmet title={this.props.intl.formatMessage({id: 'createMeeting.title', defaultMessage: 'Utwórz nowe spotkanie'})} />
         <MeetingNameField />
-        <MeetingDaysField></MeetingDaysField>
+        <MeetingDaysField />
         <MeetingResolutionField />
         <MeetingSchedule />
         <MeetingSaveButton onClick={this.props.onCreateMeeting}>

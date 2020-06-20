@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './DayVisibilitySelector.scss';
 
 class DayVisibilitySelector extends React.Component {
   static propTypes = {
-    isFolded: React.PropTypes.bool.isRequired,
-    onChange: React.PropTypes.func.isRequired,
+    isFolded: PropTypes.bool.isRequired,
+    onChange: PropTypes.func.isRequired,
   };
 
   render(){

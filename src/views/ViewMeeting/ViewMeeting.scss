@@ -1,11 +1,12 @@
 $brand-warning: #f0da48;
 
-@import '~bootstrap/scss/_variables';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
-@import '~bootstrap/scss/_forms';
-@import '~bootstrap/scss/_buttons';
-@import '~bootstrap/scss/_close';
-@import '~bootstrap/scss/_alert';
+@import '~bootstrap/scss/forms';
+@import '~bootstrap/scss/buttons';
+@import '~bootstrap/scss/close';
+@import '~bootstrap/scss/alert';
 
 .ViewMeeting {
 	text-align: center;

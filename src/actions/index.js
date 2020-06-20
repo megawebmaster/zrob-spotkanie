@@ -51,7 +51,7 @@ export const createMeeting = () => {
       action: `Resolution: ${meeting.resolution} minutes`
     });
 
-    let response = await fetch(`${process.env.API_URL}/v1/meetings`, {
+    let response = await fetch(`${process.env.REACT_APP_API_URL}/v1/meetings`, {
       method: 'post',
       headers: {
         'Accept': 'application/json',
@@ -91,7 +91,7 @@ export const meetingFetched = (meeting) => ({
 export const meetingFetch = (meetingHash) => {
   return async dispatch => {
     dispatch(meetingRequest());
-    let response = await fetch(`${process.env.API_URL}/v1/meetings/${meetingHash}`);
+    let response = await fetch(`${process.env.REACT_APP_API_URL}/v1/meetings/${meetingHash}`);
     if (response.status === 404) {
       Alert.error('Podane spotkanie nie zostało znalezione w systemie.');
       return dispatch(push('/'));
@@ -129,7 +129,7 @@ export const saveResponse = () => {
     //   action: state.response.name
     // });
 
-    let response = await fetch(`${process.env.API_URL}/v1/meetings/${state.meeting.hash}`, {
+    let response = await fetch(`${process.env.REACT_APP_API_URL}/v1/meetings/${state.meeting.hash}`, {
       method: 'post',
       headers: {
         'Accept': 'application/json',

@@ -1,4 +1,5 @@
-@import '~bootstrap/scss/_variables';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
 
 input.NewParticipant {
@@ -7,5 +8,5 @@ input.NewParticipant {
 }
 
 .error-no-name input.NewParticipant {
-	border: 2px solid $brand-danger;
+	border: 2px solid $danger;
 }

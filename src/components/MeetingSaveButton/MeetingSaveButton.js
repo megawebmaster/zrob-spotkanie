@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class MeetingSaveButton extends React.PureComponent {
   static propTypes = {
-    children: React.PropTypes.object.isRequired,
-    onClick: React.PropTypes.func.isRequired,
+    children: PropTypes.any.isRequired,
+    onClick: PropTypes.func.isRequired,
   };
 
   render() {

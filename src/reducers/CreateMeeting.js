@@ -1,4 +1,4 @@
-import * as DateUtils from 'react-day-picker/lib/DateUtils';
+import { DateUtils } from 'react-day-picker';
 import * as objectPath from 'object-path';
 
 const scheduleEntry = (state = {}, action) =>{

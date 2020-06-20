@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/ZrobSpotkanie.pl.iml" filepath="$PROJECT_DIR$/.idea/ZrobSpotkanie.pl.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../api.ZrobSpotkanie.pl/.idea/api.ZrobSpotkanie.pl.iml" filepath="$PROJECT_DIR$/../api.ZrobSpotkanie.pl/.idea/api.ZrobSpotkanie.pl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/zrobspotkanie.pl.iml" filepath="$PROJECT_DIR$/.idea/zrobspotkanie.pl.iml" />
     </modules>
   </component>
 </project>

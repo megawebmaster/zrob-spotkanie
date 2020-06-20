@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9ccbbcb2-0910-42b5-8b2b-d63e56227414" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.production" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MeetingDaysField/MeetingDaysField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MeetingDaysField/MeetingDaysField.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MeetingNameField/MeetingNameField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MeetingNameField/MeetingNameField.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MeetingResolutionField/MeetingResolutionField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MeetingResolutionField/MeetingResolutionField.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MeetingSaveButton/MeetingSaveButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MeetingSaveButton/MeetingSaveButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MeetingSchedule/MeetingSchedule.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MeetingSchedule/MeetingSchedule.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MeetingSchedule/MeetingSchedule.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MeetingSchedule/MeetingSchedule.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MeetingSchedule/MeetingScheduleEntry.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MeetingSchedule/MeetingScheduleEntry.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MeetingTable/MeetingDay/DayTitle/DayTitle.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MeetingTable/MeetingDay/DayTitle/DayTitle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/App/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/App/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/App/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/App/App.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/ViewMeeting.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/ViewMeeting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/CreateMeeting/CreateMeeting.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/CreateMeeting/CreateMeeting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/CreateMeeting/CreateMeeting.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/CreateMeeting/CreateMeeting.scss" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1da3gU24EBgHoRWu6mY0aeOwgkV" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9ccbbcb2-0910-42b5-8b2b-d63e56227414" name="Default Changelist" comment="" />
+      <created>1592649487721</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1592649487721</updated>
+      <workItem from="1592649489295" duration="4191000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2569" y="812" width="676" height="536" key="find.popup" timestamp="1592653377004">
+      <screen x="0" y="0" width="3840" height="2160" />
+    </state>
+    <state x="2569" y="812" width="676" height="536" key="find.popup/591.2160.2560.1440/0.0.3840.2160@0.0.3840.2160" timestamp="1592653377004" />
+    <state x="2538" y="509" width="672" height="678" key="search.everywhere.popup" timestamp="1592653660536">
+      <screen x="0" y="0" width="3840" height="2160" />
+    </state>
+    <state x="2538" y="509" width="672" height="678" key="search.everywhere.popup/591.2160.2560.1440/0.0.3840.2160@0.0.3840.2160" timestamp="1592653660536" />
+  </component>
+</project>

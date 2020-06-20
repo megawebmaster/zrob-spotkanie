@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Router } from 'react-router';
 import Alert from 'react-s-alert';
 import ReactGA from 'react-ga';
@@ -7,7 +8,7 @@ import 'react-s-alert/dist/s-alert-css-effects/stackslide.css';
 
 export default class Root extends React.Component {
   static propTypes = {
-    history: React.PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
   };
 
   static trackRouteChange() {

@@ -1,12 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Participant } from './Participant';
 import NewParticipant from './../../../containers/ViewMeeting/NewParticipant';
 import './Participants.scss';
 
 class Participants extends React.Component {
   static propTypes = {
-    participants: React.PropTypes.array.isRequired,
-    showForm: React.PropTypes.bool.isRequired,
+    participants: PropTypes.array.isRequired,
+    showForm: PropTypes.bool.isRequired,
   };
   participants = [];
 

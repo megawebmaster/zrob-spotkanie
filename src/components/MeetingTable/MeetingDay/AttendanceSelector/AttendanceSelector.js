@@ -1,13 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {injectIntl} from 'react-intl';
 import './AttendanceSelector.scss';
 
 class AttendanceSelector extends React.Component {
   static propTypes = {
-    value: React.PropTypes.string.isRequired,
-    error: React.PropTypes.string,
-    onChange: React.PropTypes.func.isRequired,
-    intl: React.PropTypes.object.isRequired,
+    value: PropTypes.string.isRequired,
+    error: PropTypes.string,
+    onChange: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired,
   };
 
   render(){

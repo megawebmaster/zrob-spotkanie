@@ -1,13 +1,14 @@
 $brand-warning: #f0da48;
 
-@import '~bootstrap/scss/_variables';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
-@import '~bootstrap/scss/_buttons';
-@import '~bootstrap/scss/_button-group';
+@import '~bootstrap/scss/buttons';
+@import '~bootstrap/scss/button-group';
 
 .AttendanceSelector {
 	@mixin btn-type($base-color) {
-		$color: mix($base-color, $gray-lighter, 30%);
+		$color: mix($base-color, $gray-200, 30%);
 		background: $color;
 		border-color: $color;
 
@@ -38,25 +39,25 @@ $brand-warning: #f0da48;
 	//}
 
 	.btn-group.has-error {
-		border: 1px solid $brand-danger;
+		border: 1px solid $danger;
 		border-radius: .25rem;
-		box-shadow: $input-box-shadow, 0 0 6px lighten($brand-danger, 20%);
+		box-shadow: $input-box-shadow, 0 0 6px lighten($danger, 20%);
 	}
 
 	.btn.inactive {
 		&.btn-success {
-			@include btn-type($brand-success);
+			@include btn-type($success);
 		}
 		&.btn-warning {
-			@include btn-type($brand-warning);
+			@include btn-type($warning);
 		}
 		&.btn-danger {
-			@include btn-type($brand-danger);
+			@include btn-type($danger);
 		}
 	}
 }
 
 .error-no-answers .AttendanceSelector.not-selected {
-	border-color: $brand-danger;
+	border-color: $danger;
 	border-radius: .5rem;
 }

@@ -87,7 +87,7 @@ const response = (state = {
           [action.event.day.format('YYYY-MM-DD')]: action.isFolded
         }
       };
-    case 'RESPONSE_UPDATE_DAY':
+    case 'RESPONSE_UPDATE_DAY': {
       let formattedDay = action.event.day.format('YYYY-MM-DD');
       let dayResponse = action.event.available_hours.reduce(setHourResponse.bind(this, action.response), {});
       return {
@@ -101,11 +101,12 @@ const response = (state = {
           [formattedDay]: true
         }
       };
-    case 'RESPONSE_UPDATE_DAY_AND_HOUR':
-      const shouldFold = function(state, action, day, hour) {
+    }
+    case 'RESPONSE_UPDATE_DAY_AND_HOUR': {
+      const shouldFold = function (state, action, day, hour) {
         let hasAnswerForCurrentDay = () => state.responses[day] !== undefined;
         let hasAllAnswers = () => Object.keys(state.responses[day]).length !== action.event.available_hours.length;
-        let hasAllAnswersWithCurrent = () => action.event.available_hours.reduce((result, item) =>{
+        let hasAllAnswersWithCurrent = () => action.event.available_hours.reduce((result, item) => {
           let formattedItem = item.format('HH:mm');
           return result && (formattedItem === hour || state.responses[day].hasOwnProperty(formattedItem));
         }, true);
@@ -113,7 +114,7 @@ const response = (state = {
         return hasAnswerForCurrentDay() && hasAllAnswers() && hasAllAnswersWithCurrent();
       };
 
-      formattedDay = action.event.day.format('YYYY-MM-DD');
+      let formattedDay = action.event.day.format('YYYY-MM-DD');
       let formattedHour = action.hour.format('HH:mm');
 
       return {
@@ -130,6 +131,7 @@ const response = (state = {
           [formattedDay]: shouldFold(state, action, formattedDay, formattedHour)
         }
       };
+    }
     case 'RESPONSE_SAVED':
       return {
         ...state,
