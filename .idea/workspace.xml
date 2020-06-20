@@ -2,24 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ccbbcb2-0910-42b5-8b2b-d63e56227414" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.production" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MeetingDaysField/MeetingDaysField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MeetingDaysField/MeetingDaysField.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MeetingNameField/MeetingNameField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MeetingNameField/MeetingNameField.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MeetingResolutionField/MeetingResolutionField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MeetingResolutionField/MeetingResolutionField.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MeetingSaveButton/MeetingSaveButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MeetingSaveButton/MeetingSaveButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MeetingSchedule/MeetingSchedule.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MeetingSchedule/MeetingSchedule.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MeetingSchedule/MeetingSchedule.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MeetingSchedule/MeetingSchedule.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MeetingSchedule/MeetingScheduleEntry.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MeetingSchedule/MeetingScheduleEntry.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MeetingTable/MeetingDay/DayTitle/DayTitle.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MeetingTable/MeetingDay/DayTitle/DayTitle.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/App/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/App/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/App/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/App/App.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducers/ViewMeeting.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/ViewMeeting.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/CreateMeeting/CreateMeeting.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/CreateMeeting/CreateMeeting.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/CreateMeeting/CreateMeeting.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/CreateMeeting/CreateMeeting.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +38,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1592649487721</updated>
-      <workItem from="1592649489295" duration="4191000" />
+      <workItem from="1592649489295" duration="4609000" />
     </task>
     <servers />
   </component>

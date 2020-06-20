@@ -32,7 +32,7 @@ const history = syncHistoryWithStore(browserHistory, store);
 moment.locale('pl');
 // TODO: Move messages to separate files (so everything will be properly formatted)
 const messages = {
-  'app.name': 'ZróbSpotkanie.pl',
+  'app.name': 'Zrób Spotkanie!',
   'links.newMeeting': 'Nowe spotkanie',
   'links.howItWorks': 'Jak to działa?',
   'createMeeting.title': 'Utwórz nowe spotkanie',

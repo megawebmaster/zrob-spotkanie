@@ -16,12 +16,12 @@ class App extends React.Component {
 
     return (
       <div className="container navbar-expand">
-        <Helmet titleTemplate={"%s - " + format('app.name', 'ZróbSpotkanie.pl')}
-                defaultTitle={format('app.name', 'ZróbSpotkanie.pl')} />
+        <Helmet titleTemplate={"%s - " + format('app.name', 'Zrób Spotkanie!')}
+                defaultTitle={format('app.name', 'Zrób Spotkanie!')} />
         <nav className="navbar navbar-light bg-light">
           <Link className="navbar-brand" to="/" onlyActiveOnIndex={false}>
             <span className="d-none d-sm-block">
-              {format('app.name', 'ZróbSpotkanie.pl')}
+              {format('app.name', 'Zrób Spotkanie!')}
             </span>
             <i className="fa fa-calendar d-sm-none" />
           </Link>
