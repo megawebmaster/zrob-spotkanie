@@ -21,39 +21,32 @@ class ViewMeeting extends React.Component {
     intl: PropTypes.object.isRequired,
   };
 
+  state = {
+    hasNewMeeting: false,
+  };
+
   componentDidMount(){
+    const hash = localStorage.getItem('newly_created_event');
     this.props.fetchMeeting(this.props.params.hash);
+    this.setState({ hasNewMeeting: this.props.params.hash === hash });
   }
 
-  hasNewMeeting(){
-    let hash = localStorage.getItem('newly_created_event');
-
-    if(hash === null){
-      return false;
-    }
-
-    if(this.props.meeting.hash !== hash){
-      this.removeNewMeeting();
-      return false;
-    }
-
-    return true;
-  }
-
-  removeNewMeeting(){
+  removeNewMeeting = () => {
     localStorage.removeItem('newly_created_event');
+    this.setState({ hasNewMeeting: false });
   }
 
   render(){
-    let {isLoading, meeting, showForm, onSaveResponse, addNewResponse} = this.props;
-    let format = (id, message) => this.props.intl.formatMessage({id, defaultMessage: message});
+    const {isLoading, meeting, showForm, onSaveResponse, addNewResponse} = this.props;
+    const {hasNewMeeting} = this.state;
+    const format = (id, message) => this.props.intl.formatMessage({id, defaultMessage: message});
 
     return (
       <div className="ViewMeeting">
         <Helmet title={meeting.name} />
-        {isLoading && <i className="fa fa-spin fa-spinner fa-pulse fa-3x fa-fw"></i>}
+        {isLoading && <i className="fa fa-spin fa-spinner fa-pulse fa-3x fa-fw" />}
         {isLoading === false && <div>
-          {this.hasNewMeeting() && <p className="alert alert-dismissible alert-success">
+          {hasNewMeeting && <p className="alert alert-dismissible alert-success">
             {format('viewMeeting.meetingCreated', 'Twoje spotkanie zostało utworzone. Skopiuj adres do spotkania i wyślij go zaproszonym osobom!')}
             <button type="button" className="close" aria-label={format('viewMeeting.close', 'Zamknij')}
                     onClick={this.removeNewMeeting}>
