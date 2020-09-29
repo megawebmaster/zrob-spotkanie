@@ -1,9 +1,9 @@
 import React from 'react';
-import {Route, IndexRoute} from 'react-router';
-import {App} from './containers/App';
-import {CreateMeeting} from './views/CreateMeeting';
-import {ViewMeeting} from './views/ViewMeeting';
-import {HowItWorks} from './views/HowItWorks';
+import { Route, IndexRoute } from 'react-router';
+import { App } from './containers/App';
+import { CreateMeeting } from './views/CreateMeeting';
+import { ViewMeeting } from './views/ViewMeeting';
+import { HowItWorks } from './views/HowItWorks';
 
 const routes = () => (
   <Route path="/" component={App}>

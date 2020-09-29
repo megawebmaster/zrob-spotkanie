@@ -29,7 +29,7 @@ class MeetingScheduleEntry extends React.Component {
     return (
       <div className="form-group form-row">
         <label htmlFor="meeting-schedule-entry-from" className="col-form-label col-sm-2">
-          <FormattedDate value={event.day} format={{year: 'numeric', month: 'numeric', day: 'numeric'}} />
+          <FormattedDate value={event.day} year="numeric" month="numeric" day="numeric" />
         </label>
         <div className={"col-sm-2" + (hasFromErrors ? ' has-danger' : '')}>
           <input type="text" id="meeting-schedule-entry-from" className="form-control" value={event.from || ''}

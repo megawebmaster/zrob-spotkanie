@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { Link } from 'react-router';
-import {injectIntl} from 'react-intl';
+import { injectIntl } from 'react-intl';
 import NavLink from './../../components/NavLink';
+
 import './App.scss';
 
 class App extends React.Component {
@@ -12,7 +13,7 @@ class App extends React.Component {
   };
 
   render() {
-    let format = (id, message) => this.props.intl.formatMessage({id, defaultMessage: message});
+    let format = (id, message) => this.props.intl.formatMessage({ id, defaultMessage: message });
 
     return (
       <div className="container navbar-expand">
