@@ -23,38 +23,42 @@ class Participants extends React.Component {
   }
 
   recalculatePositions(){
-    if (this.participants.length === 0) {
-      return;
-    }
+    setTimeout(() => {
+      if (this.participants.length === 0) {
+        return;
+      }
 
-    let maxHeight = 0;
-    this.participants.forEach(item => {
-      if (item != null && item.offsetHeight > maxHeight) {
-        maxHeight = item.offsetHeight;
+      let maxHeight = 0;
+      this.participants.forEach(item => {
+        if (item != null && item.offsetHeight > maxHeight) {
+          maxHeight = item.offsetHeight;
+        }
+      });
+
+      let offset = 8;
+      if (this.participant) {
+        offset = this.participant.offsetHeight / 4;
+      }
+
+      let top = maxHeight + offset;
+
+      if (this.title){
+        this.title.style.top = top + 'px';
+      }
+
+      if (this.participant){
+        this.participant.style.top = top + 'px';
       }
     });
-
-    let offset = 8;
-    if (this.participant) {
-      offset = this.participant.offsetHeight / 4;
-    }
-
-    let top = maxHeight + offset;
-
-    if (this.title){
-      this.title.style.top = top + 'px';
-    }
-
-    if (this.participant){
-      this.participant.style.top = top + 'px';
-    }
   }
 
   render(){
     let { participants, showForm } = this.props;
     return (
       <tr className="Participants">
-        <th scope="col" className="title" ref={input => this.title = input}><p>Uczestnicy:</p></th>
+        <th scope="col" className="title" ref={input => this.title = input}>
+          {showForm && <p>Uczestnicy:</p>}
+        </th>
         {showForm && <th scope="col" className="attendance" ref={input => this.participant = input}>
           <NewParticipant />
         </th>}
@@ -63,7 +67,7 @@ class Participants extends React.Component {
             <Participant participant={participant} />
           </th>
         )}
-        {participants.length === 0 && <th className="empty"></th>}
+        {participants.length === 0 && <th className="empty" />}
       </tr>
     );
   }
