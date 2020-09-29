@@ -40,13 +40,9 @@
 		font-weight: normal;
 		white-space: nowrap;
 		text-align: center;
-
-		@include media-breakpoint-up(lg) {
-			padding-bottom: .5rem;
-		}
+		height: 50px;
 
 		&.empty {
-			height: 2.5rem;
 		}
 	}
 
