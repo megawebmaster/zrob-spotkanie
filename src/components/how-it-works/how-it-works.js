@@ -1,9 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import Helmet from 'react-helmet';
-import cx from 'classnames';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { useCarousel } from '../../hooks/use-carousel';
+import { AnimationStep } from './components/animation-step';
+import { ManagementButton } from './components/management-button';
+import { StepButton } from './components/step-button';
 
 import './how-it-works.scss';
 
@@ -16,16 +18,6 @@ const TIMINGS = {
   4: 5000,
   5: 3000,
 };
-
-const AnimationButton = ({ number, step, setStep }) => (
-  <button
-    type="button"
-    className={cx('btn btn-secondary', { active: step === number })}
-    onClick={() => setStep(number)}
-  >
-    {number}
-  </button>
-);
 
 const HowItWorks = () => {
   const intl = useIntl();
@@ -77,48 +69,21 @@ const HowItWorks = () => {
         <div className="curtain" />
         <div className="magnifier" />
         <div className="caption">
-          <div className="meeting-name">
-            <span>1</span>
-            <FormattedMessage id="howItWorks.create.step1" />
-          </div>
-          <div className="meeting-days">
-            <span>2</span>
-            <FormattedMessage id="howItWorks.create.step2" />
-          </div>
-          <div className="meeting-resolution">
-            <span>3</span>
-            <FormattedMessage id="howItWorks.create.step3" />
-          </div>
-          <div className="meeting-schedule">
-            <span>4</span>
-            <FormattedMessage id="howItWorks.create.step4" />
-          </div>
-          <div className="create-meeting">
-            <span>5</span>
-            <FormattedMessage id="howItWorks.create.step5" />
-          </div>
+          <AnimationStep step={1} className="meeting-name" />
+          <AnimationStep step={2} className="meeting-days" />
+          <AnimationStep step={3} className="meeting-resolution" />
+          <AnimationStep step={4} className="meeting-schedule" />
+          <AnimationStep step={5} className="create-meeting" />
         </div>
         <div className="buttons">
-          {step > 0 && step <= STEPS && (
-            <button type="button" className="btn btn-secondary" onClick={stop}>
-              <i className="fa fa-stop" />
-            </button>
-          )}
-          {!animating && (
-            <button type="button" className="btn btn-secondary" onClick={start}>
-              <i className="fa fa-play" />
-            </button>
-          )}
-          {animating && (
-            <button type="button" className="btn btn-secondary" onClick={pause}>
-              <i className="fa fa-pause" />
-            </button>
-          )}
-          <AnimationButton number={1} step={step} setStep={updateStep} />
-          <AnimationButton number={2} step={step} setStep={updateStep} />
-          <AnimationButton number={3} step={step} setStep={updateStep} />
-          <AnimationButton number={4} step={step} setStep={updateStep} />
-          <AnimationButton number={5} step={step} setStep={updateStep} />
+          {step > 0 && step <= STEPS && <ManagementButton icon="fa-stop" onClick={stop} />}
+          {!animating && <ManagementButton icon="fa-play" onClick={start} />}
+          {animating && <ManagementButton icon="fa-pause" onClick={pause} />}
+          <StepButton number={1} step={step} setStep={updateStep} />
+          <StepButton number={2} step={step} setStep={updateStep} />
+          <StepButton number={3} step={step} setStep={updateStep} />
+          <StepButton number={4} step={step} setStep={updateStep} />
+          <StepButton number={5} step={step} setStep={updateStep} />
         </div>
       </div>
     </div>
