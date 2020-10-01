@@ -1,7 +1,22 @@
 import React, { useCallback, useState } from 'react';
 import Helmet from 'react-helmet';
+import Alert from 'react-s-alert';
+import { useHistory } from 'react-router';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { any, complement, either, equals, mergeDeepLeft, omit, pick, pipe, propEq, propOr, values } from 'ramda';
+import {
+  any,
+  complement,
+  either,
+  equals,
+  mapObjIndexed,
+  mergeDeepLeft,
+  omit,
+  pick,
+  pipe,
+  propEq,
+  propOr,
+  values
+} from 'ramda';
 
 import { Name } from './components/name/name';
 import { Days } from './components/days/days';
@@ -23,6 +38,7 @@ const scheduleMissingValues = pipe(
 
 const CreateMeeting = () => {
   const intl = useIntl();
+  const history = useHistory();
   const [name, setName] = useState('');
   const [days, setDays] = useState([]);
   const [schedule, setSchedule] = useState([]);
@@ -42,8 +58,39 @@ const CreateMeeting = () => {
     setSchedule(schedule => omit([day.valueOf()], schedule));
   }, []);
 
-  const createMeeting = () => {
-    // TODO: Implement meeting creation
+  const createMeeting = async () => {
+    // ReactGA.event({
+    //   category: 'meeting',
+    //   action: 'create',
+    //   value: resolution,
+    // });
+
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/v1/meetings`, {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name,
+        resolution,
+        schedule: resolution === WHOLE_DAY ? null : pipe(
+          mapObjIndexed((item, day) => ({ ...item, day: new Date(parseInt(day, 10)) })),
+          values,
+        )(schedule)
+      })
+    });
+
+    const result = await response.json();
+
+    if (response.status === 201) {
+      localStorage.setItem('newly_created_event', result.hash);
+      history.push(`/view/${result.hash}`);
+    } else {
+      Alert.error('Wystąpiły błędy w formularzu, nie można utworzyć spotkania');
+      // TODO: Properly parse errors coming from the app
+      // setErrors(result);
+    }
   };
 
   const hasMissingFields =
