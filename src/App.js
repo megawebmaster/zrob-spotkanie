@@ -8,6 +8,7 @@ import { NavbarLink } from './components/navbar-link';
 
 import './App.scss';
 
+const CreateMeeting = lazy(() => import('./components/create-meeting/create-meeting'));
 const HowItWorks = lazy(() => import('./components/how-it-works/how-it-works'));
 
 const Navbar = () => (
@@ -40,7 +41,7 @@ const App = () => {
         <Navbar />
         <Switch>
           <Suspense fallback={<i className="fa fa-spin fa-spinner fa-pulse fa-3x fa-fw" />}>
-            <Route path="/" exact component="div" />
+            <Route path="/" exact component={CreateMeeting} />
             <Route path="/how-it-works" component={HowItWorks} />
             {/*<Route path="/view/:hash" component={ViewMeeting} />*/}
           </Suspense>
