@@ -30,6 +30,8 @@
   "howItWorks.create.step3": "Wybierz na jakie części ma zostać podzielony czas do wyboru",
   "howItWorks.create.step4": "Podaj przedziały godzin, które można wybrać - zostaną podzielone na wybrane wcześniej części",
   "howItWorks.create.step5": "Utwórz spotkanie i roześlij link zaproszonym!",
+  "participants.participants": "Uczestnicy:",
+  "participants.new-placeholder": "Podaj imię…",
   "viewMeeting.close": "Zamknij",
   "viewMeeting.meetingCreated": "Twoje spotkanie zostało utworzone. Skopiuj adres do spotkania i wyślij go zaproszonym osobom!",
   "viewMeeting.saveAnswers": "Zapisz moje odpowiedzi",
@@ -38,5 +40,7 @@
   "viewMeeting.attendance": "Obecność",
   "viewMeeting.attendance.yes": "Tak, mogę",
   "viewMeeting.attendance.maybe": "Nie wiem",
-  "viewMeeting.attendance.no": "Nie, nie mogę"
+  "viewMeeting.attendance.no": "Nie, nie mogę",
+  "visibilityToggle.hide": "Zwiń",
+  "visibilityToggle.show": "Rozwiń"
 }

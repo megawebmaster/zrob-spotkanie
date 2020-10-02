@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { fromPairs, map, pathOr, pipe, propOr } from 'ramda';
+import { always, fromPairs, map, pathOr, pipe, propOr } from 'ramda';
 
 import { ScheduleEntry } from './schedule-entry';
 import { CopyRowButton } from './copy-row-button';
@@ -19,7 +19,7 @@ const isRowFilled = ({ from, to }) => from.length > 0 && to.length > 0 && parseI
 export const Schedule = ({ days, schedule, errors, onChange, onRemoveDay }) => {
   const copyDay = useCallback((day) => {
     onChange(items => map(
-      () => ({ ...items[day.valueOf()] }),
+      always(items[day.valueOf()]),
       items
     ));
   }, [onChange]);

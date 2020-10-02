@@ -1,0 +1,83 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+@mixin shadow-background($r, $g, $b) {
+	background: linear-gradient(to right, rgba($r, $g, $b, 1) 50%, rgba($r, $g, $b, 0) 100%) no-repeat,
+	linear-gradient(to left, rgba($r, $g, $b, 1) 50%, rgba($r, $g, $b, 0) 100%) no-repeat 100% 0;
+	background-size: 20px 100%, 20px 100%;
+}
+@mixin shadow-background-left($r, $g, $b) {
+	background: linear-gradient(to right, rgba($r, $g, $b, 1) 50%, rgba($r, $g, $b, 0) 100%) no-repeat;
+	background-size: 20px 100%;
+}
+@mixin shadow-background-right($r, $g, $b) {
+	background: linear-gradient(to left, rgba($r, $g, $b, 1) 50%, rgba($r, $g, $b, 0) 100%) no-repeat 100% 0;
+	background-size: 20px 100%;
+}
+
+.meeting-table {
+	margin-left: 15rem;
+
+	> div {
+		display: inline-block;
+		vertical-align: top;
+		max-width: 100%;
+
+		overflow-x: auto;
+		white-space: nowrap;
+
+		border-collapse: collapse;
+		border-spacing: 0;
+
+		-webkit-overflow-scrolling: touch;
+
+		// scrolling shadows
+		background: radial-gradient(ellipse at left, rgba(0,0,0, .2) 0%, rgba(0,0,0, 0) 75%) no-repeat scroll 0 center,
+		radial-gradient(ellipse at right, rgba(0,0,0, .2) 0%, rgba(0,0,0, 0) 75%) no-repeat scroll 100% center;
+		background-size: 10px 100%, 10px 100%;
+	}
+
+	th, td {
+		font-weight: normal;
+		white-space: nowrap;
+		text-align: center;
+		height: 50px;
+
+		&.empty {
+		}
+	}
+
+	th:last-child, td:last-child {
+		@include shadow-background-right(255, 255, 255);
+	}
+	tr.DayTitle td:last-child {
+		@include shadow-background(236, 238, 239);
+	}
+
+	th:nth-child(3), td:nth-child(3) {
+		@include shadow-background-left(255, 255, 255);
+	}
+	th:nth-child(3):nth-last-child(1), td:nth-child(3):nth-last-child(1) {
+		@include shadow-background(255, 255, 255);
+	}
+
+	.no-form {
+		margin-left: 7rem;
+
+		th:nth-child(2), td:nth-child(2) {
+			@include shadow-background-left(255, 255, 255);
+		}
+		th:nth-child(2):nth-last-child(1), td:nth-child(2):nth-last-child(1) {
+			@include shadow-background(255, 255, 255);
+		}
+
+		@include media-breakpoint-up(lg) {
+			margin-left: 11rem;
+		}
+	}
+
+	@include media-breakpoint-up(lg) {
+		margin-left: 23rem;
+	}
+}

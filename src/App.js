@@ -5,11 +5,13 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 
 import { NavbarLink } from './components/navbar-link';
+import { Spinner } from './components/spinner/spinner';
 
 import './App.scss';
 
 const CreateMeeting = lazy(() => import('./components/create-meeting/create-meeting'));
 const HowItWorks = lazy(() => import('./components/how-it-works/how-it-works'));
+const ViewMeeting = lazy(() => import('./components/view-meeting/view-meeting'));
 
 const Navbar = () => (
   <nav className="navbar navbar-light bg-light">
@@ -40,10 +42,10 @@ const App = () => {
       <BrowserRouter>
         <Navbar />
         <Switch>
-          <Suspense fallback={<i className="fa fa-spin fa-spinner fa-pulse fa-3x fa-fw" />}>
+          <Suspense fallback={<Spinner />}>
             <Route path="/" exact component={CreateMeeting} />
             <Route path="/how-it-works" component={HowItWorks} />
-            {/*<Route path="/view/:hash" component={ViewMeeting} />*/}
+            <Route path="/view/:hash" component={ViewMeeting} />
           </Suspense>
         </Switch>
       </BrowserRouter>

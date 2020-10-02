@@ -21,7 +21,7 @@ import {
 import { Name } from './components/name/name';
 import { Days } from './components/days/days';
 import { Resolution, WHOLE_DAY } from './components/resolution/resolution';
-import { SaveButton } from './components/save-button/save-button';
+import { SaveButton } from '../save-button/save-button';
 import { buildEvents, Schedule } from './components/schedule/schedule';
 
 import './create-meeting.scss';

@@ -1,0 +1,61 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+.day-row {
+	td {
+		min-height: 1rem;
+	}
+
+	.hour, .participant-attendance {
+		.fa {
+			font-size: 1.5rem;
+			width: 2.5rem;
+		}
+
+		.fa-check {
+			color: $success;
+		}
+
+		.fa-question {
+			color: $warning;
+		}
+	}
+
+	.hour {
+		width: 7rem;
+		position: absolute;
+		left: 0;
+		top: auto;
+		padding: 13px 3px 15px 0;
+		text-align: right;
+
+		.fa {
+			float: left;
+			font-size: 1.5rem;
+			padding-left: 1rem;
+			width: 2.5rem;
+		}
+
+		@include media-breakpoint-up(lg) {
+			width: 11rem;
+		}
+	}
+
+	.attendance {
+		width: 8rem;
+		margin-left: 7rem;
+		position: absolute;
+		left: 0;
+		top: auto;
+
+		@include media-breakpoint-up(lg) {
+			width: 12rem;
+			margin-left: 11rem;
+		}
+	}
+
+	.attendance-selector {
+		text-align: center;
+	}
+}
