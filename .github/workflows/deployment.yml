@@ -1,0 +1,32 @@
+name: 'Deploy app'
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    name: 'App deployment'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout code'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - name: 'Use Node 14.x'
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+      - name: 'Build app'
+        run: |
+          yarn install
+          yarn build
+        env:
+          REACT_APP_API_URL: ${{ secrets.API_URL }}
+          PUBLIC_URL: ${{ secrets.APP_URL }}
+      - name: 'Push to server'
+        uses: SamKirkland/FTP-Deploy-Action@3.1.1
+        with:
+          ftp-server: ${{ secrets.FTP_SERVER }}
+          ftp-username: ${{ secrets.FTP_USERNAME }}
+          ftp-password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: build
