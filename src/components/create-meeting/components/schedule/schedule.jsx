@@ -42,11 +42,24 @@ export const Schedule = ({ days, schedule, errors, onChange, onRemoveDay }) => {
       <label className="col-form-label col-sm-3 legend">
         <FormattedMessage id="createMeeting.schedule" />
       </label>
-      <div className="col-sm-9">
-        {days.length === 0 && (
+      <div className="col-sm-9 pt-1">
+        {days.length === 0 ? (
           <p className="px-2 m-0">
             <FormattedMessage id="createMeeting.scheduleDays" />
           </p>
+        ) : (
+          <div className="form-group form-row text-center">
+            <div className="col-sm-2">
+              <FormattedMessage id="createMeeting.schedule.day" />
+            </div>
+            <div className="col-sm-2">
+              <FormattedMessage id="createMeeting.schedule.from" />
+            </div>
+            <div className="col-sm-2">
+              <FormattedMessage id="createMeeting.schedule.to" />
+            </div>
+            <div className="col-sm-6" />
+          </div>
         )}
         {days.map((day, idx) => {
           const event = propOr(EMPTY_EVENT, day.valueOf(), schedule);
