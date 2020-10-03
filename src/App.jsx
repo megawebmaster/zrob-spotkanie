@@ -22,7 +22,7 @@ const Navbar = () => (
       <i className="fa fa-calendar d-sm-none" />
     </Link>
     <ul className="navbar-nav">
-      <NavbarLink to="/">
+      <NavbarLink to="/" exact>
         <FormattedMessage id="links.newMeeting" />
       </NavbarLink>
       <NavbarLink to="/how-it-works">

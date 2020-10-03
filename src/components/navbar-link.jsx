@@ -3,8 +3,8 @@ import cx from 'classnames';
 import { useRouteMatch } from 'react-router';
 import { Link } from 'react-router-dom';
 
-export const NavbarLink = ({ to, ...props }) => {
-  const active = useRouteMatch(to);
+export const NavbarLink = ({ to, exact, ...props }) => {
+  const active = useRouteMatch({ path: to, exact });
 
   return (
     <li className={cx('nav-item', { active })}>
