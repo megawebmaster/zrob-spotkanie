@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Helmet from 'react-helmet';
 import Alert from 'react-s-alert';
 import { useHistory, useParams } from 'react-router';
@@ -15,6 +15,7 @@ const ViewMeeting = () => {
   const history = useHistory();
   const { hash } = useParams();
   const [meeting, setMeeting] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [isNewMeeting, setIsNewMeeting] = useState(hash === localStorage.getItem('newly_created_event'));
 
   const request = useCallback(async () => {
@@ -34,6 +35,7 @@ const ViewMeeting = () => {
     }
 
     setMeeting(result);
+    setLoading(false);
   }, [hash, history]);
 
   const saveResponse = async (name, responses) => {
@@ -41,6 +43,7 @@ const ViewMeeting = () => {
     //   category: 'RespondToEvent',
     //   action: state.response.name
     // });
+    setLoading(true);
 
     const response = await fetch(`${process.env.REACT_APP_API_URL}/v1/meetings/${hash}`, {
       method: 'post',
@@ -56,6 +59,7 @@ const ViewMeeting = () => {
 
     if (response.status === 500) {
       Alert.error('Wystąpił błąd serwera. Prosimy spróbować później.');
+      setLoading(false);
       return;
     }
     if (response.status !== 201) {
@@ -68,6 +72,7 @@ const ViewMeeting = () => {
         Alert.error('Brakuje niektórych odpowiedzi');
       }
 
+      setLoading(false);
       return;
     }
 
@@ -108,7 +113,7 @@ const ViewMeeting = () => {
       <div className="form-group">
         <h2>{meeting.name}</h2>
       </div>
-      <MeetingTable days={meeting.days} onSaveResponse={saveResponse} />
+      <MeetingTable days={meeting.days} loading={loading} onSaveResponse={saveResponse} />
     </div>
   );
 };

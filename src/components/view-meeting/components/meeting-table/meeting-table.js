@@ -7,6 +7,7 @@ import { SaveButton } from '../../../save-button/save-button';
 import { Participants } from '../participants/participants';
 import { DayHeader } from '../day-header/day-header';
 import { DayRow } from '../day-row/day-row';
+import { Spinner } from '../../../spinner/spinner';
 import { RESPONSE_NONE } from '../attendance-selector/attendance-selector';
 
 import './meeting-table.scss';
@@ -22,7 +23,7 @@ const mapDaysTo = (response) => pipe(
 
 // TODO: There must be a way to clean it up a bit, right?
 // TODO: Block saving responses before everything is set up
-export const MeetingTable = ({ days, onSaveResponse }) => {
+export const MeetingTable = ({ days, loading, onSaveResponse }) => {
   const [foldedDays, setFoldedDays] = useState([]);
   const [showForm, setShowForm] = useState(true);
   const participants = useMemo(() => map(prop('name'))(pathOr([], [0, 'hours', 0, 'answers'], days)), [days]);
@@ -106,8 +107,10 @@ export const MeetingTable = ({ days, onSaveResponse }) => {
           </tbody>
         </table>
       </div>
-      <SaveButton onClick={showForm ? saveResponses : () => setShowForm(true)}>
-        <FormattedMessage id={showForm ? 'viewMeeting.saveAnswers' : 'viewMeeting.newAnswer'} />
+      <SaveButton onClick={showForm ? saveResponses : () => setShowForm(true)} disabled={loading}>
+        {loading
+          ? <Spinner />
+          : <FormattedMessage id={showForm ? 'viewMeeting.saveAnswers' : 'viewMeeting.newAnswer'} />}
       </SaveButton>
     </>
   );
