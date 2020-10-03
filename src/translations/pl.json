@@ -28,6 +28,7 @@
   "errors.create-meeting.days.missing": "Brakuje dni na spotkanie",
   "errors.create-meeting.resolution.missing": "Brakuje przedziału czasu",
   "errors.create-meeting.from.missing": "Brakuje początku",
+  "errors.create-meeting.from.after-to": "Początek musi być przed końcem",
   "errors.create-meeting.to.missing": "Brakuje końca",
   "errors.view-meeting.name.missing": "Brakuje imienia",
   "errors.view-meeting.responses.missing": "Brakuje odpowiedzi",

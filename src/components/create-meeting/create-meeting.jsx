@@ -16,7 +16,7 @@ import {
   pick,
   pipe,
   propEq,
-  propOr,
+  propOr, tap,
   values
 } from 'ramda';
 
@@ -49,9 +49,13 @@ const buildDailySchedule = pipe(
   values,
 );
 
-// TODO: Add errors for from and to values being one after another
-const buildScheduleErrors = map(
-  mapObjIndexed((value, key) => value === '' ? `errors.create-meeting.${key}.missing` : '')
+const buildScheduleErrors = pipe(
+  map((entry) =>
+    entry.from.length > 0 && entry.to.length > 0 && parseInt(entry.from, 10) >= parseInt(entry.to, 10)
+      ? { from: 'errors.create-meeting.from.after-to', to: entry.to }
+      : entry
+  ),
+  map(mapObjIndexed((value, key) => value === '' ? `errors.create-meeting.${key}.missing` : (value.startsWith('errors') ? value : ''))),
 );
 
 const buildErrors = (name, days, schedule, resolution) => {

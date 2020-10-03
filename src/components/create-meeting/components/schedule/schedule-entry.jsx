@@ -12,7 +12,7 @@ export const ScheduleEntry = ({ children, day, errors, event, onChange, onDelete
   const updateTo = (event) => onChange(day, { to: event.target.value });
 
   return (
-    <div className="form-group form-row">
+    <div className="meeting-entry form-group form-row">
       <label htmlFor="meeting-schedule-entry-from" className="col-form-label col-sm-2">
         <FormattedDate value={day} year="numeric" month="numeric" day="numeric" />
       </label>
@@ -20,7 +20,7 @@ export const ScheduleEntry = ({ children, day, errors, event, onChange, onDelete
         <input
           type="text"
           id="meeting-schedule-entry-from"
-          className="form-control"
+          className={cx('form-control', { 'is-invalid': fromError && event.from })}
           value={event.from}
           placeholder={intl.formatMessage({ id: 'createMeeting.scheduleEntryStart' })}
           onChange={updateFrom}
@@ -36,7 +36,7 @@ export const ScheduleEntry = ({ children, day, errors, event, onChange, onDelete
         <input
           type="text"
           id="meeting-schedule-entry-to"
-          className="form-control"
+          className={cx('form-control', { 'is-invalid': toError && event.to })}
           value={event.to}
           placeholder={intl.formatMessage({ id: 'createMeeting.scheduleEntryEnd' })}
           onChange={updateTo}
