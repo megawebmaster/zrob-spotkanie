@@ -31,12 +31,12 @@ const buildErrors = (name, responses) => {
   const errors = {};
 
   if (name === '') {
-    errors.name = 'errors.name.missing';
+    errors.name = 'errors.view-meeting.name.missing';
   }
 
   errors.responses = pipe(
     omit(['full']),
-    map(map(v => v === 'none' ? 'errors.responses.missing' : '')),
+    map(map(v => v === 'none' ? 'errors.view-meeting.responses.missing' : '')),
   )(responses);
 
   return errors;
