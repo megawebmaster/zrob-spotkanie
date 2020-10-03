@@ -49,63 +49,62 @@ export const MeetingTable = ({ days, onSaveResponse }) => {
   }, []);
 
   const saveResponses = () => {
-    onSaveResponse(name, responses)
+    onSaveResponse(name, responses);
     setResponses(mapDaysTo(RESPONSE_NONE)(days));
     setName('');
     setShowForm(false);
+    setFoldedDays([]);
   };
 
   return (
     <>
       <div className={cx('meeting-table', { 'no-form': !showForm })}>
-        <div>
-          <table className="table">
-            <thead>
-            <Participants name={name} onNameChange={setName} participants={participants} showForm={showForm} />
-            </thead>
-            <tbody>
-            {days.map((event) => {
-              const isFolded = foldedDays.includes(event.day);
-              const updateFolding = (fold) => setFoldedDays(foldedDays =>
-                fold ? [...foldedDays, event.day] : filter(complement(equals(event.day)))(foldedDays)
-              );
-              const updateDayResponse = (response) => {
-                event.hours.forEach(hour => {
-                  updateResponse(event.day, hour.hour, response);
-                });
-                updateFolding(true);
-              };
+        <table className="table">
+          <thead>
+          <Participants name={name} onNameChange={setName} participants={participants} showForm={showForm} />
+          </thead>
+          <tbody>
+          {days.map((event) => {
+            const isFolded = foldedDays.includes(event.day);
+            const updateFolding = (fold) => setFoldedDays(foldedDays =>
+              fold ? [...foldedDays, event.day] : filter(complement(equals(event.day)))(foldedDays)
+            );
+            const updateDayResponse = (response) => {
+              event.hours.forEach(hour => {
+                updateResponse(event.day, hour.hour, response);
+              });
+              updateFolding(true);
+            };
 
-              return (
-                <Fragment key={event.day}>
-                  <DayHeader
-                    day={event.day}
-                    isFolded={isFolded}
-                    response={propOr(RESPONSE_NONE, event.day, responses.full)}
-                    showForm={showForm}
-                    participantCount={participants.length}
-                    onFoldChange={updateFolding}
-                    onResponseChange={updateDayResponse}
-                  />
-                  {!isFolded && event.hours.map(hour => {
-                    const updateHourResponse = (response) => updateResponse(event.day, hour.hour, response);
+            return (
+              <Fragment key={event.day}>
+                <DayHeader
+                  day={event.day}
+                  isFolded={isFolded}
+                  response={propOr(RESPONSE_NONE, event.day, responses.full)}
+                  showForm={showForm}
+                  participantCount={participants.length}
+                  onFoldChange={updateFolding}
+                  onResponseChange={updateDayResponse}
+                />
+                {!isFolded && event.hours.map(hour => {
+                  const updateHourResponse = (response) => updateResponse(event.day, hour.hour, response);
 
-                    return (
-                      <DayRow
-                        key={`${event.day}-${hour.hour}`}
-                        hour={hour}
-                        response={responses[event.day][hour.hour]}
-                        onResponseChange={updateHourResponse}
-                        showForm={showForm}
-                      />
-                    );
-                  })}
-                </Fragment>
-              );
-            })}
-            </tbody>
-          </table>
-        </div>
+                  return (
+                    <DayRow
+                      key={`${event.day}-${hour.hour}`}
+                      hour={hour}
+                      response={responses[event.day][hour.hour]}
+                      onResponseChange={updateHourResponse}
+                      showForm={showForm}
+                    />
+                  );
+                })}
+              </Fragment>
+            );
+          })}
+          </tbody>
+        </table>
       </div>
       <SaveButton onClick={showForm ? saveResponses : () => setShowForm(true)}>
         <FormattedMessage id={showForm ? 'viewMeeting.saveAnswers' : 'viewMeeting.newAnswer'} />

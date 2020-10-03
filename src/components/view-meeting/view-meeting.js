@@ -3,12 +3,12 @@ import Helmet from 'react-helmet';
 import Alert from 'react-s-alert';
 import { useHistory, useParams } from 'react-router';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { omit } from 'ramda';
 
 import { Spinner } from '../spinner/spinner';
 import { MeetingTable } from './components/meeting-table/meeting-table';
 
 import './view-meeting.scss';
-import { omit } from 'ramda';
 
 const ViewMeeting = () => {
   const intl = useIntl();
@@ -16,6 +16,25 @@ const ViewMeeting = () => {
   const { hash } = useParams();
   const [meeting, setMeeting] = useState(null);
   const [isNewMeeting, setIsNewMeeting] = useState(hash === localStorage.getItem('newly_created_event'));
+
+  const request = useCallback(async () => {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/v1/meetings/${hash}`);
+
+    if (response.status === 404) {
+      Alert.error('Podane spotkanie nie zostało znalezione w systemie.');
+      history.push('/');
+      return;
+    }
+
+    const result = await response.json();
+    if (response.status !== 200) {
+      Alert.error(result);
+      history.push('/');
+      return;
+    }
+
+    setMeeting(result);
+  }, [hash, history]);
 
   const saveResponse = async (name, responses) => {
     // ReactGA.event({
@@ -53,6 +72,7 @@ const ViewMeeting = () => {
     }
 
     Alert.success('Twoje odpowiedzi zostały zapisane!');
+    await request();
   };
 
   const closeNewMeeting = () => {
@@ -61,28 +81,9 @@ const ViewMeeting = () => {
   };
 
   useEffect(() => {
-    const request = async () => {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/v1/meetings/${hash}`);
-
-      if (response.status === 404) {
-        Alert.error('Podane spotkanie nie zostało znalezione w systemie.');
-        history.push('/');
-        return;
-      }
-
-      const result = await response.json();
-      if (response.status !== 200) {
-        Alert.error(result);
-        history.push('/');
-        return;
-      }
-
-      setMeeting(result);
-    };
-
     // noinspection JSIgnoredPromiseFromCall
     request();
-  }, [hash, history]);
+  }, [request]);
 
   if (meeting === null) {
     return <Spinner />;
