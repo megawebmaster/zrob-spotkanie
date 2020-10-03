@@ -16,7 +16,7 @@ import {
   pick,
   pipe,
   propEq,
-  propOr, tap,
+  propOr,
   values
 } from 'ramda';
 
@@ -110,7 +110,12 @@ const CreateMeeting = () => {
     // });
     const errors = buildErrors(name, days, schedule, resolution);
 
-    if (errors.name || errors.days || errors.resolution || scheduleMissingValues(schedule)) {
+    if (
+      errors.name ||
+      errors.days ||
+      errors.resolution ||
+      (resolution !== WHOLE_DAY && scheduleMissingValues(schedule))
+    ) {
       setErrors(errors);
       return;
     }
