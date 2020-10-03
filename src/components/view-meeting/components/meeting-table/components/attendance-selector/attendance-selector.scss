@@ -42,9 +42,3 @@ $brand-warning: #f0da48;
 		}
 	}
 }
-
-// TODO: Figure out if this is needed for errors
-.error-no-answers .attendance-selector.not-selected {
-	border-color: $danger;
-	border-radius: .5rem;
-}

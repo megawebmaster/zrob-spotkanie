@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { NewParticipant } from './new-participant/new-participant';
+import { NewParticipant } from '../new-participant/new-participant';
 
 import './participants.scss';
 

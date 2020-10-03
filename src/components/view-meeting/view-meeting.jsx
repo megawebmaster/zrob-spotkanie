@@ -2,21 +2,19 @@ import React, { useCallback, useEffect, useState } from 'react';
 import Helmet from 'react-helmet';
 import Alert from 'react-s-alert';
 import { useHistory, useParams } from 'react-router';
-import { FormattedMessage, useIntl } from 'react-intl';
 import { omit } from 'ramda';
 
 import { Spinner } from '../spinner/spinner';
 import { MeetingTable } from './components/meeting-table/meeting-table';
+import { NewMeetingMessage } from './components/new-meeting-message/new-meeting-message';
 
 import './view-meeting.scss';
 
 const ViewMeeting = () => {
-  const intl = useIntl();
   const history = useHistory();
   const { hash } = useParams();
   const [meeting, setMeeting] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [isNewMeeting, setIsNewMeeting] = useState(hash === localStorage.getItem('newly_created_event'));
 
   const request = useCallback(async () => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/v1/meetings/${hash}`);
@@ -80,11 +78,6 @@ const ViewMeeting = () => {
     await request();
   };
 
-  const closeNewMeeting = () => {
-    setIsNewMeeting(false);
-    localStorage.removeItem('newly_created_event');
-  };
-
   useEffect(() => {
     // noinspection JSIgnoredPromiseFromCall
     request();
@@ -97,19 +90,7 @@ const ViewMeeting = () => {
   return (
     <div className="view-meeting">
       <Helmet title={meeting.name} />
-      {isNewMeeting && (
-        <p className="alert alert-dismissible alert-success">
-          <FormattedMessage id="viewMeeting.meetingCreated" />
-          <button
-            type="button"
-            className="close"
-            aria-label={intl.formatMessage({ id: 'viewMeeting.close' })}
-            onClick={closeNewMeeting}
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </p>
-      )}
+      <NewMeetingMessage hash={hash} />
       <div className="form-group">
         <h2>{meeting.name}</h2>
       </div>
