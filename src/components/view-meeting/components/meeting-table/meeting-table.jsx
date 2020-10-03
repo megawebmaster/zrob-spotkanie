@@ -50,7 +50,7 @@ const hasNoResponsesErrors = pipe(
   all(equals('')),
 );
 
-export const MeetingTable = ({ days, loading, onSaveResponse }) => {
+export const MeetingTable = ({ days, loading, onSaveResponse, resolution }) => {
   const [showForm, setShowForm] = useState(true);
   const participants = useMemo(() => getParticipants(days), [days]);
 
@@ -99,6 +99,7 @@ export const MeetingTable = ({ days, loading, onSaveResponse }) => {
               event={event}
               onResponseChange={updateResponse}
               participantCount={participants.length}
+              resolution={resolution}
               responses={responses[event.day]}
               showForm={showForm}
             />

@@ -4,12 +4,14 @@ import Alert from 'react-s-alert';
 import { useHistory } from 'react-router';
 import { FormattedMessage, useIntl } from 'react-intl';
 import {
+  __,
   any,
   complement,
   either,
   equals,
+  map,
   mapObjIndexed,
-  mergeDeepLeft,
+  mergeDeepRight,
   omit,
   pick,
   pipe,
@@ -36,6 +38,16 @@ const scheduleMissingValues = pipe(
   ),
 );
 
+const buildSchedule = pipe(
+  mapObjIndexed((item, day) => ({ ...item, day: new Date(parseInt(day, 10)) })),
+  values,
+);
+
+const buildDailySchedule = pipe(
+  mapObjIndexed((item, day) => ({ day: new Date(parseInt(day, 10)) })),
+  values,
+);
+
 const CreateMeeting = () => {
   const intl = useIntl();
   const history = useHistory();
@@ -47,15 +59,16 @@ const CreateMeeting = () => {
 
   const updateDays = useCallback((days) => {
     setDays(days);
-    setSchedule(schedule => {
-      const existingDays = days.map(day => day.valueOf());
-      return mergeDeepLeft(pick(existingDays, schedule), buildEvents(days));
-    });
+    setSchedule(schedule => pipe(
+      map(d => d.valueOf()),
+      pick(__, schedule),
+      mergeDeepRight(buildEvents(days)),
+    )(days));
   }, []);
 
   const removeDay = useCallback((day) => {
     setDays(days => days.filter(complement(equals(day))));
-    setSchedule(schedule => omit([day.valueOf()], schedule));
+    setSchedule(schedule => omit([day.valueOf()])(schedule));
   }, []);
 
   const createMeeting = async () => {
@@ -74,10 +87,7 @@ const CreateMeeting = () => {
       body: JSON.stringify({
         name,
         resolution,
-        schedule: resolution === WHOLE_DAY ? null : pipe(
-          mapObjIndexed((item, day) => ({ ...item, day: new Date(parseInt(day, 10)) })),
-          values,
-        )(schedule)
+        schedule: resolution === WHOLE_DAY ? buildDailySchedule(schedule) : buildSchedule(schedule),
       })
     });
 

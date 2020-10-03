@@ -12,7 +12,7 @@ const getFullDayResponse = (responses) => {
   return allResponsesTheSame ? firstResponse : RESPONSE_NONE;
 }
 
-export const MeetingDay = ({ errors, event, onResponseChange, participantCount, responses, showForm }) => {
+export const MeetingDay = ({ errors, event, onResponseChange, participantCount, resolution, responses, showForm }) => {
   const [isFolded, setFolded] = useState(false);
   const updateFolding = (fold) => setFolded(fold);
   const updateDayResponse = (response) => {
@@ -31,6 +31,7 @@ export const MeetingDay = ({ errors, event, onResponseChange, participantCount, 
       <DayHeader
         day={event.day}
         isFolded={isFolded}
+        resolution={resolution}
         response={getFullDayResponse(responses)}
         showForm={showForm}
         participantCount={participantCount}

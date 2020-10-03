@@ -94,7 +94,12 @@ const ViewMeeting = () => {
       <div className="form-group">
         <h2>{meeting.name}</h2>
       </div>
-      <MeetingTable days={meeting.days} loading={loading} onSaveResponse={saveResponse} />
+      <MeetingTable
+        days={meeting.days}
+        loading={loading}
+        onSaveResponse={saveResponse}
+        resolution={meeting.resolution}
+      />
     </div>
   );
 };
