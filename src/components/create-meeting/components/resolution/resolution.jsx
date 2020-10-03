@@ -62,7 +62,9 @@ export const Resolution = ({ value, error, onChange }) => {
       {selectedValue !== WHOLE_DAY && (
         <div className={cx({ 'col-sm-2': selectedValue === '', 'col-sm-5': selectedValue !== '' })}>
           <p className="col-form-label">
-            <FormattedMessage id="createMeeting.resolutionSuffix" defaultMessage="do wyboru" />
+            <FormattedMessage
+              id={selectedValue === '' ? 'createMeeting.resolutionOtherSuffix' : 'createMeeting.resolutionSuffix'}
+            />
           </p>
         </div>
       )}
