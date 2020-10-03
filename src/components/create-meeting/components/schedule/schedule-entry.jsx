@@ -5,8 +5,8 @@ import { propOr } from 'ramda';
 
 export const ScheduleEntry = ({ children, day, errors, event, onChange, onDelete }) => {
   const intl = useIntl();
-  const fromErrors = propOr([], 'from', errors);
-  const toErrors = propOr([], 'to', errors);
+  const fromError = propOr('', 'from', errors);
+  const toError = propOr('', 'to', errors);
 
   const updateFrom = (event) => onChange(day, { from: event.target.value });
   const updateTo = (event) => onChange(day, { to: event.target.value });
@@ -16,7 +16,7 @@ export const ScheduleEntry = ({ children, day, errors, event, onChange, onDelete
       <label htmlFor="meeting-schedule-entry-from" className="col-form-label col-sm-2">
         <FormattedDate value={day} year="numeric" month="numeric" day="numeric" />
       </label>
-      <div className={cx('col-sm-2', { 'has-danger': fromErrors.length > 0 })}>
+      <div className={cx('col-sm-2', { 'was-validated': fromError })}>
         <input
           type="text"
           id="meeting-schedule-entry-from"
@@ -24,12 +24,15 @@ export const ScheduleEntry = ({ children, day, errors, event, onChange, onDelete
           value={event.from}
           placeholder={intl.formatMessage({ id: 'createMeeting.scheduleEntryStart' })}
           onChange={updateFrom}
+          required
         />
-        {fromErrors.length > 0 && (
-          <div className="form-control-feedback">{fromErrors.join(', ')}</div>
+        {fromError && (
+          <div className="invalid-feedback">
+            <FormattedMessage id={fromError} />
+          </div>
         )}
       </div>
-      <div className={cx('col-sm-2', { 'has-danger': toErrors.length > 0 })}>
+      <div className={cx('col-sm-2', { 'was-validated': toError })}>
         <input
           type="text"
           id="meeting-schedule-entry-to"
@@ -37,9 +40,12 @@ export const ScheduleEntry = ({ children, day, errors, event, onChange, onDelete
           value={event.to}
           placeholder={intl.formatMessage({ id: 'createMeeting.scheduleEntryEnd' })}
           onChange={updateTo}
+          required
         />
-        {toErrors.length > 0 && (
-          <div className="form-control-feedback">{toErrors.join(', ')}</div>
+        {toError && (
+          <div className="invalid-feedback">
+            <FormattedMessage id={toError} />
+          </div>
         )}
       </div>
       <div className="col-sm-6">

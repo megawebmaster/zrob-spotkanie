@@ -1,4 +1,5 @@
 import React from 'react';
+import cx from 'classnames';
 import DayPicker from 'react-day-picker';
 import { endOfDay, isAfter } from 'date-fns';
 import { FormattedMessage } from 'react-intl';
@@ -8,7 +9,7 @@ import './days.scss';
 
 const isDayBeforeToday = (day) => isAfter(new Date(), endOfDay(day));
 
-export const Days = ({ children, days, onChange }) => {
+export const Days = ({ days, error, onChange }) => {
   const isDaySelected = (day) => includes(day, days);
   const toggleDay = (day, { selected, disabled }) => {
     if (!disabled) {
@@ -21,7 +22,7 @@ export const Days = ({ children, days, onChange }) => {
   };
 
   return (
-    <div className="form-group form-row">
+    <div className={cx('form-group form-row', { 'is-invalid': error })}>
       <label htmlFor="meeting-days" className="col-form-label col-sm-3">
         <FormattedMessage id="createMeeting.days" defaultMessage="Wybierz dni" />
       </label>
@@ -36,7 +37,11 @@ export const Days = ({ children, days, onChange }) => {
         />
       </div>
       <div className="col-sm-3 col-md-4 col-lg-5">
-        {children}
+        {error && (
+          <div className="invalid-feedback">
+            <FormattedMessage id={error} />
+          </div>
+        )}
       </div>
     </div>
   );

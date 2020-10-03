@@ -24,6 +24,7 @@ import { Name } from './components/name/name';
 import { Days } from './components/days/days';
 import { Resolution, WHOLE_DAY } from './components/resolution/resolution';
 import { SaveButton } from '../save-button/save-button';
+import { Spinner } from '../spinner/spinner';
 import { buildEvents, Schedule } from './components/schedule/schedule';
 
 import './create-meeting.scss';
@@ -48,6 +49,30 @@ const buildDailySchedule = pipe(
   values,
 );
 
+// TODO: Add errors for from and to values being one after another
+const buildScheduleErrors = map(
+  mapObjIndexed((value, key) => value === '' ? `errors.create-meeting.${key}.missing` : '')
+);
+
+const buildErrors = (name, days, schedule, resolution) => {
+  const errors = {};
+
+  if (name === '') {
+    errors.name = 'errors.create-meeting.name.missing';
+  }
+  if (days.length === 0) {
+    errors.days = 'errors.create-meeting.days.missing';
+  }
+  if (resolution === '') {
+    errors.resolution = 'errors.create-meeting.resolution.missing';
+  }
+  if (resolution !== WHOLE_DAY) {
+    errors.schedule = buildScheduleErrors(schedule);
+  }
+
+  return errors;
+};
+
 const CreateMeeting = () => {
   const intl = useIntl();
   const history = useHistory();
@@ -55,10 +80,12 @@ const CreateMeeting = () => {
   const [days, setDays] = useState([]);
   const [schedule, setSchedule] = useState([]);
   const [resolution, setResolution] = useState('60');
-  const [errors] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const updateDays = useCallback((days) => {
     setDays(days);
+    setErrors(errors => omit(['days'], errors));
     setSchedule(schedule => pipe(
       map(d => d.valueOf()),
       pick(__, schedule),
@@ -77,54 +104,62 @@ const CreateMeeting = () => {
     //   action: 'create',
     //   value: resolution,
     // });
+    const errors = buildErrors(name, days, schedule, resolution);
 
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/v1/meetings`, {
-      method: 'post',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name,
-        resolution,
-        schedule: resolution === WHOLE_DAY ? buildDailySchedule(schedule) : buildSchedule(schedule),
-      })
-    });
+    if (errors.name || errors.days || errors.resolution || scheduleMissingValues(schedule)) {
+      setErrors(errors);
+      return;
+    }
 
-    const result = await response.json();
+    setLoading(true);
+    setErrors({});
 
-    if (response.status === 201) {
-      localStorage.setItem('newly_created_event', result.hash);
-      history.push(`/view/${result.hash}`);
-    } else {
-      Alert.error('Wystąpiły błędy w formularzu, nie można utworzyć spotkania');
-      // TODO: Properly parse errors coming from the app
-      // setErrors(result);
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/v1/meetings`, {
+        method: 'post',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          resolution,
+          schedule: resolution === WHOLE_DAY ? buildDailySchedule(schedule) : buildSchedule(schedule),
+        })
+      });
+
+      const result = await response.json();
+
+      if (response.status === 201) {
+        localStorage.setItem('newly_created_event', result.hash);
+        history.push(`/view/${result.hash}`);
+      } else {
+        Alert.error('Wystąpiły błędy w formularzu, nie można utworzyć spotkania');
+        setLoading(false);
+      }
+    } catch (e) {
+      Alert.error('Błąd połączenia z serwerem. Spróbuj ponownie');
+      setLoading(false);
     }
   };
-
-  const hasMissingFields =
-    days.length === 0 ||
-    name.length === 0 ||
-    resolution === '' ||
-    (resolution !== WHOLE_DAY && scheduleMissingValues(schedule))
-  ;
 
   return (
     <div className="create-meeting">
       <Helmet title={intl.formatMessage({ id: 'createMeeting.title' })} />
-      <Name value={name} onChange={setName} errors={propOr(false, 'name', errors)} />
-      <Days days={days} onChange={updateDays}>
-        {errors.days && (
-          <div className="form-control-feedback">{errors.days.join(', ')}</div>
-        )}
-      </Days>
-      <Resolution value={resolution} onChange={setResolution} errors={propOr(false, 'resolution', errors)} />
+      <Name value={name} onChange={setName} error={propOr('', 'name', errors)} />
+      <Days days={days} onChange={updateDays} error={propOr('', 'days', errors)} />
+      <Resolution value={resolution} onChange={setResolution} error={propOr('', 'resolution', errors)} />
       {resolution !== WHOLE_DAY && (
-        <Schedule days={days} schedule={schedule} errors={errors} onChange={setSchedule} onRemoveDay={removeDay} />
+        <Schedule
+          days={days}
+          schedule={schedule}
+          errors={propOr({}, 'schedule', errors)}
+          onChange={setSchedule}
+          onRemoveDay={removeDay}
+        />
       )}
-      <SaveButton onClick={createMeeting} disabled={hasMissingFields}>
-        <FormattedMessage id="createMeeting.button" />
+      <SaveButton onClick={createMeeting} disabled={loading}>
+        {loading ? <Spinner /> : <FormattedMessage id="createMeeting.button" />}
       </SaveButton>
     </div>
   );

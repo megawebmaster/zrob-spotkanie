@@ -4,7 +4,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 
 export const WHOLE_DAY = '1440';
 
-export const Resolution = ({ value, errors, onChange }) => {
+export const Resolution = ({ value, error, onChange }) => {
   const intl = useIntl();
   const [selectedValue, setSelectedValue] = useState(value);
   const [customValue, setCustomValue] = useState('');
@@ -19,7 +19,7 @@ export const Resolution = ({ value, errors, onChange }) => {
   };
 
   return (
-    <div className={cx('form-group form-row', { 'has-danger': errors.length > 0 })}>
+    <div className="form-group form-row">
       <label htmlFor="meeting-resolution" className="col-form-label col-sm-3">
         <FormattedMessage id="createMeeting.resolution" defaultMessage="Czas" />
       </label>
@@ -41,19 +41,22 @@ export const Resolution = ({ value, errors, onChange }) => {
             {intl.formatMessage({ id: 'createMeeting.resolutionOptionOther' })}
           </option>
         </select>
-        {errors.length > 0 && (
-          <div className="form-control-feedback">{errors.join(', ')}</div>
-        )}
       </div>
       {selectedValue === '' && (
-        <div className="col-sm-3">
+        <div className={cx('col-sm-3', { 'was-validated': error })}>
           <input
             type="text"
             className="form-control"
             value={customValue}
             onChange={updateCustomValue}
             placeholder={intl.formatMessage({ id: 'createMeeting.resolutionOtherPlaceholder' })}
+            required
           />
+          {error && (
+            <div className="invalid-feedback">
+              <FormattedMessage id={error} />
+            </div>
+          )}
         </div>
       )}
       {selectedValue !== WHOLE_DAY && (

@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { always, fromPairs, map, pathOr, pipe, propOr } from 'ramda';
+import { always, fromPairs, map, pipe, propOr } from 'ramda';
 
 import { ScheduleEntry } from './schedule-entry';
 import { CopyRowButton } from './copy-row-button';
@@ -57,7 +57,7 @@ export const Schedule = ({ days, schedule, errors, onChange, onRemoveDay }) => {
               event={event}
               onChange={updateDay}
               onDelete={onRemoveDay}
-              errors={pathOr({}, ['schedule', day.valueOf()], errors)}
+              errors={propOr({}, day.valueOf(), errors)}
             >
               {idx === 0 && days.length > 1 && (
                 <CopyRowButton disabled={!isRowFilled(event)} onClick={() => copyDay(day)} />
