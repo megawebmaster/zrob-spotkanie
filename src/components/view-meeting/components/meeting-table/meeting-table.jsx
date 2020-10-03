@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import cx from 'classnames';
 import { FormattedMessage } from 'react-intl';
-import { all, equals, fromPairs, lensPath, map, omit, pathOr, pipe, prop, set, values } from 'ramda';
+import { all, equals, flatten, fromPairs, lensPath, map, omit, pathOr, pipe, prop, propOr, set, values } from 'ramda';
 
 import { SaveButton } from '../../../save-button/save-button';
 import { Participants } from './components/participants/participants';
@@ -27,33 +27,55 @@ const getParticipants = pipe(
 
 const buildEmptyResponse = mapDaysTo(RESPONSE_NONE);
 
-// TODO: Block saving responses before everything is set up
+const buildErrors = (name, responses) => {
+  const errors = {};
+
+  if (name === '') {
+    errors.name = 'errors.name.missing';
+  }
+
+  errors.responses = pipe(
+    omit(['full']),
+    map(map(v => v === 'none' ? 'errors.responses.missing' : '')),
+  )(responses);
+
+  return errors;
+};
+
+const hasNoResponsesErrors = pipe(
+  prop('responses'),
+  values,
+  map(values),
+  flatten,
+  all(equals('')),
+);
+
 export const MeetingTable = ({ days, loading, onSaveResponse }) => {
   const [showForm, setShowForm] = useState(true);
   const participants = useMemo(() => getParticipants(days), [days]);
 
   const [name, setName] = useState('');
   const [responses, setResponses] = useState(buildEmptyResponse(days));
+  const [errors, setErrors] = useState({});
 
   const updateResponse = useCallback((day, hour, response) => {
-    setResponses(responses => {
-      const wholeDayResponse = pipe(
-        values(omit([hour, 'full'])),
-        all(equals(response))
-      )(responses[day]);
-
-      return pipe(
-        set(lensPath([day, hour]), response),
-        set(lensPath(['full', day]), wholeDayResponse ? response : RESPONSE_NONE),
-      )(responses);
-    });
+    setResponses(set(lensPath([day, hour]), response));
+    setErrors(set(lensPath(['responses', day, hour]), ''));
   }, []);
 
   const saveResponses = () => {
+    const errors = buildErrors(name, responses);
+
+    if (errors.name || !hasNoResponsesErrors(errors)) {
+      setErrors(errors);
+      return;
+    }
+
     onSaveResponse(name, responses);
     setResponses(buildEmptyResponse(days));
     setName('');
     setShowForm(false);
+    setErrors({});
   };
 
   return (
@@ -61,12 +83,19 @@ export const MeetingTable = ({ days, loading, onSaveResponse }) => {
       <div className={cx('meeting-table', { 'no-form': !showForm })}>
         <table className="table">
           <thead>
-          <Participants name={name} onNameChange={setName} participants={participants} showForm={showForm} />
+          <Participants
+            error={propOr('', 'name', errors)}
+            name={name}
+            onNameChange={setName}
+            participants={participants}
+            showForm={showForm}
+          />
           </thead>
           <tbody>
           {days.map((event) => (
             <MeetingDay
               key={event.day}
+              errors={pathOr({}, ['responses', event.day], errors)}
               event={event}
               onResponseChange={updateResponse}
               participantCount={participants.length}

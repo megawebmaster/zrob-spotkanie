@@ -41,4 +41,14 @@ $brand-warning: #f0da48;
 			@include btn-type($danger);
 		}
 	}
+
+	.btn-group{
+		border: 1px solid transparent;
+		border-radius: 0.25rem;
+
+		&.is-invalid {
+			border-color: #dc3545;
+			box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+		}
+	}
 }

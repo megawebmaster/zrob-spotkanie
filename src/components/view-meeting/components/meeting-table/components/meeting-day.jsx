@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { propOr } from 'ramda';
+import { all, equals, head, pipe, propOr, values } from 'ramda';
 
 import { RESPONSE_NONE } from './attendance-selector/attendance-selector';
 import { DayHeader } from './day-header/day-header';
 import { DayRow } from './day-row/day-row';
 
-export const MeetingDay = ({ event, onResponseChange, participantCount, responses, showForm }) => {
+const getFullDayResponse = (responses) => {
+  const firstResponse = pipe(values, head)(responses);
+  const allResponsesTheSame = pipe(values, all(equals(firstResponse)))(responses);
+
+  return allResponsesTheSame ? firstResponse : RESPONSE_NONE;
+}
+
+export const MeetingDay = ({ errors, event, onResponseChange, participantCount, responses, showForm }) => {
   const [isFolded, setFolded] = useState(false);
   const updateFolding = (fold) => setFolded(fold);
   const updateDayResponse = (response) => {
@@ -24,7 +31,7 @@ export const MeetingDay = ({ event, onResponseChange, participantCount, response
       <DayHeader
         day={event.day}
         isFolded={isFolded}
-        response={propOr(RESPONSE_NONE, event.day, responses.full)}
+        response={getFullDayResponse(responses)}
         showForm={showForm}
         participantCount={participantCount}
         onFoldChange={updateFolding}
@@ -36,6 +43,7 @@ export const MeetingDay = ({ event, onResponseChange, participantCount, response
         return (
           <DayRow
             key={hour.hour}
+            error={propOr('', hour.hour, errors)}
             hour={hour}
             response={responses[hour.hour]}
             onResponseChange={updateHourResponse}
@@ -45,4 +53,4 @@ export const MeetingDay = ({ event, onResponseChange, participantCount, response
       })}
     </>
   );
-}
+};

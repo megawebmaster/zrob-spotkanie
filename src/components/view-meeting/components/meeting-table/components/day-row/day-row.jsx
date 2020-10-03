@@ -18,11 +18,10 @@ const AttendanceIcon = ({ answer }) => (
   </div>
 );
 
-export const DayRow = ({ hour, response, onResponseChange, showForm }) => {
+export const DayRow = ({ error, hour, onResponseChange, response, showForm }) => {
   const answers = map(prop('answer'), hour.answers);
   const isGoodForMeeting = all(equals(RESPONSE_YES))(answers);
   const isConditionalForMeeting = none(equals(RESPONSE_NO))(answers);
-  console.log('answers', answers, isGoodForMeeting, isConditionalForMeeting);
 
   return (
     <tr className="day-row">
@@ -33,7 +32,7 @@ export const DayRow = ({ hour, response, onResponseChange, showForm }) => {
       </td>
       {showForm && (
         <td className="attendance">
-          <AttendanceSelector value={response} onChange={onResponseChange} />
+          <AttendanceSelector error={error} onChange={onResponseChange} value={response} />
         </td>
       )}
       {hour.answers.map(({ name, answer }) => (

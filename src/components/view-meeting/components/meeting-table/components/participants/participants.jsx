@@ -5,14 +5,14 @@ import { NewParticipant } from '../new-participant/new-participant';
 
 import './participants.scss';
 
-export const Participants = ({ name, onNameChange, participants, showForm }) => (
+export const Participants = ({ error, name, onNameChange, participants, showForm }) => (
   <tr className="participants">
     <th scope="col" className="title">
       {showForm && <FormattedMessage id="participants.participants" />}
     </th>
     {showForm && (
       <th scope="col" className="attendance">
-        <NewParticipant name={name} onNameChange={onNameChange} />
+        <NewParticipant name={name} error={error} onNameChange={onNameChange} />
       </th>
     )}
     {participants.map((participant) =>
