@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import DayPicker from 'react-day-picker';
 import { endOfDay, isAfter } from 'date-fns';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { complement, equals, includes } from 'ramda';
 
 import './days.scss';
@@ -10,6 +10,7 @@ import './days.scss';
 const isDayBeforeToday = (day) => isAfter(new Date(), endOfDay(day));
 
 export const Days = ({ days, error, onChange }) => {
+  const intl = useIntl();
   const isDaySelected = (day) => includes(day, days);
   const toggleDay = (day, { selected, disabled }) => {
     if (!disabled) {
@@ -34,6 +35,38 @@ export const Days = ({ days, error, onChange }) => {
           fromMonth={new Date()}
           onDayClick={toggleDay}
           locale="pl"
+          months={[
+            intl.formatMessage({ id: 'dayPicker.months.january' }),
+            intl.formatMessage({ id: 'dayPicker.months.february' }),
+            intl.formatMessage({ id: 'dayPicker.months.march' }),
+            intl.formatMessage({ id: 'dayPicker.months.april' }),
+            intl.formatMessage({ id: 'dayPicker.months.may' }),
+            intl.formatMessage({ id: 'dayPicker.months.june' }),
+            intl.formatMessage({ id: 'dayPicker.months.july' }),
+            intl.formatMessage({ id: 'dayPicker.months.august' }),
+            intl.formatMessage({ id: 'dayPicker.months.september' }),
+            intl.formatMessage({ id: 'dayPicker.months.october' }),
+            intl.formatMessage({ id: 'dayPicker.months.november' }),
+            intl.formatMessage({ id: 'dayPicker.months.december' }),
+          ]}
+          weekdaysShort={[
+            intl.formatMessage({ id: 'dayPicker.weekdays.short.sunday' }),
+            intl.formatMessage({ id: 'dayPicker.weekdays.short.monday' }),
+            intl.formatMessage({ id: 'dayPicker.weekdays.short.tuesday' }),
+            intl.formatMessage({ id: 'dayPicker.weekdays.short.wednesday' }),
+            intl.formatMessage({ id: 'dayPicker.weekdays.short.thursday' }),
+            intl.formatMessage({ id: 'dayPicker.weekdays.short.friday' }),
+            intl.formatMessage({ id: 'dayPicker.weekdays.short.saturday' }),
+          ]}
+          weekdaysLong={[
+            intl.formatMessage({ id: 'dayPicker.weekdays.long.sunday' }),
+            intl.formatMessage({ id: 'dayPicker.weekdays.long.monday' }),
+            intl.formatMessage({ id: 'dayPicker.weekdays.long.tuesday' }),
+            intl.formatMessage({ id: 'dayPicker.weekdays.long.wednesday' }),
+            intl.formatMessage({ id: 'dayPicker.weekdays.long.thursday' }),
+            intl.formatMessage({ id: 'dayPicker.weekdays.long.friday' }),
+            intl.formatMessage({ id: 'dayPicker.weekdays.long.saturday' }),
+          ]}
         />
       </div>
       <div className="col-sm-3 col-md-4 col-lg-5">
