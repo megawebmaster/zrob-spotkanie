@@ -22,7 +22,7 @@
 		$image-height: 261px;
 		position: relative;
 		box-shadow: 0 1px 20px 0 rgba(0, 0, 0, .2);
-		background: url('/assets/how-it-works/create-meeting/base.png') no-repeat;
+		background: url('./assets/base.png') no-repeat;
 		background-size: 140% auto;
 		min-width: $image-width;
 		min-height: $image-height;
@@ -66,7 +66,7 @@
 		> .magnifier {
 			position: absolute;
 			overflow: hidden;
-			background: url('/assets/how-it-works/create-meeting/full.png') -116px -53px; // Position for first step
+			background: url('./assets/full.png') -116px -53px; // Position for first step
 			background-size: 275% auto;
 			border: 8px solid white;
 			border-radius: 20px;

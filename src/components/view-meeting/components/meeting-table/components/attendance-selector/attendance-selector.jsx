@@ -31,7 +31,6 @@ export const AttendanceSelector = ({ error, onChange, value }) => {
         className={cx('btn-group', { 'is-invalid': error })}
         role="group"
         aria-label={intl.formatMessage({ id: 'viewMeeting.attendance' })}
-        aria-invalid={!!error}
       >
         <AttendanceButton answer={RESPONSE_YES} color="btn-success" icon="fa-check" onChange={onChange} value={value} />
         <AttendanceButton answer={RESPONSE_MAYBE} color="btn-warning" icon="fa-question" onChange={onChange} value={value} />
