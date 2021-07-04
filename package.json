@@ -20,13 +20,13 @@
     "react-s-alert": "^1.4.1"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/dom": "^7.30.3",
+    "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^13.1.5",
-    "sass": "^1.32.11",
     "prop-types": "^15.7.2",
-    "react-scripts": "4.0.3"
+    "react-scripts": "4.0.3",
+    "sass": "^1.32.11"
   },
   "scripts": {
     "start": "BROWSER=none react-scripts start",
