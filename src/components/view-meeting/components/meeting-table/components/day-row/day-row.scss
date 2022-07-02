@@ -27,14 +27,13 @@
 	}
 
 	.hour {
-		width: 7rem;
+		min-width: 8rem;
 		padding: 13px 3px 15px 0;
 		text-align: right;
 
 		.fa {
 			float: left;
 			font-size: 1.5rem;
-			padding-left: 1rem;
 			width: 2.5rem;
 		}
 
