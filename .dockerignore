@@ -1,0 +1,12 @@
+.git
+.storybook
+.idea
+.env.*
+.envrc
+.gitignore
+.tool-versions
+.dockerignore
+Dockerfile
+docker-compose.yml
+build/
+node_modules/
