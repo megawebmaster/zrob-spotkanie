@@ -2,6 +2,7 @@ import type { ChangeEvent, ReactNode } from 'react';
 import { propOr } from 'ramda';
 import cx from 'clsx';
 import { useTranslation } from 'react-i18next';
+import { DATE_FORMAT } from '~/helpers';
 
 export type ScheduleEntry = {
   from: string;
@@ -28,7 +29,7 @@ export const Entry = ({ children, day, errors, entry, onChange, onDelete }: Sche
   return (
     <div className="meeting-entry form-group form-row">
       <label htmlFor={`schedule-entry-${day.toISOString()}-from`} className="col-form-label col-sm-2">
-        {i18n.t('createMeeting.scheduleEntryDate', { val: day, formatParams: { year: 'numeric', month: 'numeric', day: 'numeric' } })}
+        {i18n.t('createMeeting.scheduleEntryDate', { val: day, formatParams: { val: DATE_FORMAT } })}
       </label>
       <div className={cx('col-sm-2', { 'was-validated': fromError })}>
         <input

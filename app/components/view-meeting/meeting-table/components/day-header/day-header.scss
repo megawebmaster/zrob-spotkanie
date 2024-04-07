@@ -1,0 +1,78 @@
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+
+.day-header {
+  padding: .25rem .25rem .25rem 0;
+  height: 2.5rem;
+  background-color: rgba(0, 0, 0, .07); // The same as $gray-lighter but with proper inner shadow support
+
+  .visibility-toggle {
+    margin-right: 8px;
+  }
+
+  > .whole-day {
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.65rem;
+    padding: 4px 0 4px 8px;
+    width: 7rem;
+    background-color: $gray-200;
+    height: 55px;
+
+    > span {
+      flex-grow: 1;
+      text-align: right;
+    }
+
+    @include media-breakpoint-up(lg) {
+      font-size: inherit;
+      width: 12rem;
+    }
+  }
+
+  .attendance {
+    width: 8rem;
+    margin-left: 7rem;
+    padding: .33rem 0;
+    background-color: $gray-200;
+    height: 55px;
+
+    @include media-breakpoint-up(lg) {
+      width: 12rem;
+      margin-left: 11rem;
+      padding: .063rem 0;
+    }
+  }
+
+  .attendance-selector {
+    text-align: center;
+    border: 0;
+    padding: 6px 0;
+  }
+
+  > .day {
+    text-align: left;
+    font-weight: bold;
+    padding: 0 1rem;
+    font-size: 0.8rem;
+    height: 55px;
+
+    > div {
+      width: 75px;
+      text-align: center;
+      white-space: normal;
+
+      @include media-breakpoint-up(sm) {
+        width: auto;
+      }
+    }
+
+    @include media-breakpoint-up(sm) {
+      text-align: center;
+      font-size: 1rem;
+    }
+  }
+}

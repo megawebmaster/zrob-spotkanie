@@ -78,7 +78,7 @@ const hasScheduleErrors = pipe(
 
 type Errors = Record<string, string | Record<string, Record<string, string>>>;
 
-const buildErrors = (name: string, days: Date[], schedule: Schedule, resolution: string) => {
+const buildErrors = (name: string, days: Date[], schedule: Schedule, resolution?: number) => {
   const errors: Errors = {};
 
   if (name === '') {
@@ -87,7 +87,7 @@ const buildErrors = (name: string, days: Date[], schedule: Schedule, resolution:
   if (days.length === 0) {
     errors.days = 'errors.create-meeting.days.missing';
   }
-  if (resolution === '') {
+  if (resolution === undefined) {
     errors.resolution = 'errors.create-meeting.resolution.missing';
   }
   if (resolution !== WHOLE_DAY) {
@@ -107,7 +107,7 @@ export default function Index() {
   const [name, setName] = useState('');
   const [days, setDays] = useState<Date[]>([]);
   const [schedule, setSchedule] = useState<Schedule>({});
-  const [resolution, setResolution] = useState('60');
+  const [resolution, setResolution] = useState<number | undefined>(60);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
 

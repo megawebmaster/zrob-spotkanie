@@ -5,9 +5,9 @@ import cx from 'clsx';
 import { WHOLE_DAY } from '~/helpers';
 
 type ResolutionProps = {
-  value: string;
+  value?: number;
   error: string;
-  onChange: (value: string) => void;
+  onChange: (value: number | undefined) => void;
 };
 
 export const Resolution = ({ value, error, onChange }: ResolutionProps) => {
@@ -16,12 +16,19 @@ export const Resolution = ({ value, error, onChange }: ResolutionProps) => {
   const [customValue, setCustomValue] = useState('');
 
   const updateSelectedValue = (event: ChangeEvent<HTMLSelectElement>) => {
-    setSelectedValue(event.target.value);
-    onChange(event.target.value);
+    if (event.target.value === '') {
+      setSelectedValue(undefined);
+      onChange(undefined);
+      return;
+    }
+
+    const value = parseInt(event.target.value, 10);
+    setSelectedValue(value);
+    onChange(value);
   };
   const updateCustomValue = (event: ChangeEvent<HTMLInputElement>) => {
     setCustomValue(event.target.value);
-    onChange(event.target.value);
+    onChange(parseInt(event.target.value, 10));
   };
 
   return (
@@ -48,7 +55,7 @@ export const Resolution = ({ value, error, onChange }: ResolutionProps) => {
           </option>
         </select>
       </div>
-      {selectedValue === '' && (
+      {selectedValue === undefined && (
         <div className={cx('col-sm-3', { 'was-validated': error })}>
           <input
             type="text"
@@ -66,9 +73,9 @@ export const Resolution = ({ value, error, onChange }: ResolutionProps) => {
         </div>
       )}
       {selectedValue !== WHOLE_DAY && (
-        <div className={cx({ 'col-sm-2': selectedValue === '', 'col-sm-5': selectedValue !== '' })}>
+        <div className={cx({ 'col-sm-2': selectedValue === undefined, 'col-sm-5': selectedValue !== undefined })}>
           <p className="col-form-label">
-            {t(selectedValue === '' ? 'createMeeting.resolutionOtherSuffix' : 'createMeeting.resolutionSuffix')}
+            {t(selectedValue === undefined ? 'createMeeting.resolutionOtherSuffix' : 'createMeeting.resolutionSuffix')}
           </p>
         </div>
       )}
