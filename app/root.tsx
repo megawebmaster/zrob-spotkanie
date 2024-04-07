@@ -1,26 +1,35 @@
 import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData, } from '@remix-run/react';
 import { json, LoaderFunctionArgs } from '@remix-run/node';
 import { useChangeLanguage } from 'remix-i18next/react';
+import type { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Bounce, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import i18next from '~/i18next.server';
-import './root.scss';
-import React from 'react';
 import { Navbar } from '~/components/navbar';
+import i18next from '~/i18next.server';
+import i18nConfig from '~/i18n';
+
+import './root.scss';
 
 export async function loader({ request }: LoaderFunctionArgs) {
-  const locale = await i18next.getLocale(request);
-  return json({ locale });
+  return json({
+    locale: await i18next.getLocale(request),
+    ENV: {
+      API_URL: process.env.API_URL,
+    },
+  });
 }
 
-export function Layout({ children }: { children: React.ReactNode }) {
+export function Layout({ children }: { children: ReactNode }) {
   const data = useLoaderData<typeof loader>();
   const { i18n } = useTranslation();
+  const locale = data?.locale || i18nConfig.fallbackLng;
 
-  // useChangeLanguage(locale);
+  useChangeLanguage(locale);
 
   return (
-    <html lang="pl" dir={i18n.dir()}>
+    <html lang={locale} dir={i18n.dir()}>
       <head>
         <meta charSet="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -28,6 +37,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links/>
       </head>
       <body>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.ENV = ${JSON.stringify(data?.ENV || {})}`,
+          }}
+        />
         {children}
         <ScrollRestoration/>
         <Scripts/>
@@ -39,8 +53,25 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <div className="container navbar-expand">
-      <Navbar />
+      <Navbar/>
       <Outlet/>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Bounce}
+      />
     </div>
   );
+}
+
+declare global {
+  interface Window {
+    ENV: Record<string, string>;
+  }
 }

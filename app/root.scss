@@ -10,9 +10,26 @@
 @import 'bootstrap/scss/nav';
 @import 'bootstrap/scss/navbar';
 
-//@import '~react-s-alert/dist/s-alert-default.css';
-//@import '~react-s-alert/dist/s-alert-css-effects/stackslide.css';
+$fa-font-path: 'font-awesome/fonts';
+@import 'font-awesome/scss/font-awesome';
+
+//@import 'react-s-alert/dist/s-alert-default.css';
+//@import 'react-s-alert/dist/s-alert-css-effects/stackslide.css';
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+html {
+  font-size: 14px;
+
+  @include media-breakpoint-up(xl) {
+    font-size: 16px;
+  }
+}
 
 .navbar {
-	margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
