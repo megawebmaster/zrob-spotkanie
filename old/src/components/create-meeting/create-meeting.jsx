@@ -20,7 +20,7 @@ import {
   values
 } from 'ramda';
 
-import { Name } from './components/name/name';
+import { Name } from '../../../remix-rewrite/app/components/create-meeting/name';
 import { Days } from './components/days/days';
 import { Resolution, WHOLE_DAY } from './components/resolution/resolution';
 import { SaveButton } from '../save-button/save-button';

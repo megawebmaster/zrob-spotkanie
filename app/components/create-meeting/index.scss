@@ -1,0 +1,13 @@
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+
+@import 'bootstrap/scss/forms';
+@import 'bootstrap/scss/buttons';
+
+.create-meeting {
+	label.col-form-label {
+		padding-right: 1rem;
+		text-align: right;
+	}
+}

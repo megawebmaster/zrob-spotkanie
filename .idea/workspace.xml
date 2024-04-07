@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9ccbbcb2-0910-42b5-8b2b-d63e56227414" name="Default Changelist" comment="Add header for schedule">
+      <change afterPath="$PROJECT_DIR$/.eslintrc.cjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/components/create-meeting/index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/components/navbar-link.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/components/navbar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/entry.client.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/entry.server.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/helpers.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/i18n.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/i18next.server.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/root.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/root.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/routes/_index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/old/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/old/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/old/public/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/old/public/robots.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/locales/pl/common.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vite.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/old/.dockerignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/old/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/old/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/old/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/nginx/default.conf.template" beforeDir="false" afterPath="$PROJECT_DIR$/old/docker/nginx/default.conf.template" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/old/public/.htaccess" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/public/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/old/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/App.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/create-meeting/components/days/days.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/create-meeting/components/days/days.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/create-meeting/components/days/days.scss" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/create-meeting/components/days/days.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/create-meeting/components/name/name.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/create-meeting/name.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/create-meeting/components/resolution/resolution.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/create-meeting/components/resolution/resolution.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/create-meeting/components/schedule/copy-row-button.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/create-meeting/components/schedule/copy-row-button.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/create-meeting/components/schedule/schedule-entry.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/create-meeting/components/schedule/schedule-entry.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/create-meeting/components/schedule/schedule.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/create-meeting/components/schedule/schedule.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/create-meeting/components/schedule/schedule.scss" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/create-meeting/components/schedule/schedule.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/create-meeting/create-meeting.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/create-meeting/create-meeting.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/create-meeting/create-meeting.scss" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/create-meeting/create-meeting.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/how-it-works/assets/base.png" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/how-it-works/assets/base.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/how-it-works/assets/full.png" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/how-it-works/assets/full.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/how-it-works/components/animation-step.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/how-it-works/components/animation-step.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/how-it-works/components/management-button.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/how-it-works/components/management-button.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/how-it-works/components/step-button.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/how-it-works/components/step-button.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/how-it-works/how-it-works.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/how-it-works/how-it-works.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/how-it-works/how-it-works.scss" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/how-it-works/how-it-works.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navbar-link.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/navbar-link.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/save-button/save-button.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/save-button/save-button.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/save-button/save-button.scss" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/save-button/save-button.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/spinner/spinner.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/spinner/spinner.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/spinner/spinner.scss" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/spinner/spinner.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/view-meeting/components/meeting-table/components/attendance-selector/attendance-selector.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/view-meeting/components/meeting-table/components/attendance-selector/attendance-selector.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/view-meeting/components/meeting-table/components/attendance-selector/attendance-selector.scss" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/view-meeting/components/meeting-table/components/attendance-selector/attendance-selector.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/view-meeting/components/meeting-table/components/day-header/day-header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/view-meeting/components/meeting-table/components/day-header/day-header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/view-meeting/components/meeting-table/components/day-header/day-header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/view-meeting/components/meeting-table/components/day-header/day-header.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/view-meeting/components/meeting-table/components/day-row/day-row.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/view-meeting/components/meeting-table/components/day-row/day-row.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/view-meeting/components/meeting-table/components/day-row/day-row.scss" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/view-meeting/components/meeting-table/components/day-row/day-row.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/view-meeting/components/meeting-table/components/meeting-day.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/view-meeting/components/meeting-table/components/meeting-day.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/view-meeting/components/meeting-table/components/new-participant/new-participant.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/view-meeting/components/meeting-table/components/new-participant/new-participant.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/view-meeting/components/meeting-table/components/new-participant/new-participant.scss" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/view-meeting/components/meeting-table/components/new-participant/new-participant.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/view-meeting/components/meeting-table/components/participants/participants.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/view-meeting/components/meeting-table/components/participants/participants.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/view-meeting/components/meeting-table/components/participants/participants.scss" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/view-meeting/components/meeting-table/components/participants/participants.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/view-meeting/components/meeting-table/components/visibility-toggle/visibility-toggle.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/view-meeting/components/meeting-table/components/visibility-toggle/visibility-toggle.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/view-meeting/components/meeting-table/components/visibility-toggle/visibility-toggle.scss" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/view-meeting/components/meeting-table/components/visibility-toggle/visibility-toggle.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/view-meeting/components/meeting-table/meeting-table.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/view-meeting/components/meeting-table/meeting-table.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/view-meeting/components/meeting-table/meeting-table.scss" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/view-meeting/components/meeting-table/meeting-table.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/view-meeting/components/new-meeting-message/new-meeting-message.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/view-meeting/components/new-meeting-message/new-meeting-message.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/view-meeting/view-meeting.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/view-meeting/view-meeting.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/view-meeting/view-meeting.scss" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/components/view-meeting/view-meeting.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/use-carousel.js" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/hooks/use-carousel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/serviceWorker.js" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/serviceWorker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/setupTests.js" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/setupTests.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/translations/pl.json" beforeDir="false" afterPath="$PROJECT_DIR$/old/src/translations/pl.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/old/yarn.lock" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="KubernetesApiPersistence">
+    <option name="context" value="gke_kubernetes-playground-195112_europe-west1-c_retrotool-cluster" />
+    <option name="namespace" value="default" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="1iEbkG59lgtLdJUyyUHktgiPuJF" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;remix&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/adi/Projects/zrobspotkanie.pl/remix-rewrite/app/routes&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/adi/Projects/zrobspotkanie.pl/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/remix-rewrite/app/routes" />
+      <recent name="$PROJECT_DIR$/remix-rewrite/app/components" />
+      <recent name="$PROJECT_DIR$/remix-rewrite/app" />
+      <recent name="$PROJECT_DIR$/remix-rewrite/public" />
+      <recent name="$PROJECT_DIR$/src/components/how-it-works/assets" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/old" />
+      <recent name="$PROJECT_DIR$/remix-rewrite/app/components/create-meeting" />
+      <recent name="$PROJECT_DIR$/remix-rewrite/public/locales/pl" />
+      <recent name="$PROJECT_DIR$/remix-rewrite/public" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-WS-241.14494.235" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9ccbbcb2-0910-42b5-8b2b-d63e56227414" name="Default Changelist" comment="" />
+      <created>1601475839596</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1601475839596</updated>
+      <workItem from="1601475840647" duration="27436000" />
+      <workItem from="1601645217770" duration="6485000" />
+      <workItem from="1601666452635" duration="33835000" />
+      <workItem from="1601743643953" duration="7342000" />
+      <workItem from="1618937671255" duration="1987000" />
+      <workItem from="1656791036840" duration="1822000" />
+      <workItem from="1712398131839" duration="2267000" />
+      <workItem from="1712410147522" duration="277000" />
+      <workItem from="1712482459299" duration="9082000" />
+    </task>
+    <task id="LOCAL-00001" summary="Add request to create a meeting">
+      <created>1601579409481</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1601579409484</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Add support for viewing a meeting">
+      <created>1601675843792</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1601675843792</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Simplify styling of the table">
+      <created>1601728643434</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1601728643434</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Show loading status when saving response">
+      <created>1601728782924</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1601728782924</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Cleanup ViewMeeting component">
+      <created>1601730698558</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1601730698558</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Cleanup CreateMeeting component">
+      <created>1601730769687</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1601730769687</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Cleanup HowItWorks component">
+      <created>1601730814540</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1601730814540</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Add errors checking when creating new meeting entry">
+      <created>1601735809873</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1601735809873</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Match navbar links exactly for meeting creation">
+      <created>1601736092395</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1601736092395</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Match navbar links exactly for meeting creation">
+      <created>1601737871501</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1601737871501</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Update error keys to make room for creating new ones">
+      <created>1601737899439</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1601737899439</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Add support for full days in ViewMeeting">
+      <created>1601741534741</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1601741534741</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Add errors on CreateMeeting page">
+      <created>1601744058873</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1601744058873</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Add better text for custom resolution">
+      <created>1601744214952</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1601744214952</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Show error when day from is after day to when creating new meeting">
+      <created>1601745636052</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1601745636052</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Fix creating full day meetings">
+      <created>1601748940664</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1601748940664</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Fix no meeting response color">
+      <created>1601749073016</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1601749073017</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Make calendar properly translate">
+      <created>1601750107158</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1601750107158</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Add header for schedule">
+      <created>1601753339466</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1601753339466</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add request to create a meeting" />
+    <MESSAGE value="Add support for viewing a meeting" />
+    <MESSAGE value="Simplify styling of the table" />
+    <MESSAGE value="Show loading status when saving response" />
+    <MESSAGE value="Cleanup ViewMeeting component" />
+    <MESSAGE value="Cleanup CreateMeeting component" />
+    <MESSAGE value="Cleanup HowItWorks component" />
+    <MESSAGE value="Add errors checking when creating new meeting entry" />
+    <MESSAGE value="Match navbar links exactly for meeting creation" />
+    <MESSAGE value="Update error keys to make room for creating new ones" />
+    <MESSAGE value="Add support for full days in ViewMeeting" />
+    <MESSAGE value="Add errors on CreateMeeting page" />
+    <MESSAGE value="Add better text for custom resolution" />
+    <MESSAGE value="Show error when day from is after day to when creating new meeting" />
+    <MESSAGE value="Fix creating full day meetings" />
+    <MESSAGE value="Fix no meeting response color" />
+    <MESSAGE value="Make calendar properly translate" />
+    <MESSAGE value="Add header for schedule" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add header for schedule" />
+  </component>
+</project>
