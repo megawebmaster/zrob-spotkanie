@@ -17,6 +17,7 @@
     "bootstrap": "^4.6.2",
     "clsx": "^2.1.0",
     "date-fns": "^3.6.0",
+    "fetch-retry": "^6.0.0",
     "font-awesome": "^4.7.0",
     "i18next": "^23.10.1",
     "i18next-browser-languagedetector": "^7.2.1",

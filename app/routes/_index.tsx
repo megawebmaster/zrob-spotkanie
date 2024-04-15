@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
 import i18next from '~/i18next.server';
-import { WHOLE_DAY } from '~/helpers';
+import { fetch, WHOLE_DAY } from '~/helpers';
 
 import { Name } from '~/components/create-meeting/name';
 import { Days } from '~/components/create-meeting/days';
@@ -156,7 +156,9 @@ export default function Index() {
           name,
           resolution,
           schedule: resolution === WHOLE_DAY ? buildDailySchedule(schedule) : buildSchedule(schedule),
-        })
+        }),
+        retries: 4,
+        retryDelay: 3000,
       });
 
       const result = await response.json();
@@ -166,10 +168,10 @@ export default function Index() {
         navigate(`/view/${result.hash}`);
       } else {
         toast.error(t('errors.create-meeting.general'));
-        setLoading(false);
       }
     } catch (e) {
       toast.error(t('errors.common.connection'));
+    } finally {
       setLoading(false);
     }
   };

@@ -11,6 +11,7 @@ import i18next from '~/i18next.server';
 import { NewMeetingMessage } from '~/components/view-meeting/new-meeting-message';
 import { MeetingTable, Responses } from '~/components/view-meeting/meeting-table/meeting-table';
 import type { Meeting } from '~/components/view-meeting/types';
+import { fetch } from '~/helpers';
 
 import '~/components/view-meeting/index.scss';
 
@@ -20,7 +21,10 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
   }
 
   const t = await i18next.getFixedT(request);
-  const response = await fetch(`${process.env.API_URL}/v1/meetings/${params.id}`);
+  const response = await fetch(`${process.env.API_URL}/v1/meetings/${params.id}`, {
+    retries: 4,
+    retryDelay: 3000,
+  });
   if (response.status !== 200) {
     return redirect('/');
   }

@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import type { AttendanceResponse, MeetingDay as MeetingDayType, MeetingHour } from '~/components/view-meeting/types';
 import { SaveButton } from '~/components/save-button/save-button';
 import { Spinner } from '~/components/spinner/spinner';
+import { fetch } from '~/helpers';
 
 import { Participants } from './components/participants/participants';
 import { MeetingDay } from './components/meeting-day';
@@ -83,45 +84,50 @@ export const MeetingTable = ({ days, hash, resolution, onNewAnswer }: MeetingTab
 
     setLoading(true);
 
-    const response = await fetch(`${window.ENV.API_URL}/v1/meetings/${hash}`, {
-      method: 'post',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name,
-        response: omit(['full'], responses)
-      })
-    });
+    try {
+      const response = await fetch(`${window.ENV.API_URL}/v1/meetings/${hash}`, {
+        method: 'post',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          response: omit(['full'], responses)
+        }),
+        retries: 4,
+        retryDelay: 3000,
+      });
 
-    if (response.status === 500) {
+      if (response.status === 500) {
+        toast.error(t('errors.common.connection'));
+        return;
+      }
+      if (response.status !== 201) {
+        const error = await response.json();
+
+        if (error.name) {
+          toast.error(error.name.join(', '));
+        }
+        if (error.response) {
+          toast.error(t('errors.view-meeting.server.response-missing'));
+        }
+
+        return;
+      }
+
+      toast.success(t('view-meeting.save-success'));
+      onNewAnswer(name, responses);
+
+      setResponses(buildEmptyResponse(days));
+      setName('');
+      setShowForm(false);
+      setErrors({});
+    } catch (e: unknown) {
       toast.error(t('errors.common.connection'));
+    } finally {
       setLoading(false);
-      return;
     }
-    if (response.status !== 201) {
-      const error = await response.json();
-
-      if (error.name) {
-        toast.error(error.name.join(', '));
-      }
-      if (error.response) {
-        toast.error(t('errors.view-meeting.server.response-missing'));
-      }
-
-      setLoading(false);
-      return;
-    }
-
-    toast.success(t('view-meeting.save-success'));
-    onNewAnswer(name, responses);
-
-    setResponses(buildEmptyResponse(days));
-    setName('');
-    setShowForm(false);
-    setErrors({});
-    setLoading(false);
   };
 
   return (
