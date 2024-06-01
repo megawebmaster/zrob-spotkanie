@@ -33,10 +33,10 @@ export const Resolution = ({ value, error, onChange }: ResolutionProps) => {
 
   return (
     <div className="form-group form-row">
-      <label htmlFor="meeting-resolution" className="col-form-label col-sm-3">
+      <label htmlFor="meeting-resolution" className="col-form-label col-2 col-sm-3">
         {t("createMeeting.resolution")}
       </label>
-      <div className="col-sm-4">
+      <div className="col-5 col-sm-4">
         <select value={selectedValue} onChange={updateSelectedValue} id="meeting-resolution" className="form-control">
           <option value={WHOLE_DAY}>
             {t('createMeeting.resolutionOption1440')}
@@ -56,7 +56,7 @@ export const Resolution = ({ value, error, onChange }: ResolutionProps) => {
         </select>
       </div>
       {selectedValue === undefined && (
-        <div className={cx('col-sm-3', { 'was-validated': error })}>
+        <div className={cx('col-3', { 'was-validated': error })}>
           <input
             type="text"
             className="form-control"
@@ -73,7 +73,7 @@ export const Resolution = ({ value, error, onChange }: ResolutionProps) => {
         </div>
       )}
       {selectedValue !== WHOLE_DAY && (
-        <div className={cx({ 'col-sm-2': selectedValue === undefined, 'col-sm-5': selectedValue !== undefined })}>
+        <div className={cx({ 'col-2': selectedValue === undefined, 'col-5': selectedValue !== undefined })}>
           <p className="col-form-label">
             {t(selectedValue === undefined ? 'createMeeting.resolutionOtherSuffix' : 'createMeeting.resolutionSuffix')}
           </p>

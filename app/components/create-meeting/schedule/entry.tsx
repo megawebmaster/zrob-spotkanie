@@ -2,7 +2,7 @@ import type { ChangeEvent, ReactNode } from 'react';
 import { propOr } from 'ramda';
 import cx from 'clsx';
 import { useTranslation } from 'react-i18next';
-import { DATE_FORMAT } from '~/helpers';
+import { DATE_FORMAT, DATE_FORMAT_SHORT } from '~/helpers';
 
 export type ScheduleEntry = {
   from: string;
@@ -28,10 +28,15 @@ export const Entry = ({ children, day, errors, entry, onChange, onDelete }: Sche
 
   return (
     <div className="meeting-entry form-group form-row">
-      <label htmlFor={`schedule-entry-${day.toISOString()}-from`} className="col-form-label col-sm-2">
-        {i18n.t('createMeeting.scheduleEntryDate', { val: day, formatParams: { val: DATE_FORMAT } })}
+      <label htmlFor={`schedule-entry-${day.toISOString()}-from`} className="col-form-label day">
+        <span className="d-sm-none">
+          {i18n.t('createMeeting.scheduleEntryDate', { val: day, formatParams: { val: DATE_FORMAT_SHORT } })}
+        </span>
+        <span className="d-none d-md-block">
+          {i18n.t('createMeeting.scheduleEntryDate', { val: day, formatParams: { val: DATE_FORMAT } })}
+        </span>
       </label>
-      <div className={cx('col-sm-2', { 'was-validated': fromError })}>
+      <div className={cx('time-from', { 'was-validated': fromError })}>
         <input
           type="text"
           id={`schedule-entry-${day.toISOString()}-from`}
@@ -47,7 +52,7 @@ export const Entry = ({ children, day, errors, entry, onChange, onDelete }: Sche
           </div>
         )}
       </div>
-      <div className={cx('col-sm-2', { 'was-validated': toError })}>
+      <div className={cx('time-to', { 'was-validated': toError })}>
         <input
           type="text"
           id="meeting-schedule-entry-to"
@@ -63,12 +68,13 @@ export const Entry = ({ children, day, errors, entry, onChange, onDelete }: Sche
           </div>
         )}
       </div>
-      <div className="col-sm-6">
-        <button className="btn btn-secondary mr-1" tabIndex={-1} onClick={() => onDelete(day)}>
-          <span className="d-lg-none">
+      <div className="actions">
+        <button className="btn btn-secondary btn-danger mr-1" tabIndex={-1} onClick={() => onDelete(day)}>
+          <span className="fa fa-times"/>
+          <span className="d-none d-md-inline d-lg-none ml-1">
             {t('createMeeting.scheduleEntryRemoveSmall')}
           </span>
-          <span className="d-none d-lg-block">
+          <span className="d-none d-lg-inline ml-1">
             {t('createMeeting.scheduleEntryRemove')}
           </span>
         </button>

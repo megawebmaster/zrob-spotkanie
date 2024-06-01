@@ -59,17 +59,17 @@ export const ScheduleTable = ({ days, schedule, errors, onChange, onRemoveDay }:
             {t('createMeeting.scheduleDays')}
           </p>
         ) : (
-          <div className="form-group form-row text-center">
-            <div className="col-sm-2">
+          <div className="meeting-entry form-group form-row text-center">
+            <div className="day">
               {t('createMeeting.schedule.day')}
             </div>
-            <div className="col-sm-2">
+            <div className="time-from">
               {t('createMeeting.schedule.from')}
             </div>
-            <div className="col-sm-2">
+            <div className="time-to">
               {t('createMeeting.schedule.to')}
             </div>
-            <div className="col-sm-6"/>
+            <div className="actions"/>
           </div>
         )}
         {days.map((day, idx) => {

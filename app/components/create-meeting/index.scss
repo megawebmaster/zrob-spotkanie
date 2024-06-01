@@ -6,8 +6,19 @@
 @import 'bootstrap/scss/buttons';
 
 .create-meeting {
-	label.col-form-label {
-		padding-right: 1rem;
-		text-align: right;
-	}
+  label.col-form-label {
+    padding-right: 1rem;
+
+    @include media-breakpoint-up(sm) {
+      text-align: right;
+    }
+  }
+
+  .rdp-months {
+    justify-content: center;
+
+    @include media-breakpoint-up(sm) {
+      justify-content: start;
+    }
+  }
 }

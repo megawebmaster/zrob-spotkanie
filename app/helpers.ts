@@ -5,5 +5,9 @@ export const DATE_FORMAT = {
   month: 'numeric',
   day: 'numeric',
 };
+export const DATE_FORMAT_SHORT = {
+  month: 'numeric',
+  day: 'numeric',
+};
 
 export const fetch = buildFetchWithRetry(globalThis.fetch);
