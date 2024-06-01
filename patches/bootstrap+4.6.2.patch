@@ -1,0 +1,67 @@
+diff --git a/node_modules/bootstrap/scss/_custom-forms.scss b/node_modules/bootstrap/scss/_custom-forms.scss
+index 750ea9c..ae93dae 100644
+--- a/node_modules/bootstrap/scss/_custom-forms.scss
++++ b/node_modules/bootstrap/scss/_custom-forms.scss
+@@ -7,6 +7,8 @@
+ //
+ // Base class takes care of all the key behavioral aspects.
+ 
++@use "sass:list";
++
+ .custom-control {
+   position: relative;
+   z-index: 1;
+@@ -104,7 +106,7 @@
+     width: $custom-control-indicator-size;
+     height: $custom-control-indicator-size;
+     content: "";
+-    background: 50% / #{$custom-control-indicator-bg-size} no-repeat;
++    background: list.slash(50%, $custom-control-indicator-bg-size) no-repeat;
+   }
+ }
+ 
+diff --git a/node_modules/bootstrap/scss/mixins/_forms.scss b/node_modules/bootstrap/scss/mixins/_forms.scss
+index b8847cc..2ab71ce 100644
+--- a/node_modules/bootstrap/scss/mixins/_forms.scss
++++ b/node_modules/bootstrap/scss/mixins/_forms.scss
+@@ -10,6 +10,8 @@
+ //
+ // Example usage: change the default blue border and shadow to white for better
+ // contrast against a dark gray background.
++@use "sass:list";
++
+ @mixin form-control-focus($ignore-warning: false) {
+   &:focus {
+     color: $input-focus-color;
+@@ -125,7 +127,7 @@
+ 
+       @if $enable-validation-icons {
+         padding-right: $custom-select-feedback-icon-padding-right !important; // stylelint-disable-line declaration-no-important
+-        background: $custom-select-background, $custom-select-bg escape-svg($icon) $custom-select-feedback-icon-position / $custom-select-feedback-icon-size no-repeat;
++        background: $custom-select-background, $custom-select-bg escape-svg($icon) list.slash($custom-select-feedback-icon-position, $custom-select-feedback-icon-size) no-repeat;
+       }
+ 
+       &:focus {
+diff --git a/node_modules/bootstrap/scss/vendor/_rfs.scss b/node_modules/bootstrap/scss/vendor/_rfs.scss
+index e453f44..bc28d71 100644
+--- a/node_modules/bootstrap/scss/vendor/_rfs.scss
++++ b/node_modules/bootstrap/scss/vendor/_rfs.scss
+@@ -7,6 +7,7 @@
+ // Licensed under MIT (https://github.com/twbs/rfs/blob/v8.x/LICENSE)
+ 
+ // Configuration
++@use "sass:math";
+ 
+ // Base font size
+ $rfs-base-font-size: 1.25rem !default;
+@@ -51,8 +52,8 @@ $rfs-base-font-size-unit: unit($rfs-base-font-size);
+ 
+ @function divide($dividend, $divisor, $precision: 10) {
+   $sign: if($dividend > 0 and $divisor > 0 or $dividend < 0 and $divisor < 0, 1, -1);
+-  $dividend: abs($dividend);
+-  $divisor: abs($divisor);
++  $dividend: math.abs($dividend);
++  $divisor: math.abs($divisor);
+   @if $dividend == 0 {
+     @return 0;
+   }
