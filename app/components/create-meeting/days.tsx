@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { pl } from 'date-fns/locale';
 import cx from 'clsx';
 
+import 'react-day-picker/dist/style.css';
 import './days.scss';
 
 const isDayBeforeToday = (day: Date) => isAfter(new Date(), endOfDay(day));
