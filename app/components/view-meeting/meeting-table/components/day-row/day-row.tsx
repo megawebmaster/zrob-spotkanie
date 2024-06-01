@@ -13,9 +13,9 @@ type AttendanceIconProps = {
 
 const AttendanceIcon = ({ answer }: AttendanceIconProps) => (
   <div className="participant-attendance">
-    {answer === RESPONSE_YES && <i className="fa fa-fw fa-check"/>}
-    {answer === RESPONSE_MAYBE && <i className="fa fa-fw fa-question"/>}
-    {answer === RESPONSE_NO && <i className="fa fa-fw fa-times"/>}
+    {answer === RESPONSE_YES && <i className="fa-solid fa-fw fa-check"/>}
+    {answer === RESPONSE_MAYBE && <i className="fa-solid fa-fw fa-question"/>}
+    {answer === RESPONSE_NO && <i className="fa-solid fa-fw fa-times"/>}
   </div>
 );
 
@@ -35,8 +35,9 @@ export const DayRow = ({ error, hour, onResponseChange, response, showForm }: Da
   return (
     <tr className="day-row">
       <td className="hour">
-        {answers.length > 0 && isGoodForMeeting && <i className="fa fa-fw fa-check"/>}
-        {answers.length > 0 && !isGoodForMeeting && isConditionalForMeeting && <i className="fa fa-fw fa-question"/>}
+        {answers.length > 0 && isGoodForMeeting && <i className="fa-solid fa-fw fa-check"/>}
+        {answers.length > 0 && !isGoodForMeeting && isConditionalForMeeting &&
+          <i className="fa-solid fa-fw fa-question"/>}
         {hour.hour}
       </td>
       {showForm && (

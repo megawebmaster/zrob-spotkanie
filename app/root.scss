@@ -10,11 +10,8 @@
 @import 'bootstrap/scss/nav';
 @import 'bootstrap/scss/navbar';
 
-$fa-font-path: 'font-awesome/fonts';
-@import 'font-awesome/scss/font-awesome';
-
-//@import 'react-s-alert/dist/s-alert-default.css';
-//@import 'react-s-alert/dist/s-alert-css-effects/stackslide.css';
+$fa-font-path: '@fortawesome/fontawesome-free/webfonts';
+@import '@fortawesome/fontawesome-free/scss/fontawesome';
 
 body {
   margin: 0;

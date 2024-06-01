@@ -16,7 +16,7 @@ export const CopyRowButton = ({ disabled, onClick }: CopyRowButtonProps) => {
       disabled={disabled}
       onClick={onClick}
     >
-      <span className="fa fa-copy" />
+      <span className="fa-solid fa-copy" />
       <span className="d-none d-md-inline d-lg-none ml-1">
         {t('createMeeting.scheduleDaysAllSmall')}
       </span>

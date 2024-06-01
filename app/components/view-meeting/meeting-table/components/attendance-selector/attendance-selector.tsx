@@ -29,7 +29,7 @@ const AttendanceButton = ({ answer, color, icon, onChange, value }: AttendanceBu
       type="button"
       onClick={() => onChange(answer)}
     >
-      <i className={cx('fa fa-fw', icon)}/>
+      <i className={cx('fa-solid fa-fw', icon)}/>
       <span className="sr-only">
         {t(`view-meeting.attendance.${answer}`)}
       </span>

@@ -70,7 +70,7 @@ export const Entry = ({ children, day, errors, entry, onChange, onDelete }: Sche
       </div>
       <div className="actions">
         <button className="btn btn-secondary btn-danger mr-1" tabIndex={-1} onClick={() => onDelete(day)}>
-          <span className="fa fa-times"/>
+          <span className="fa-solid fa-times"/>
           <span className="d-none d-md-inline d-lg-none ml-1">
             {t('createMeeting.scheduleEntryRemoveSmall')}
           </span>
