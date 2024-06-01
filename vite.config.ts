@@ -7,6 +7,9 @@ import * as process from 'node:process';
 installGlobals();
 
 export default defineConfig({
+  css: {
+    devSourcemap: true,
+  },
   plugins: [remix(), tsconfigPaths()],
   define: {
     'process.env': process.env
