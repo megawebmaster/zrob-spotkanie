@@ -19,7 +19,7 @@ export const VisibilityToggle = ({ visible, onChange }: VisibilityToggleProps) =
         onClick={() => onChange(visible)}
         title={t(visible ? 'visibility-toggle.hide' : 'visibility-toggle.show')}
       >
-        <i className={cx('fa', { 'fa-chevron-up': visible, 'fa-chevron-down': !visible })} />
+        <i className={cx('fa fa-solid', { 'fa-chevron-up': visible, 'fa-chevron-down': !visible })} />
       </button>
     </div>
   )

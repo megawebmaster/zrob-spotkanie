@@ -7,6 +7,6 @@ type ManagementButtonProps = {
 
 export const ManagementButton = ({ icon, onClick }: ManagementButtonProps) => (
   <button type="button" className="btn btn-secondary" onClick={onClick}>
-    <i className={cx('fa', icon)} />
+    <i className={cx('fa fa-solid', icon)} />
   </button>
 );

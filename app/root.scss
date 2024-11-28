@@ -10,8 +10,9 @@
 @import 'bootstrap/scss/nav';
 @import 'bootstrap/scss/navbar';
 
-$fa-font-path: '@fortawesome/fontawesome-free/webfonts';
+$fa-font-path: '/fonts';
 @import '@fortawesome/fontawesome-free/scss/fontawesome';
+@import '@fortawesome/fontawesome-free/scss/solid';
 
 body {
   margin: 0;
