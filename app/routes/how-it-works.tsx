@@ -58,13 +58,19 @@ export default function HowItWorks() {
         </div>
         <div className="buttons">
           <ClientOnly>
-            {() => <AnimationManagement step={step} setStep={setStep} ref={managementRef} containerRef={ref} />}
+            {() => (
+              <div className="btn-group mr-2" role="group" aria-label="Animation controls">
+                <AnimationManagement step={step} setStep={setStep} ref={managementRef} containerRef={ref}/>
+              </div>
+            )}
           </ClientOnly>
-          <StepButton number={1} step={step} setStep={updateStep}/>
-          <StepButton number={2} step={step} setStep={updateStep}/>
-          <StepButton number={3} step={step} setStep={updateStep}/>
-          <StepButton number={4} step={step} setStep={updateStep}/>
-          <StepButton number={5} step={step} setStep={updateStep}/>
+          <div className="btn-group" role="group" aria-label="How to steps">
+            <StepButton number={1} step={step} setStep={updateStep}/>
+            <StepButton number={2} step={step} setStep={updateStep}/>
+            <StepButton number={3} step={step} setStep={updateStep}/>
+            <StepButton number={4} step={step} setStep={updateStep}/>
+            <StepButton number={5} step={step} setStep={updateStep}/>
+          </div>
         </div>
       </div>
     </div>

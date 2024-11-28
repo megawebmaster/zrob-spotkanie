@@ -3,6 +3,7 @@
 @import 'bootstrap/scss/variables';
 @import 'bootstrap/scss/mixins';
 @import 'bootstrap/scss/buttons';
+@import 'bootstrap/scss/button-group';
 
 .HowItWorks {
   $image-widths: (
@@ -61,6 +62,7 @@
       position: absolute;
       bottom: -40px;
       right: 0;
+      display: flex;
     }
 
     $transition-time: 700ms;
