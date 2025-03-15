@@ -6,7 +6,7 @@ import { RemixServer } from '@remix-run/react';
 import { renderToPipeableStream } from 'react-dom/server';
 import { createInstance } from 'i18next';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
-import Backend from 'i18next-fs-backend/cjs';
+import Backend from 'i18next-fs-backend/esm';
 
 import i18next from './i18next.server';
 import i18n from './i18n';
@@ -34,7 +34,9 @@ export default async function handleRequest(
       ...i18n,
       lng,
       ns,
-      backend: { loadPath: resolve('./public/locales/{{lng}}/{{ns}}.json') },
+      backend: {
+        loadPath: resolve('./build/client/locales/{{lng}}/{{ns}}.json')
+      },
     });
 
   return new Promise((resolve, reject) => {
