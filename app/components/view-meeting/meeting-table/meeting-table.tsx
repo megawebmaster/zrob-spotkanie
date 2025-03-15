@@ -1,8 +1,8 @@
 import { useCallback, useMemo, useState } from 'react';
-import cx from 'clsx';
 import { fromPairs, lensPath, map, omit, pathOr, pipe, prop, propOr, set } from 'ramda';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
+import cx from 'clsx';
 
 import type { AttendanceResponse, MeetingDay as MeetingDayType, MeetingHour } from '~/components/view-meeting/types';
 import { SaveButton } from '~/components/save-button/save-button';
@@ -21,7 +21,7 @@ const mapHoursTo = (response: AttendanceResponse) => pipe(
 );
 const mapDaysTo = (response: AttendanceResponse) => pipe(
   map(({ day, hours }: MeetingDayType): [string, Record<string, AttendanceResponse>] => [
-    day.valueOf().toString(),
+    day,
     mapHoursTo(response)(hours)
   ]),
   fromPairs,

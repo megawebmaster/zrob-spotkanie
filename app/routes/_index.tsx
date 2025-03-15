@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 import { complement, equals, fromPairs, map, mapObjIndexed, omit, pipe, propOr, reduce, values } from 'ramda';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
+import { lightFormat } from 'date-fns';
 
 import i18next from '~/i18next.server';
 import { fetch, WHOLE_DAY } from '~/helpers';
@@ -34,13 +35,15 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
   ];
 };
 
+const parseDay = (day: string) => lightFormat(new Date(parseInt(day, 10)), 'yyyy-MM-dd') + 'T00:00:00.000Z';
+
 const buildSchedule = pipe(
-  mapObjIndexed((item: ScheduleEntry | undefined, day: string) => ({ ...item, day: new Date(parseInt(day, 10)) })),
+  mapObjIndexed((item: ScheduleEntry | undefined, day: string) => ({ ...item, day: parseDay(day) })),
   values,
 );
 
 const buildDailySchedule = pipe(
-  mapObjIndexed((item: unknown, day: string) => ({ day: new Date(parseInt(day, 10)) })),
+  mapObjIndexed((item: unknown, day: string) => ({ day: parseDay(day) })),
   values,
 );
 

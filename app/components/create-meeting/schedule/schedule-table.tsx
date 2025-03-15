@@ -37,12 +37,12 @@ export const ScheduleTable = ({ days, schedule, errors, onChange, onRemoveDay }:
 
   const updateDay = useCallback((day: Date, { from, to }: Partial<ScheduleEntry>) => {
     onChange(items => {
-      const item = items[day.valueOf()];
+      const item = items[day.valueOf()]!;
       return {
         ...items,
         [day.valueOf()]: {
-          from: from === undefined ? item?.from : from,
-          to: to === undefined ? item?.to : to,
+          from: from === undefined ? item.from : from,
+          to: to === undefined ? item.to : to,
         }
       };
     });
