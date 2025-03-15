@@ -19,7 +19,7 @@ type ScheduleEntryProps = {
 };
 
 export const Entry = ({ children, day, errors, entry, onChange, onDelete }: ScheduleEntryProps) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const fromError = propOr<string, ScheduleEntry, string>('', 'from', (errors || {}) as ScheduleEntry);
   const toError = propOr<string, ScheduleEntry, string>('', 'to', (errors || {}) as ScheduleEntry);
 
@@ -30,10 +30,10 @@ export const Entry = ({ children, day, errors, entry, onChange, onDelete }: Sche
     <div className="meeting-entry form-group form-row">
       <label htmlFor={`schedule-entry-${day.toISOString()}-from`} className="col-form-label day">
         <span className="d-sm-none">
-          {i18n.t('createMeeting.scheduleEntryDate', { val: day, formatParams: { val: DATE_FORMAT_SHORT } })}
+          {t('createMeeting.scheduleEntryDate', { val: day, formatParams: { val: DATE_FORMAT_SHORT } })}
         </span>
         <span className="d-none d-md-block">
-          {i18n.t('createMeeting.scheduleEntryDate', { val: day, formatParams: { val: DATE_FORMAT } })}
+          {t('createMeeting.scheduleEntryDate', { val: day, formatParams: { val: DATE_FORMAT } })}
         </span>
       </label>
       <div className={cx('time-from', { 'was-validated': fromError })}>

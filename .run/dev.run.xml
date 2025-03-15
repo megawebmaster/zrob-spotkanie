@@ -8,6 +8,7 @@
     <node-interpreter value="project" />
     <envs>
       <env name="API_URL" value="http://localhost:8080" />
+      <env name="NS_LOCATION" value="public" />
     </envs>
     <method v="2" />
   </configuration>

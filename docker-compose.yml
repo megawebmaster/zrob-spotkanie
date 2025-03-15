@@ -2,7 +2,7 @@ services:
   app:
     build: .
     environment:
-      - PORT=5173
-      - API_URL=http://localhost:8080
+      API_URL: http://localhost:8080
+      PORT: 5173
     ports:
       - "5173:5173"

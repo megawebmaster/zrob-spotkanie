@@ -1,4 +1,5 @@
 import { resolve } from 'node:path';
+import process from 'node:process';
 import { PassThrough } from 'stream';
 import { isbot } from 'isbot';
 import { createReadableStreamFromReadable, type EntryContext, } from '@remix-run/node';
@@ -35,7 +36,7 @@ export default async function handleRequest(
       lng,
       ns,
       backend: {
-        loadPath: resolve('./build/client/locales/{{lng}}/{{ns}}.json')
+        loadPath: resolve(`./${process.env.NS_LOCATION}/locales/{{lng}}/{{ns}}.json`),
       },
     });
 
