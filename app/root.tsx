@@ -1,3 +1,4 @@
+import process from 'node:process';
 import type { ReactNode } from 'react';
 import type { LoaderFunctionArgs } from '@remix-run/node';
 import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData, } from '@remix-run/react';
