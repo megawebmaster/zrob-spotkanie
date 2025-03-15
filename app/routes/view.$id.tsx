@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
@@ -63,10 +63,16 @@ export default function ViewMeeting() {
 
   const [meeting, setMeeting] = useState<Meeting>(data.meeting as Meeting);
 
-  if (meeting === undefined || !id) {
-    toast.error(t('errors.view-meeting.not-found'));
+  useEffect(() => {
+    if (meeting === undefined || !id) {
+      toast.error(t('errors.view-meeting.not-found'));
 
-    return redirect('/');
+      redirect('/');
+    }
+  }, [t, meeting, id]);
+
+  if (!id || !meeting) {
+    return null;
   }
 
   return (
