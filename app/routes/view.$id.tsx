@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-import { json, LoaderFunctionArgs, MetaFunction, redirect } from '@remix-run/node';
+import { LoaderFunctionArgs, MetaFunction, redirect } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { ClientOnly } from 'remix-utils/client-only';
 
@@ -31,11 +31,11 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
 
   const meeting = await response.json() as Meeting;
 
-  return json({
+  return {
     title: `${meeting.name} - ${t('app.name')}`,
     description: t('app.view-meeting.description'),
     meeting,
-  });
+  };
 }
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {

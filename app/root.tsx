@@ -1,7 +1,7 @@
-import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData, } from '@remix-run/react';
-import { json, LoaderFunctionArgs } from '@remix-run/node';
-import { useChangeLanguage } from 'remix-i18next/react';
 import type { ReactNode } from 'react';
+import type { LoaderFunctionArgs } from '@remix-run/node';
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData, } from '@remix-run/react';
+import { useChangeLanguage } from 'remix-i18next/react';
 import { useTranslation } from 'react-i18next';
 import { Bounce, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -13,12 +13,12 @@ import i18nConfig from '~/i18n';
 import './root.scss';
 
 export async function loader({ request }: LoaderFunctionArgs) {
-  return json({
+  return {
     locale: await i18next.getLocale(request),
     ENV: {
       API_URL: process.env.API_URL,
     },
-  });
+  };
 }
 
 export function Layout({ children }: { children: ReactNode }) {
@@ -30,22 +30,22 @@ export function Layout({ children }: { children: ReactNode }) {
 
   return (
     <html lang={locale} dir={i18n.dir()}>
-      <head>
-        <meta charSet="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <Meta/>
-        <Links/>
-      </head>
-      <body>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.ENV = ${JSON.stringify(data?.ENV || {})}`,
-          }}
-        />
-        {children}
-        <ScrollRestoration/>
-        <Scripts/>
-      </body>
+    <head>
+      <meta charSet="utf-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <Meta/>
+      <Links/>
+    </head>
+    <body>
+    <script
+      dangerouslySetInnerHTML={{
+        __html: `window.ENV = ${JSON.stringify(data?.ENV || {})}`,
+      }}
+    />
+    {children}
+    <ScrollRestoration/>
+    <Scripts/>
+    </body>
     </html>
   );
 }

@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { json, LoaderFunctionArgs, MetaFunction } from '@remix-run/node';
+import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/node';
 import { useNavigate } from 'react-router';
 import { complement, equals, fromPairs, map, mapObjIndexed, omit, pipe, propOr, reduce, values } from 'ramda';
 import { useTranslation } from 'react-i18next';
@@ -21,10 +21,10 @@ import '~/components/create-meeting/index.scss';
 export async function loader({ request }: LoaderFunctionArgs) {
   const t = await i18next.getFixedT(request);
 
-  return json({
+  return {
     title: `${t('createMeeting.title')} - ${t('app.name')}`,
     description: t('app.description'),
-  });
+  };
 }
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {

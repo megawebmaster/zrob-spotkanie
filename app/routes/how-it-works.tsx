@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { json, LoaderFunctionArgs, MetaFunction } from '@remix-run/node';
+import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/node';
 import { ClientOnly } from 'remix-utils/client-only';
 
 import i18next from '~/i18next.server';
@@ -17,10 +17,10 @@ import '~/components/how-it-works/index.scss';
 export async function loader({ request }: LoaderFunctionArgs) {
   const t = await i18next.getFixedT(request);
 
-  return json({
+  return {
     title: `${t('how-it-works.title')} - ${t('app.name')}`,
     description: t('how-it-works.description'),
-  });
+  };
 }
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
@@ -44,7 +44,7 @@ export default function HowItWorks() {
   return (
     <div className="HowItWorks">
       <h1>
-        {t("how-it-works.create.title")}
+        {t('how-it-works.create.title')}
       </h1>
       <div className={'how-to-create step-' + step} ref={ref}>
         <div className="curtain"/>
