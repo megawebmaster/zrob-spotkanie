@@ -1,0 +1,9 @@
+.idea
+.gitignore
+.run
+.tool-versions
+build
+docker-compose.yml
+node_modules
+README.md
+LICENSE
